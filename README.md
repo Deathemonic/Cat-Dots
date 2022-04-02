@@ -30,5 +30,7 @@ Go to the [wiki](https://github.com/deathemonic/cat-dots/wiki) for a guide on ho
 
 [**adi1090x**](https://github.com/adi1090x) - For he's configs and archcraft
 
+[**andreasgrafen**](https://www.reddit.com/r/unixporn/comments/sak598/yabai_catppuccin_is_taking_over_and_i_love_it/) - For the inspiration and Cascade
+
 ### (Coming Soon)
 ## Uploading r/Unixporn Soon
