@@ -20,6 +20,10 @@
 # It's a dots with catppuccin color palette
 **It consist a Window Manager, Dunst, Polybar, Rofi, and etc all theme with catppuccin**
 
+<h2 align="center">
+	<img src="https://github.com/Deathemonic/Cat-Dots/blob/main/SneekPeek/Showcase%201.png?raw=true" height="500">
+</h2>
+
 ## Installation
 Go to the [wiki](https://github.com/deathemonic/cat-dots/wiki) for a guide on how to install it and to how to setup it
 
