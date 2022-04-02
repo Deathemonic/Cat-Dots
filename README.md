@@ -24,7 +24,8 @@
 Go to the [wiki](https://github.com/deathemonic/cat-dots/wiki) for a guide on how to install it and to how to setup it
 
 ## Thanks to
-
+[**Catppuccin**](https://github.com/catppuccin/catppuccin) For the color palette and theming
+[**Manas140**](https://github.com/Manas140) For it's dotfiles I make as the base
 
 ### (Coming Soon)
 ## Uploading r/Unixporn Soon
