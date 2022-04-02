@@ -26,8 +26,9 @@ Go to the [wiki](https://github.com/deathemonic/cat-dots/wiki) for a guide on ho
 ## Thanks to
 [**Catppuccin**](https://github.com/Catppuccin) - For the color palette and theming
 
-[**Manas140**](https://github.com/Manas140) For it's dotfiles I make as the base
+[**Manas140**](https://github.com/Manas140) - For he's dotfiles I make as the base
 
+[**adi1090x**](https://github.com/adi1090x) - For he's configs and archcraft
 
 ### (Coming Soon)
 ## Uploading r/Unixporn Soon
