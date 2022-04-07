@@ -38,9 +38,11 @@ Go to the [wiki](https://github.com/deathemonic/cat-dots/wiki) for a guide on ho
 
 ## Other Projects
 [**Kyuketsuki**](https://github.com/Deathemonic/Kyuketsuki)
+
 A minimalist dracula theme dotfiles
 
 **re-dots**(WIP)
+
 A pastel dotfiles that uses berry
 
 ### (Coming Soon)
