@@ -36,5 +36,12 @@ Go to the [wiki](https://github.com/deathemonic/cat-dots/wiki) for a guide on ho
 
 [**andreasgrafen**](https://www.reddit.com/r/unixporn/comments/sak598/yabai_catppuccin_is_taking_over_and_i_love_it/) - For the inspiration and Cascade
 
+## Other Projects
+[**Kyuketsuki**](https://github.com/Deathemonic/Kyuketsuki)
+A minimalist dracula theme dotfiles
+
+**re-dots**(WIP)
+A pastel dotfiles that uses berry
+
 ### (Coming Soon)
 ## Uploading r/Unixporn Soon
