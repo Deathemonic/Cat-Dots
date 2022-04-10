@@ -34,6 +34,8 @@ Go to the [wiki](https://github.com/deathemonic/cat-dots/wiki) for a guide on ho
 
 [**andreasgrafen**](https://www.reddit.com/r/unixporn/comments/sak598/yabai_catppuccin_is_taking_over_and_i_love_it/) - For the inspiration and Cascade
 
+[**rxyhn**](https://github.com/rxyhn) - For the scripts
+
 ## Other Projects
 [**Kyuketsuki**](https://github.com/Deathemonic/Kyuketsuki)
 
@@ -48,5 +50,6 @@ A pastel dotfiles that uses berry
 
 ## Donate
 **Like my work please consider donate**
+
 <a href="https://ko-fi.com/deathemonic"><img width="32px" src="https://uploads-ssl.webflow.com/5c14e387dab576fe667689cf/5cbec633ae2b882fff068659_ko-fi_horizontal.png" alt="Donate on ko-fi"></a>
 <a href="https://www.paypal.com/@notkillzone"><img width="32px" src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-mark-monotone-transparent.svg" alt="Donate via Paypal"></a>
