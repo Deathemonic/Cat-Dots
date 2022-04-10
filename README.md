@@ -20,8 +20,6 @@
 # It's a dots with catppuccin color palette
 **It consist a Window Manager, Dunst, Polybar, Rofi, and etc all theme with catppuccin**
 
-![SneekPeek](https://github.com/Deathemonic/Cat-Dots/blob/main/SneekPeek/Showcase%201.png)
-
 ## Installation
 Go to the [wiki](https://github.com/deathemonic/cat-dots/wiki) for a guide on how to install it and to how to setup it
 
@@ -52,4 +50,4 @@ A pastel dotfiles that uses berry
 **Like my work please consider donate**
 
 <a href="https://ko-fi.com/deathemonic"><img width="52px" src="https://github.com/Deathemonic/Cat-Dots/blob/main/Screenshots/kofi.png" alt="Donate on ko-fi"></a>
-<a href="https://www.paypal.com/@notkillzone"><img width="52px" src="https://github.com/Deathemonic/Cat-Dots/blob/main/Screenshots/paypal.png" alt="Donate via Paypal"></a>
+<a href="https://www.paypal.me/@notkillzone"><img width="52px" src="https://github.com/Deathemonic/Cat-Dots/blob/main/Screenshots/paypal.png" alt="Donate via Paypal"></a>
