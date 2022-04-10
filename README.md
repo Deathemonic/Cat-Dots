@@ -36,6 +36,7 @@ Go to the [wiki](https://github.com/deathemonic/cat-dots/wiki) for a guide on ho
 ## Donate
 **Like my work please consider donate**
 
+<script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#96CDFB', 'K3K8C2M9Y');kofiwidget2.draw();</script>
 <a href="https://ko-fi.com/deathemonic"><img width="52px" src="https://github.com/Deathemonic/Cat-Dots/blob/main/Screenshots/kofi.png" alt="Donate on ko-fi"></a>
 <a href="https://www.paypal.me/@notkillzone"><img width="52px" src="https://github.com/Deathemonic/Cat-Dots/blob/main/Screenshots/paypal.png" alt="Donate via Paypal"></a>
 
