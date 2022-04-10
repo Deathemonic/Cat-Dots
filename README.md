@@ -52,4 +52,4 @@ A pastel dotfiles that uses berry
 **Like my work please consider donate**
 
 <a href="https://ko-fi.com/deathemonic"><img width="52px" src="https://github.com/Deathemonic/Cat-Dots/blob/main/Screenshots/kofi.png" alt="Donate on ko-fi"></a>
-<a href="https://www.paypal.com/@notkillzone"><img width="32px" src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-mark-monotone-transparent.svg" alt="Donate via Paypal"></a>
+<a href="https://www.paypal.com/@notkillzone"><img width="52px" src="https://github.com/Deathemonic/Cat-Dots/blob/main/Screenshots/paypal.png" alt="Donate via Paypal"></a>
