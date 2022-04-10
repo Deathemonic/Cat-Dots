@@ -43,11 +43,12 @@ A minimalist dracula theme dotfiles
 
 A pastel dotfiles that uses berry
 
-### (Coming Soon)
-## Uploading r/Unixporn Soon
-
 ## Donate
 **Like my work please consider donate**
 
 <a href="https://ko-fi.com/deathemonic"><img width="52px" src="https://github.com/Deathemonic/Cat-Dots/blob/main/Screenshots/kofi.png" alt="Donate on ko-fi"></a>
 <a href="https://www.paypal.me/@notkillzone"><img width="52px" src="https://github.com/Deathemonic/Cat-Dots/blob/main/Screenshots/paypal.png" alt="Donate via Paypal"></a>
+
+
+### (Soon)
+## Uploading r/Unixporn Really Soon
