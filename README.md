@@ -33,6 +33,12 @@ Go to the [wiki](https://github.com/deathemonic/cat-dots/wiki) for a guide on ho
 
 [**rxyhn**](https://github.com/rxyhn) - For the scripts
 
+## Donate
+**Like my work please consider donate**
+
+<a href="https://ko-fi.com/deathemonic"><img width="52px" src="https://github.com/Deathemonic/Cat-Dots/blob/main/Screenshots/kofi.png" alt="Donate on ko-fi"></a>
+<a href="https://www.paypal.me/@notkillzone"><img width="52px" src="https://github.com/Deathemonic/Cat-Dots/blob/main/Screenshots/paypal.png" alt="Donate via Paypal"></a>
+
 ## Other Projects
 [**Kyuketsuki**](https://github.com/Deathemonic/Kyuketsuki)
 
@@ -42,12 +48,4 @@ A minimalist dracula theme dotfiles
 
 A pastel dotfiles that uses berry
 
-## Donate
-**Like my work please consider donate**
-
-<a href="https://ko-fi.com/deathemonic"><img width="52px" src="https://github.com/Deathemonic/Cat-Dots/blob/main/Screenshots/kofi.png" alt="Donate on ko-fi"></a>
-<a href="https://www.paypal.me/@notkillzone"><img width="52px" src="https://github.com/Deathemonic/Cat-Dots/blob/main/Screenshots/paypal.png" alt="Donate via Paypal"></a>
-
-
-### (Soon)
 ## Uploading r/Unixporn Really Soon
