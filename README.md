@@ -17,7 +17,7 @@
 		<img alt="Issues" src="https://img.shields.io/github/issues/deathemonic/cat-dots?style=for-the-badge&logo=gitbook&color=B5E8E0&logoColor=D9E0EE&labelColor=302D41"></a>
 </p>
 
-<h2 align=center>Dots with Catppuccin color palette</h2>
+<h2 align=center>The Dotfiles with catppuccin colors</h2>
 
 ## Installation
 Go to the [wiki](https://github.com/deathemonic/cat-dots/wiki) for a guide on how to install it and to how to setup it
