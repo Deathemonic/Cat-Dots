@@ -51,5 +51,5 @@ A pastel dotfiles that uses berry
 ## Donate
 **Like my work please consider donate**
 
-<a href="https://ko-fi.com/deathemonic"><img width="32px" src="https://uploads-ssl.webflow.com/5c14e387dab576fe667689cf/5cbec633ae2b882fff068659_ko-fi_horizontal.png" alt="Donate on ko-fi"></a>
+<a href="https://ko-fi.com/deathemonic"><img width="52px" src="https://github.com/Deathemonic/Cat-Dots/blob/main/Screenshots/kofi.png" alt="Donate on ko-fi"></a>
 <a href="https://www.paypal.com/@notkillzone"><img width="32px" src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-mark-monotone-transparent.svg" alt="Donate via Paypal"></a>
