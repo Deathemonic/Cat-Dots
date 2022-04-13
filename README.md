@@ -33,6 +33,8 @@ Go to the [wiki](https://github.com/deathemonic/cat-dots/wiki) for a guide on ho
 
 [**rxyhn**](https://github.com/rxyhn) - For the scripts
 
+[**Aproxia**](https://github.com/Aproxia-dev) - For the startpage
+
 ## Donate
 **Like my work please consider donate**
 
