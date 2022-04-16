@@ -1,0 +1,67 @@
+#!/bin/sh
+
+# Autostart
+
+## Polkit
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+## Autokill
+killall -9 ksuperkey xfce4-power-manager &
+killall sxhkd; sxhkd &
+killall dunst; dunst &
+
+## Power Manager
+xfce4-power-manager &
+
+## Compositor
+picom -b &
+
+## Background
+feh --bg-fill -r -z $HOME/Pictures/Wallpapers &
+
+## Redshift (Optional)
+# redshift -x && redshift -O 4000k &
+
+## Fix Cursor
+xsetroot -cursor_name left_ptr &
+
+## Bar
+$HOME/.config/polybar/launch.sh &
+
+## Super Key
+ksuperkey -e 'Super_L=Alt_L|F1' &
+ksuperkey -e 'Super_R=Alt_L|F1' &
+
+## Mpd
+exec mpd &
+
+# Variable
+
+alias bc='bspc config'
+alias br='bspc rule'
+
+# Workspaces
+
+bspc monitor -d 1 2 3 4 5 6 7 8
+
+# Config
+
+bc border_width 0
+bc window_gap 10
+bc split_ratio 0.50
+bc bottom_padding 0
+
+bc borderless_monocle true
+bc gapless_monocle false
+bc focus_follows_pointer true
+bc paddingless_monocle true
+bc single_monocle false
+
+# Rules
+
+br -a feh state=floating
+br -a sxiv state=floating
+br -a mpv state=floating
+br -a Conky state=floating
+br -a stalonetray state=floating
+br -a Lxappearance state=floating

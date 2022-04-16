@@ -1,0 +1,17 @@
+@import url("index.css");
+
+:root {
+	--bg:		#1e1e2e;
+	--fg:		#d9e0ee;
+	--title:	#f5e0dc;
+	--hl:		#e8a2af;
+	--black:	#6e6c7e;
+	--red:		#f28fad;
+	--green:	#abe9b3;
+	--yellow:	#fae3b0;
+	--blue:		#96cdfb;
+	--magenta:	#f5c2e7;
+	--cyan:		#89dceb;
+}
+
+body { background-image: url("img/catppuccin-wall.png"); }
