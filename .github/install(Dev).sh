@@ -35,6 +35,11 @@ read -p "[-] DO YOU WANT TO PROCEED [Y/N] : " install
 # Directory
 dir="$HOME/.config $HOME/.dotfiles $HOME/Pictures/Wallpapers $HOME/.local/bin $HOME/.fonts $HOME/.config/backups"
 
+# Variables
+dots="$HOME/.dotfiles"
+cat="$HOME/.dotfiles/Cat-Dots"
+config="$HOME/.config"
+
 # Abort
 case $install in
     N*|n*)
@@ -72,7 +77,7 @@ case $arch in
     # Paru
         case $helper in
             P*|p*)
-            echo "cd $HOME/.dotfiles"
+            echo "cd $dots"
             echo "git clone https://aur.archlinux.org/paru.git"
             echo "cd ./paru"
             echo "makepkg -si"
@@ -81,7 +86,7 @@ case $arch in
     # Yay
         case $helper in
             Y*|y*) 
-            echo "cd $HOME/.dotfiles"
+            echo "cd $dots"
             echo "git clone https://aur.archlinux.org/yay.git"
             echo "cd ./yay"
             echo "makepkg -si"
@@ -92,34 +97,45 @@ esac
 # Copying Files
     clear
     printf "${cb}[*] Getting dotfiles\n" && sleep 2
-    echo "cd $HOME/.dotfiles"
+    echo "cd $dots"
     echo "git clone https://github.com/Deathemonic/Cat-Dots.git && cd ./Cat-Dots"
     printf "${cr}[*] Making backups\n" && sleep 5
     echo "mkdir $HOME/.config/backups"
-    echo "mv $HOME/.config/bspwm/ $HOME/.config/backups"
-    echo "mv $HOME/.config/sxhkd/ $HOME/.config/backups"
-    echo "mv $HOME/.config/polybar/ $HOME/.config/backups"
-    echo "mv $HOME/.config/networkmanager-dmenu/ $HOME/.config/backups"
-    echo "mv $HOME/.config/eww/ $HOME/.config/backups"
-    echo "mv $HOME/.config/kitty/ $HOME/.config/backups"
-    echo "mv $HOME/.config/dunst/ $HOME/.config/backups"
-    echo "mv $HOME/.config/zathura/ $HOME/.config/backups"
-    echo "mv $HOME/.config/cava $HOME/.config/backups"
-    echo "mv $HOME/.config/picom.conf $HOME/.config/backups"
+    echo "cp -rf $config/bspwm/ $config/backups"
+    echo "cp -rf $config/sxhkd/ $config/backups"
+    echo "cp -rf $config/polybar/ $config/backups"
+    echo "cp -rf $config/networkmanager-dmenu/ $config/backups"
+    echo "cp -rf $config/eww/ $config/backups"
+    echo "cp -rf $config/kitty/ $config/backups"
+    echo "cp -rf $config/dunst/ $config/backups"
+    echo "cp -rf $config/zathura/ $config/backups"
+    echo "cp -rf $config/cava $config/backups"
+    echo "cp -rf $config/picom.conf $config/backups"
+    echo "rm -rf $config/bspwm/"
+    echo "rm -rf $config/sxhkd/"
+    echo "rm -rf $config/polybar/"
+    echo "rm -rf $config/networkmanager-dmenu/"
+    echo "rm -rf $config/eww/"
+    echo "rm -rf $config/kitty/"
+    echo "rm -rf $config/dunst/"
+    echo "rm -rf $config/zathura/"
+    echo "rm -rf $config/cava"
+    echo "rm -rf $config/picom.conf"
     printf "${cr}[*] Deleting old configs\n" && sleep 2
     printf "${cg}[*] Copying dotfiles\n" && sleep 3
     printf "${cb}[*] Copying configs\n" && sleep 4
-    echo "cp -ra ./config/* $HOME/.config"
-    echo "cp -ra ./home/* $HOME/."
+    echo "cp -rf $cat/config/* $HOME/.config"
+    echo "cp -rf $cat/home/* $HOME/."
+    echo "xrdb ~/.Xresources"
     printf "${cg}[*] Configs copied\n" && sleep 2
     printf "${cb}[*] Copying scripts\n" && sleep 3
-    echo "cp -ra ./bin/* $HOME/.local/bin/"
+    echo "cp -rf $cat/bin/* $HOME/.local/bin/"
     printf "${cg}[*] Scripts copied\n" && sleep 2
     printf "${cb}[*] Copying wallpapers\n" && sleep 3
-    echo "cp -ra ./walls/* $HOME/Pictures/Wallpapers"
+    echo "cp -rf $cat/walls/* $HOME/Pictures/Wallpapers"
     printf "${cg}[*] Wallpapers copied\n" && sleep 2
     printf "${cb}[*] Copying fonts\n" && sleep 3
-    echo "cp -ra ./fonts/* $HOME/.fonts"
+    echo "cp -rf $cat/fonts/* $HOME/.fonts"
     echo "fc-cache -fv"
     printf "${cg}[*] Fonts copied\n" && sleep 2
     printf "${cg}[*] Dotfiles installed\n" && sleep 2
