@@ -65,7 +65,8 @@ Go to the [wiki](https://github.com/deathemonic/cat-dots/wiki) for a guide on ho
 | Powermenu    | <img src="https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/Screenshots/Rofi/Rofi-NetworkMenu.png" width="400"/> |
  </details>
 
-## Thanks to
+<details>
+<summary><b>Thanks To</b></summary>
 
 <img src="https://avatars.githubusercontent.com/u/93489351?s=200&v=4" width="50"/>
 
@@ -87,14 +88,24 @@ Go to the [wiki](https://github.com/deathemonic/cat-dots/wiki) for a guide on ho
 
 [**rxyhn**](https://github.com/rxyhn) - For his scripts
 
-## Donate
+<img src="https://avatars.githubusercontent.com/u/61628558?v=4" width="50">
+
+[**obliviousofcraps**](https://github.com/obliviousofcraps) - For the kitty mappings and tabbar configs
+</details>
+
+<details>
+<summary><b>Donate</b></summary>
+
 **Like my work please consider donate**
 
 <a href='https://ko-fi.com/K3K8C2M9Y' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 <a href="https://www.paypal.me/@notkillzone"><img width="52px" src="https://github.com/Deathemonic/Cat-Dots/blob/main/Screenshots/paypal.png" alt="Donate via Paypal"></a>
+</details>
 
-## Other Projects
+<details>
+<summary><b>Other Projects</b></summary>
+
 [**Kyuketsuki**](https://github.com/Deathemonic/Kyuketsuki)
 
 A minimalist dracula theme dotfiles
@@ -102,3 +113,4 @@ A minimalist dracula theme dotfiles
 **re-dots**(WIP)
 
 A pastel dotfiles that uses berry
+</details>
