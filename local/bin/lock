@@ -36,7 +36,7 @@ i3lock \
   --time-color=$text \
   --time-str="%I:%M %p" \
   --time-font="$font" \
-  --time-size=75 \
+  --time-size=60 \
   --time-color=$text \
   --date-color=$text \
   --date-str="%A, %d %B" \
