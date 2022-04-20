@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 rofi_command="rofi -theme $HOME/.config/rofi/config/network.rasi"
 
-## Get info
+# Get info
 IFACE="$(nmcli | grep -i interface | head -n1 | cut -d' ' -f2)"
 STATUS="$(nmcli radio wifi)"
 _SSID="$(iwgetid -r)"
@@ -29,14 +29,14 @@ else
     connected="睊 Offline"
 fi
 
-## Icons
+# Icons
 bmon=" Open Bandwidth Monitor"
 launch_cli=" Open Network Manager"
 launch="ﯱ Open Connection Editor"
 
 options="$connected\n$bmon\n$launch_cli\n$launch"
 
-## Main
+# Main
 chosen="$(echo -e "$options" | $rofi_command -p "$SSID : $PIP" -dmenu $active $urgent -selected-row 1)"
 case $chosen in
     $connected)
@@ -47,10 +47,10 @@ case $chosen in
 		fi 
         ;;
     $bmon)
-        alacritty -e bmon
+        kitty -e bmon
         ;;
     $launch_cli)
-        alacritty -e nmtui
+        kitty -e nmtui
         ;;
     $launch)
         nm-connection-editor

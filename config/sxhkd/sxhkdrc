@@ -103,10 +103,6 @@ ctrl + shift + {q,r}
 super + {h,v,q}
 	bspc node -p {east,south,cancel}
 
-# Preselect the ratio
-super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
-
 # Fullscreen or Monocle
 super + f
     bspc node -t "~"fullscreen

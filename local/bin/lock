@@ -34,7 +34,7 @@ i3lock \
   --redraw-thread \
   --clock \
   --time-color=$text \
-  --time-str="%H:%M" \
+  --time-str="%I:%M %p" \
   --time-font="$font" \
   --time-size=75 \
   --time-color=$text \
