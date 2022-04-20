@@ -1,9 +1,9 @@
 configuration {
     show-icons:                     true;
-    display-drun: 		    "";
+    display-drun: 		            "";
     drun-display-format:            "{icon} {name}";
     disable-history:                false;
-    click-to-exit: 		    true;
+    click-to-exit: 		            true;
     location:                       4;
 }
 
@@ -26,24 +26,24 @@ window {
 }
 
 prompt {
-    enabled: 			    true;
-    margin: 			    0px 0px 0px 8px;
-    padding: 			    8px;
-    background-color: 		    @BG;
-    text-color: 		    @FG;
+    enabled: 			            true;
+    margin: 			            0px 0px 0px 8px;
+    padding: 			            8px;
+    background-color: 		        @BG;
+    text-color: 		            @FG;
     border:                  	    0px 0px 2px 0px;
     border-color:                   @BDR;
     border-radius:                  10px;
 }
 
 textbox-prompt-colon {
-    expand: 			    false;
-    str: 			    "";
+    expand: 			            false;
+    str: 			                "";
     border-radius:                  100%;
     background-color:               @BG;
     text-color:                     @BG;
     padding:                        8px 12px 8px 12px;
-    font:			    "Iosevka Nerd Font 10";
+    font:			                "Iosevka Nerd Font 10";
 }
 
 entry {
@@ -61,7 +61,7 @@ entry {
 }
 
 inputbar {
-    children: 		            [ textbox-prompt-colon ];
+    children: 		                [ textbox-prompt-colon ];
     background-color:               @BG;
     text-color:                     @FG;
     expand:                         false;
@@ -83,7 +83,7 @@ case-indicator {
 listview {
     background-color:               @BG;
     columns:                        1;
-    lines:			    5;
+    lines:			                5;
     spacing:                        15px;
     cycle:                          true;
     dynamic:                        true;
@@ -106,8 +106,8 @@ element {
 }
 
 element-icon {
-    background-color: 		    inherit;
-    text-color:       		    inherit;
+    background-color: 		        inherit;
+    text-color:       		        inherit;
     horizontal-align:               0.5;
     vertical-align:                 0.5;
     size:                           0px;
@@ -115,9 +115,9 @@ element-icon {
 }
 
 element-text {
-    background-color: 		    inherit;
-    text-color:       		    inherit;
-    font:			    "feather 20";
+    background-color: 		        inherit;
+    text-color:       		        inherit;
+    font:			                "feather 20";
     expand:                         true;
     horizontal-align:               0.5;
     vertical-align:                 0.5;

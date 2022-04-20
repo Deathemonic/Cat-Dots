@@ -1,9 +1,10 @@
 configuration {
     show-icons:                     true;
-    display-drun: 		    "";
+    display-drun: 		            "";
     drun-display-format:            "{icon} {name}";
     disable-history:                false;
-    click-to-exit: 		    true;
+    click-to-exit: 		            true;
+    location:                       0;
 }
 
 @import "font.rasi"
@@ -17,27 +18,26 @@ window {
     border-color:                   @BDR;
     border-radius:                  10px;
     width:                          500px;
-    location:                       center;
     anchor:                         center;
     x-offset:                       0;
     y-offset:                       0;
 }
 
 prompt {
-    enabled: 			    true;
-    padding: 			    8px;
-    background-color: 		    @BG;
-    text-color: 		    @IMG;
+    enabled: 			            true;
+    padding: 			            8px;
+    background-color: 		        @BG;
+    text-color: 		            @IMG;
 }
 
 textbox-prompt-colon {
-    expand: 			    false;
-    str: 			    "";
+    expand: 			            false;
+    str: 			                "";
     border-radius:                  100%;
     background-color:               @SEL;
     text-color:                     @FG;
     padding:                        8px 12px 8px 12px;
-    font:			    "Iosevka Nerd Font 10";
+    font:			                "Iosevka Nerd Font 10";
 }
 
 entry {
@@ -55,7 +55,7 @@ entry {
 }
 
 inputbar {
-	children: 		    [ textbox-prompt-colon, prompt, entry ];
+	children: 		                [ textbox-prompt-colon, prompt, entry ];
     background-color:               @BG;
     text-color:                     @FG;
     expand:                         false;
@@ -77,7 +77,7 @@ case-indicator {
 listview {
     background-color:               @BG;
     columns:                        1;
-    lines:			    7;
+    lines:			                7;
     spacing:                        4px;
     cycle:                          false;
     dynamic:                        true;
@@ -101,7 +101,7 @@ element {
 
 element-icon {
     background-color: 	            inherit;
-    text-color:       		    inherit;
+    text-color:       		        inherit;
     horizontal-align:               0.5;
     vertical-align:                 0.5;
     size:                           24px;
@@ -109,8 +109,8 @@ element-icon {
 }
 
 element-text {
-    background-color: 		    inherit;
-    text-color:       		    inherit;
+    background-color: 		        inherit;
+    text-color:       		        inherit;
     expand:                         true;
     horizontal-align:               0;
     vertical-align:                 0.5;

@@ -1,9 +1,10 @@
 configuration {
     show-icons:                     false;
-    display-drun: 		    "";
+    display-drun: 		            "";
     drun-display-format:            "{icon} {name}";
     disable-history:                false;
-    click-to-exit: 		    true;
+    click-to-exit: 		            true;
+    location:                       0;
 }
 
 @import "font.rasi"
@@ -20,31 +21,30 @@ window {
     border-color:                   @BDR;
     border-radius:                  10px;
     width:                          300px;
-    location:                       center;
     anchor:                         center;
     x-offset:                       0;
     y-offset:                       0;
 }
 
 prompt {
-    enabled: 			    true;
-    margin: 			    0px 0px 0px 8px;
-    padding: 			    8px;
-    background-color: 		    @BG;
-    text-color: 		    @FG;
+    enabled: 			            true;
+    margin: 			            0px 0px 0px 8px;
+    padding: 			            8px;
+    background-color: 		        @BG;
+    text-color: 		            @FG;
     border:                  	    0px 0px 2px 0px;
     border-color:                   @BDR;
     border-radius:                  10px;
 }
 
 textbox-prompt-colon {
-    expand: 			    false;
-    str: 			    "";
+    expand: 			            false;
+    str: 			                "";
     border-radius:                  100%;
     background-color:               @BG;
     text-color:                     @FG;
     padding:                        8px 12px 8px 12px;
-    font:			    "Iosevka Nerd Font 10";
+    font:			                "Iosevka Nerd Font 10";
 }
 
 entry {

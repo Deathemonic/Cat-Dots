@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Installer Version: 1.9
+# Installer Version: 2.5
 # A fork of https://github.com/manas140/dotfiles install.sh
 
 # Use the comments to navigate
@@ -145,7 +145,7 @@ esac
     printf "${cg}[*] Configs copied\n" && sleep 2
     printf "${cb}[*] Copying scripts\n" && sleep 3
     cp -rf $cat/local/bin/* $bin/
-    sudo cp $cat/local/bin/rofi-bluetooth /bin/
+    sudo cp $cat/local/bin/rofi-bluetooth /usr/bin/
     printf "${cg}[*] Scripts copied\n" && sleep 2
     printf "${cr}[*] Making them excutables\n" && sleep 2
     chmod +x $bin/*

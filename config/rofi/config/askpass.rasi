@@ -12,7 +12,7 @@ window {
     border:		            0px 0px 2px 0px;
     border-radius:          8px;
     border-color:           @BDR;
-    location:               center;
+    location:               0;
     x-offset:               0;
     y-offset:               -4%;
 }

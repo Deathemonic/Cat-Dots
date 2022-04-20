@@ -1,9 +1,10 @@
 configuration {
     show-icons:                     false;
-    display-drun: 		    "";
+    display-drun: 		            "";
     drun-display-format:            "{icon} {name}";
     disable-history:                false;
-    click-to-exit: 		    true;
+    click-to-exit: 		            true;
+    location:                       0;
 }
 
 @import "font.rasi"
@@ -20,31 +21,30 @@ window {
     border-color:                   @BDR;
     border-radius:                  10px;
     width:                          400px;
-    location:                       center;
     anchor:                         center;
     x-offset:                       0;
     y-offset:                       0;
 }
 
 prompt {
-    enabled: 			    true;
-    margin: 			    0px 0px 0px 8px;
-    padding: 			    8px;
-    background-color: 		    @BG;
-    text-color: 		    @FG;
+    enabled: 			            true;
+    margin: 			            0px 0px 0px 8px;
+    padding: 			            8px;
+    background-color: 		        @BG;
+    text-color: 		            @FG;
     border:                  	    0px 0px 2px 0px;
     border-color:                   @BDR;
     border-radius:                  10px;
 }
 
 textbox-prompt-colon {
-    expand: 			    false;
-    str: 			    "ﱘ";
+    expand: 			            false;
+    str: 			                "ﱘ";
     border-radius:                  100%;
     background-color:               @BG;
     text-color:                     @FG;
     padding:                        8px 12px 8px 12px;
-    font:			    "Iosevka Nerd Font 10";
+    font:			                "Iosevka Nerd Font 10";
 }
 
 entry {
@@ -62,7 +62,7 @@ entry {
 }
 
 inputbar {
-    children: 			    [ textbox-prompt-colon, prompt ];
+    children: 			            [ textbox-prompt-colon, prompt ];
     background-color:               @BG;
     text-color:                     @FG;
     expand:                         false;
@@ -84,7 +84,7 @@ case-indicator {
 listview {
     background-color:               @BG;
     columns:                        3;
-    lines:			    2;
+    lines:			                2;
     spacing:                        15px;
     cycle:                          false;
     dynamic:                        true;
@@ -107,15 +107,15 @@ element {
 }
 
 element-icon {
-    background-color: 		    inherit;
-    text-color:       		    inherit;
+    background-color: 		        inherit;
+    text-color:       		        inherit;
     size:                           0px;
     border:                         0px;
 }
 
 element-text {
-    background-color: 		    inherit;
-    text-color:       		    inherit;
+    background-color: 		        inherit;
+    text-color:       		        inherit;
     expand:                         true;
     horizontal-align:               0.5;
     vertical-align:                 0.5;

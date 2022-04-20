@@ -1,8 +1,9 @@
 configuration {
     show-icons:                     false;
-    display-run: 		    "";
+    display-run: 		            "";
     disable-history:                false;
-    click-to-exit: 		    true;
+    click-to-exit: 		            true;
+    location:                       0;
 }
 
 @import "font.rasi"
@@ -23,15 +24,15 @@ window {
 }
 
 prompt {
-    enabled: 			    true;
-    padding: 			    8px;
-    background-color: 		    @BG;
-    text-color: 		    @IMG;
+    enabled: 			            true;
+    padding: 			            8px;
+    background-color: 		        @BG;
+    text-color: 		            @IMG;
 }
 
 textbox-prompt-colon {
-    expand: 			    false;
-    str: 			    "ﲵ";
+    expand: 			            false;
+    str: 			                "ﲵ";
     border-radius:                  100%;
     background-color:               @BG;
     text-color:                     @FG;

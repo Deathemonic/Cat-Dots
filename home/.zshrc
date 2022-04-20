@@ -52,11 +52,12 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
 
-# binds
+# Binds
 bindkey "^[[3~" delete-char
 bindkey "^A" beginning-of-line
 bindkey "^Q" end-of-line
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
+# Spicetify
 export PATH="$PATH:$HOME/.spicetify"

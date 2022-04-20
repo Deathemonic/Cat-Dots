@@ -149,7 +149,7 @@ super + alt + {Left,Right,Up,Down}
 	
 # Move floating windows
 alt + shift + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
+	bspc node -v {20 0,0 20,0 -20,-20 0}
 
 # Hide/Unhide Window
 super + shift + i
@@ -157,7 +157,7 @@ super + shift + i
 
 # Preselect the direction
 super + ctrl + alt +{Left,Right,Up,Down}
-	bspc node -p {west,south,north,east}
+	bspc node -p {west,east,north,south}
 
 # Preselect the ratio
 super + ctrl + {1-9}
