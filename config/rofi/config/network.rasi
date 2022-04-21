@@ -59,7 +59,7 @@ entry {
 }
 
 inputbar {
-    children: 			             textbox-prompt-colon, prompt ];
+    children: 			             [textbox-prompt-colon, prompt ];
     background-color:               @BG;
     text-color:                     @FG;
     expand:                         false;

@@ -4,7 +4,7 @@ configuration {
     drun-display-format:            "{icon} {name}";
     disable-history:                false;
     click-to-exit: 		            true;
-    location:                       1;
+    location:                       0;
 }
 
 @import "font.rasi"
