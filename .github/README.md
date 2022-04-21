@@ -21,7 +21,7 @@
 </h3>
 
 ## Installation
-Go to the [wiki](https://github.com/deathemonic/cat-dots/wiki) for a guide on how to install it and some important stuff
+Go to the [wiki](https://github.com/Deathemonic/Cat-Dots/wiki/Installation) for a guide on how to install it and some important stuff
 <details>
 <summary><b>Screenshots</b></summary>
 
