@@ -91,6 +91,8 @@ Go to the [wiki](https://github.com/Deathemonic/Cat-Dots/wiki/Installation) for 
 <img src="https://avatars.githubusercontent.com/u/61628558?v=4" width="50">
 
 [**obliviousofcraps**](https://github.com/obliviousofcraps) - For the kitty mappings and tabbar configs
+
+***And You ❤️ - For Checking out my Dotfiles***
 </details>
 
 <details>
