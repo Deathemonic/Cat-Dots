@@ -110,7 +110,7 @@ Go to the [wiki](https://github.com/Deathemonic/Cat-Dots/wiki/Installation) for 
 
 A minimalist dracula theme dotfiles
 
-**Fruity**(WIP)
+[**Fruity-Dots**](https://github.com/Deathemonic/Fruity-Dots)(WIP)
 
 A fruity pastel dotfiles that uses berrywm
 
@@ -118,5 +118,5 @@ A fruity pastel dotfiles that uses berrywm
 
 A dotfile with paradise colors that uses awesomewm
 
-
+___Check my [Ko-Fi](https://ko-fi.com/Deathemonic) for updates___
 </details>
