@@ -17,10 +17,11 @@
 </p>
 
 <p align="center">
-	<a href="https://github.com/deathemonic/cat-dots/stargazers">
+	<a href="https://github.com/Deathemonic/Cat-Dots/stargazers">
 		<img alt="Stargazers" src="https://img.shields.io/github/stars/deathemonic/cat-dots?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41"></a>
-	<a href="https://github.com/deathemonic/cat-dots/issues">
+	<a href="https://github.com/Deathemonic/Cat-Dots/issues">
 		<img alt="Issues" src="https://img.shields.io/github/issues/deathemonic/cat-dots?style=for-the-badge&logo=gitbook&color=B5E8E0&logoColor=D9E0EE&labelColor=302D41"></a>
+	<img src="https://badges.pufler.dev/visits/Deathemonic/Cat-Dots?style=for-the-badge&color=89DCEB&logoColor=white&labelColor=302D41"/>
 </p>
 <h3 align="center">
 	<img src="https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/Screenshots/catdots.png" width="450"/><br/>
