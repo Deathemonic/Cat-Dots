@@ -120,7 +120,7 @@ A minimalist dracula theme dotfiles
 
 [**SweetBerry**](https://github.com/Deathemonic/SweetBerry)(WIP)
 
-A fruity pastel dotfiles that uses berrywm
+A fruity pastel dotfiles that uses berrywm - [Trello](https://trello.com/invite/b/LdhL0vtS/50a33d44f8181d2190450b8084a7776a/sweetberry-roadmap)
 
 **A Awesome Paradise**(WIP, Still learning lua)
 
