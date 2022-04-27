@@ -129,4 +129,5 @@ A dotfile with paradise colors that uses awesomewm
 ___Check my [Ko-Fi](https://ko-fi.com/Deathemonic) for updates___
 </details>
 
+<p align="center"><img src="https://raw.githubusercontent.com/catppuccin/catppuccin/dev/assets/footers/gray0_ctp_on_line.svg?sanitize=true" /></p>
 <p align="center"><a href="https://github.com/Deathemonic/Cat-Dots/blob/main/.github/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=GPL&logoColor=d9e0ee&colorA=302d41&colorB=c9cbff"/></a></p>
