@@ -66,7 +66,7 @@ case $arch in
     sudo pacman --noconfirm -Syu
 
     printf "${cb}[*] Installing Dependencies\n" && sleep 2
-    sudo pacman -S --noconfirm --needed git xorg curl
+    sudo pacman -S --noconfirm --needed git xorg curl base-devel
 
     # AUR
     printf "${cr}[*] Select a AUR helper (Required)\n"
