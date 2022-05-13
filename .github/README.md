@@ -118,13 +118,9 @@ Go to the [wiki](https://github.com/Deathemonic/Cat-Dots/wiki/Installation) for 
 
 A minimalist dracula theme dotfiles
 
-[**SweetBerry**](https://github.com/Deathemonic/SweetBerry)(WIP)
+[**SweetDots**](https://github.com/Deathemonic/SweetDots)
 
-A fruity pastel dotfiles that uses berrywm - [Trello](https://trello.com/invite/b/LdhL0vtS/50a33d44f8181d2190450b8084a7776a/sweetberry-roadmap)
-
-**A Awesome Paradise**(WIP, Still learning lua)
-
-A dotfile with paradise colors that uses awesomewm
+A pastel themed rice
 
 ___Check my [Ko-Fi](https://ko-fi.com/Deathemonic) for updates___
 </details>
