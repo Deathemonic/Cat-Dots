@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-# Installer Version: 2.5
+# Installer Version: 2.5.2
 # A fork of https://github.com/manas140/dotfiles install.sh
 
 # Use the comments to navigate
@@ -39,15 +39,12 @@ cat="$HOME/.dotfiles/Cat-Dots"
 config="$HOME/.config"
 bin="$HOME/.local/bin"
 
-# Abort
+# Install
 case $install in
     N*|n*)
     clear
     printf "${cr}[-] Aborting!\n"
-esac
-
-# Install
-case $install in
+    ;;
     Y*|y*)
     for a in $dir; do 
         mkdir -p $a # Makes the directories
