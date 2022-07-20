@@ -98,7 +98,7 @@ Go to the [wiki](https://github.com/Deathemonic/Cat-Dots/wiki/Installation) for 
 
 [**obliviousofcraps**](https://github.com/obliviousofcraps) - For the kitty mappings and tabbar configs
 
-***And You ❤️ - For Checking out my Dotfiles***
+***And You :heart: - For Checking out my Dotfiles***
 </details>
 
 <details>
@@ -114,13 +114,13 @@ Go to the [wiki](https://github.com/Deathemonic/Cat-Dots/wiki/Installation) for 
 <details>
 <summary><b>Other Projects</b></summary>
 
+[**SweetDots**](https://github.com/Deathemonic/SweetDots)
+
+A sweetpastel themed rice
+
 [**Kyuketsuki**](https://github.com/Deathemonic/Kyuketsuki)
 
 A minimalist dracula theme dotfiles
-
-[**SweetDots**](https://github.com/Deathemonic/SweetDots)
-
-A pastel themed rice
 
 ___Check my [Ko-Fi](https://ko-fi.com/Deathemonic) for updates___
 </details>
