@@ -27,6 +27,10 @@
 </h3>
 
 ## Installation
+```sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/install.sh)"
+```
+
 Go to the [wiki](https://github.com/Deathemonic/Cat-Dots/wiki/Installation) for a guide on how to install it and some important stuff
 <details>
 <summary><b>Screenshots</b></summary>
