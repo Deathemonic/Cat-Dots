@@ -1,0 +1,42 @@
+#!/bin/bash
+
+icon_dir="$HOME/.config/cat-configs/dunst/icons"
+
+
+send_notification () {
+  volume=$(pamixer --get-volume)
+
+  if [ "$volume" = "0" ]; then
+    icon="$icon_dir/volume-off.svg"
+  elif [  "$volume" -lt "10" ]; then
+    icon="$icon_dir/volume-low.svg"
+  elif [ "$volume" -lt "30" ]; then
+    icon="$icon_dir/volume-low.svg"
+  elif [ "$volume" -lt "70" ]; then
+    icon="$icon_dir/volume-medium.svg"
+  elif
+    icon="$icon_dir/volume-high.svg"
+  fi
+
+  notify-send -a "Volume" -u normal -i $icon -r 699 "Volume : $volume"
+}
+
+case $1 in
+  up)
+	  pamixer -i 5 --set-limit 100
+	  send_notification
+  ;;
+  down)
+	  pamixer -d 5 --set-limit 100
+	  send_notification
+  ;;
+  mute)
+	  pamixer -t
+    if [[ $(pamixer --get-mute) = "true" ]]; then
+      icon="$icon/volume-x.svg"
+      notify-send -a Volume -i $icon -r 699 "Volume : Muted"
+    else
+      send_notification
+    fi
+  ;;
+esac

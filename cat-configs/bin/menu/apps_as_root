@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+export SUDO_ASKPASS="$HOME"/.config/cat-configs/bin/menu/askpass
+
+## execute the application
+sudo -A $1
