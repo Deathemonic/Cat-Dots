@@ -24,21 +24,6 @@ packages="bspwm-git sxhkd-git \
 
 clear
 
-echo
-printf "${cb}  ____    _  _____     ____   ___ _____ ____\n"
-printf "${cg} / ___|  / \|_   _|   |  _ \ / _ \_   _/ ___|\n"
-printf "${cr}| |     / _ \ | |_____| | | | | | || | \___ |\n"
-printf "${cg}| |___ / ___ \| |_____| |_| | |_| || |  __) |\n"
-printf "${cb} \____/_/   \_\_|     |____/ \___/ |_| |____/\n"
-printf "${cr}     The Dotfiles with catppuccin colors\n"
-echo
-
-echo
-printf "${cg}[*] PROCEDING WILL MAKE A BACKUP FOR ALL YOUR CONFIGS IN ($HOME/.config/backups)\n" && sleep 1
-printf "${cg}[*] Warning: Installer will replace the old backups with the current one is installed if the installer runs the second times\n" && sleep 4
-printf "${cr}"
-read -p "[-] DO YOU WANT TO PROCEED [Y/N] : " install
-
 make_backups () {
     tempdir=$(mktemp -d -p $HOME/.backups)
 
@@ -47,6 +32,21 @@ make_backups () {
 }
 
 install_packages () {
+    echo
+    printf "${cb}  ____    _  _____     ____   ___ _____ ____\n"
+    printf "${cg} / ___|  / \|_   _|   |  _ \ / _ \_   _/ ___|\n"
+    printf "${cr}| |     / _ \ | |_____| | | | | | || | \___ |\n"
+    printf "${cg}| |___ / ___ \| |_____| |_| | |_| || |  __) |\n"
+    printf "${cb} \____/_/   \_\_|     |____/ \___/ |_| |____/\n"
+    printf "${cr}     The Dotfiles with catppuccin colors\n"
+    echo
+
+    echo
+    printf "${cg}[*] PROCEDING WILL MAKE A BACKUP FOR ALL YOUR CONFIGS IN ($HOME/.config/backups)\n" && sleep 1
+    printf "${cg}[*] Warning: Installer will replace the old backups with the current one is installed if the installer runs the second times\n" && sleep 4
+    printf "${cr}"
+    read -p "[-] DO YOU WANT TO PROCEED [Y/N] : " install
+
     case $install in
         N|n)
             printf "${cr}[-] Aborting!\n "
