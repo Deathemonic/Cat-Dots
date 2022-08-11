@@ -25,10 +25,10 @@ packages="bspwm-git sxhkd-git \
 clear
 
 make_backups () {
+    [ ! -d $HOME/.backups ] && mkdir $HOME/.backups 2>/dev/null
+    
     tempdir=$(mktemp -d -p $HOME/.backups)
-
-    [[ ! -d $HOME/.backups ]] && mkdir $HOME/.backups 2>/dev/null
-    [[ -d $home_config/bspwm ]] && mv $home_config/bspwm $tempdir
+    [ -d $home_config/bspwm ] && mv $home_config/bspwm $tempdir
 }
 
 install_packages () {
@@ -74,6 +74,8 @@ aur_helper () {
                 makepkg -si
                 paru -S $packages
             fi
+	    
+	    copying_files
         ;;
         2)
             if [[ `which yay` ]]; then
@@ -85,6 +87,8 @@ aur_helper () {
                 makepkg -si
                 yay -S $packages
             fi
+	    
+	    copying_files
         ;;
     esac
 }
@@ -100,6 +104,8 @@ copying_files () {
     chmod +x $home_config/cat-configs/bin/menu/*
     chmod +x $home_config/cat-configs/bin/system/*
     chmod +x $home_config/cat-configs/bin/utilities/*
+    
+    finishing
 }
 
 finishing () {
@@ -138,16 +144,10 @@ first_choice () {
         ;;
         nobackup)
             install_packages
-            aur_helper
-            copying_files
-            finishing
         ;;
         install)
             make_backups
             install_packages
-            aur_helper
-            copying_files
-            finishing
         ;;
     esac
 }
