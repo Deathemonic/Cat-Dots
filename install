@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Installer Version: 3.0.1
+# Installer Version: 3.0.5
 # Based on https://github.com/manas140/dotfiles installer
 
 cr="\033[1;31m"
@@ -65,7 +65,7 @@ aur_helper () {
 
     case $helper in
         1)
-            if [[ `which yay` ]]; then
+            if command -v paru; then
                 paru -S $packages
             else
                 cd $cache_dir
@@ -78,7 +78,7 @@ aur_helper () {
 	    copying_files
         ;;
         2)
-            if [[ `which yay` ]]; then
+            if command -v yay; then
                 yay -S $packages
             else
                 cd $cache_dir
