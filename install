@@ -26,6 +26,7 @@ clear
 
 make_backups () {
     [ ! -d $HOME/.backups ] && mkdir $HOME/.backups 2>/dev/null
+    [ ! -d $HOME/.fonts ] && mkdir $HOME/.fonts 2>/dev/null
     
     tempdir=$(mktemp -d -p $HOME/.backups)
     [ -d $home_config/bspwm ] && mv $home_config/bspwm $tempdir
