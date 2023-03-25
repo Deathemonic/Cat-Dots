@@ -67,26 +67,26 @@ aur_helper () {
     case $helper in
         1)
             if command -v paru; then
-                paru -S $packages
+                paru -S $packages --needed
             else
                 cd $cache_dir
                 git clone https://aur.archlinux.org/paru-bin.git
                 cd paru-bin
                 makepkg -si
-                paru -S $packages
+                paru -S $packages --needed
             fi
 	    
 	    copying_files
         ;;
         2)
             if command -v yay; then
-                yay -S $packages
+                yay -S $packages --needed
             else
                 cd $cache_dir
                 git clone https://aur.archlinux.org/yay-bin.git
                 cd yay-bin
                 makepkg -si
-                yay -S $packages
+                yay -S $packages --needed
             fi
 	    
 	    copying_files
