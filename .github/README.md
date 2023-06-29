@@ -30,6 +30,15 @@
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/install)"
 ```
 
+## Note
+Update soon
+
+What's in the update?
+- Added 4 new catppuccin colorscheme
+- Rewrite configs and scripts
+- [NixOS](https://nixos.org/) support
+
+
 Go to the [wiki](https://github.com/Deathemonic/Cat-Dots/wiki/Installation) for a guide on how to install it and some important stuff
 <details>
 <summary><b>Screenshots</b></summary>
