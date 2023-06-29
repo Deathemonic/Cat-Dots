@@ -42,6 +42,9 @@ What's in the update?
 - Rewrite configs and scripts
 - [NixOS](https://nixos.org/) support
 
+Will you be switching from Wayland?
+- No, unfortunately this dotfiles will xorg only. But you can switch the window manager other than bspwm.
+
 
 <details>
 <summary><b>Screenshots</b></summary>
