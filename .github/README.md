@@ -47,49 +47,6 @@ Will you be switching from Wayland?
 
 
 <details>
-<summary><b>Screenshots</b></summary>
-
-**`Desktop`**
-
-<img src="https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/Screenshots/Desktop/Desktop%201.png" width="600"/>
-
-**`Polybar`**
-
-<img src="https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/Screenshots/Polybar.png" width="800"/>
-
-**`Kitty`**
-
-<img src="https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/Screenshots/Kitty.png" width="600"/>
-
-**`Dunst`**
-
-<img src="https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/Screenshots/Dunst.png" width="600"/>
-
-**`GTK`**
-
-<img src="https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/Screenshots/GTK.png" width="600"/>
-
-**`Spotify`**
-
-| Spotify      | Screenshot                                                                                                                 |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------- |
-| Playlist     | <img src="https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/Screenshots/Spotify/Spotify-1.png" width="400"/>     |
-| Main         | <img src="https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/Screenshots/Spotify/Spotify-2.png" width="400"/>     |
-| Lyrics       | <img src="https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/Screenshots/Spotify/Spotify-3.png" width="400"/>     |
-
-**`Rofi`**
-
-| Rofi         | Screenshot                                                                                                                 |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------- |
-| Bluetooth    | <img src="https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/Screenshots/Rofi/Rofi-Bluetooth.png" width="400"/>   |
-| Launcher     | <img src="https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/Screenshots/Rofi/Rofi-Launcher.png" width="400"/>    |
-| Music        | <img src="https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/Screenshots/Rofi/Rofi-MPD.png" width="400"/>         |
-| Network      | <img src="https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/Screenshots/Rofi/Rofi-Network.png" width="400"/>     |
-| Network Menu | <img src="https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/Screenshots/Rofi/Rofi-NetworkMenu.png" width="400"/> |
-| Powermenu    | <img src="https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/Screenshots/Rofi/Rofi-NetworkMenu.png" width="400"/> |
- </details>
-
-<details>
 <summary><b>Thanks To</b></summary>
 
 <img src="https://avatars.githubusercontent.com/u/93489351?s=200&v=4" width="50"/>
@@ -134,13 +91,13 @@ Will you be switching from Wayland?
 
 [**SweetDots**](https://github.com/Deathemonic/SweetDots)
 
-A sweetpastel themed rice
+A sweetpastel themed dotfiles
 
 [**Kyuketsuki**](https://github.com/Deathemonic/Kyuketsuki)
 
-A minimalist dracula theme dotfiles
+A minimalist dracula theme dotfiles (**Archived**)
 
-___Check my [Ko-Fi](https://ko-fi.com/Deathemonic) for updates___
+___Also check out my [Ko-Fi](https://ko-fi.com/Deathemonic)___
 </details>
 
 <p align="center"><img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" /></p>
