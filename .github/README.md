@@ -27,7 +27,7 @@
 
 ## Installation
 ```sh
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/install)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/install.sh)"
 ```
 
 

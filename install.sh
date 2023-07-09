@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Installer Version: 3.0.5
+# Installer Version: 3.0.6
 # Based on https://github.com/manas140/dotfiles installer
 
 cr="\033[1;31m"
@@ -12,11 +12,11 @@ cache="$cache_dir/Cat-Dots"
 home_config="$HOME/.config"
 
 packages="bspwm-git sxhkd-git \
-    polybar-git rofi zsh kitty picom-git dunst \
+    polybar-git rofi zsh alacritty picom-pijulius-git dunst \
     gtk3 gtk-engine-murrine gnome-themes-extra \
     pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber alsa-utils pamixer \
     feh brightnessctl bluez-utils i3lock-color \
-    ksuperkey sddm yad xclip \
+    yad xclip stalonetray \
     nerd-fonts-jetbrains-mono ttf-jetbrains-mono ttf-iosevka ttf-iosevka-nerd \
     mpd mpdris2 ncmpcpp playerctl \
     polkit-gnome xfce4-power-manager \

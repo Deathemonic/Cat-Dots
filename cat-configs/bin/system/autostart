@@ -35,6 +35,10 @@ $HOME/.config/cat-configs/bin/system/notification &
 # Compositor
 $HOME/.config/cat-configs/bin/system/compositor &
 
+# Keybinds
+sxhkd -c $HOME/.config/bspwm/sxhkdrc &
+
+
 # Start mpd
 exec mpd &
 exec mpDris2 &

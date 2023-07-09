@@ -2,10 +2,10 @@
 
 # Terminal (kitty)
 super + Return
-	kitty -c $HOME/.config/cat-configs/kitty/kitty.conf
+  alacritty --config-file=$HOME/.config/cat-configs/alacritty/alacritty.yml
 
 # Rofi App Launcher
-alt + F1
+super + shift + space
 	$HOME/.config/cat-configs/bin/menu/launcher
 
 # Rofi Menus/Applets
@@ -30,7 +30,7 @@ super + e
 
 # Terminal Apps
 ctrl + alt + {v,n,r,h}
-	kitty -c $HOME/.config/cat-configs/kitty/kitty.conf -e {vim,nvim,ranger,htop}
+	alacritty --config-file=$HOME/.config/cat-configs/alacritty/alacritty.yml --command {vim,nvim,ranger,htop}
 
 # Lockscreen
 ctrl + alt + l
