@@ -102,6 +102,7 @@ copying_files () {
     cp -rf $cache/cat-configs $home_config
     cp -f $cache/misc/fonts/* $HOME/.fonts
 
+    chmod +x $home_config/cat-configs/bin/bar/*
     chmod +x $home_config/cat-configs/bin/menu/*
     chmod +x $home_config/cat-configs/bin/system/*
     chmod +x $home_config/cat-configs/bin/utilities/*
