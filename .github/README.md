@@ -42,44 +42,38 @@ Will you be switching from Wayland?
 
 <details>
 <summary><b>Thanks To</b></summary>
+<br>
 
-<img src="https://avatars.githubusercontent.com/u/93489351?s=200&v=4" width="50"/> [**Catppuccin**](https://github.com/Catppuccin) - For the color palette and theming
+- <img src="https://avatars.githubusercontent.com/u/93489351?v=4" width="25"/> [**Catppuccin**](https://github.com/Catppuccin) - For the color palette and theming
+- <img src="https://avatars.githubusercontent.com/u/64472354?v=4" width="25"/> [**Manas140**](https://github.com/Manas140) - For his dotfiles I make as the base
+- <img src="https://avatars.githubusercontent.com/u/26059688?v=4" width="25"/> [**adi1090x**](https://github.com/adi1090x) - For his configs and archcraft
+- <img src="https://avatars.githubusercontent.com/u/35840154?v=4" width="25"> [**andreasgrafen**](https://www.reddit.com/r/unixporn/comments/sak598/yabai_catppuccin_is_taking_over_and_i_love_it/) - For the inspiration and Cascade
+- <img src="https://avatars.githubusercontent.com/u/93292023?v=4" width="25"> [**rxyhn**](https://github.com/rxyhn) - For his scripts
+- <img src="https://avatars.githubusercontent.com/u/61628558?v=4" width="25"> [**obliviousofcraps**](https://github.com/obliviousofcraps) - For the kitty mappings and tabbar configs
 
-<img src="https://avatars.githubusercontent.com/u/64472354?v=4" width="50"/> [**Manas140**](https://github.com/Manas140) - For his dotfiles I make as the base
+***And you - For checking out my Dotfiles***
 
-<img src="https://avatars.githubusercontent.com/u/26059688?v=4" width="50"/> [**adi1090x**](https://github.com/adi1090x) - For his configs and archcraft
-
-<img src="https://avatars.githubusercontent.com/u/35840154?v=4" width="50"> [**andreasgrafen**](https://www.reddit.com/r/unixporn/comments/sak598/yabai_catppuccin_is_taking_over_and_i_love_it/) - For the inspiration and Cascade
-
-<img src="https://avatars.githubusercontent.com/u/93292023?v=4" width="50"> [**rxyhn**](https://github.com/rxyhn) - For his scripts
-
-<img src="https://avatars.githubusercontent.com/u/61628558?v=4" width="50"> [**obliviousofcraps**](https://github.com/obliviousofcraps) - For the kitty mappings and tabbar configs
-
-***And You :heart: - For Checking out my Dotfiles***
 </details>
 
 <details>
 <summary><b>Donate</b></summary>
+<br>
 
 **Like my work please consider donate**
 
-<a href='https://ko-fi.com/K3K8C2M9Y' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+<a href='https://ko-fi.com/K3K8C2M9Y' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a> - ___Or just check out my [Ko-Fi](https://ko-fi.com/Deathemonic)___
 
 <a href="https://www.paypal.me/@notkillzone"><img width="52px" src="https://github.com/Deathemonic/Cat-Dots/blob/main/Screenshots/paypal.png" alt="Donate via Paypal"></a>
 </details>
 
 <details>
 <summary><b>Other Projects</b></summary>
+<br>
 
-[**SweetDots**](https://github.com/Deathemonic/SweetDots)
+[**SweetDots**](https://github.com/Deathemonic/SweetDots) - A sweetpastel themed dotfiles
 
-A sweetpastel themed dotfiles
+[**Kyuketsuki**](https://github.com/Deathemonic/Kyuketsuki) - A minimalist dracula theme dotfiles (**Archived**)
 
-[**Kyuketsuki**](https://github.com/Deathemonic/Kyuketsuki)
-
-A minimalist dracula theme dotfiles (**Archived**)
-
-___Also check out my [Ko-Fi](https://ko-fi.com/Deathemonic)___
 </details>
 
 Made with :heart: by [Deathemonic](https://github.com/Deathemonic)
