@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-# Installer Version: 3.0.6
+# Installer Version: 3.1.0
 # Based on https://github.com/manas140/dotfiles installer
 
 cr="\033[1;31m"
@@ -39,7 +39,7 @@ install_packages () {
     printf "${cr}| |     / _ \ | |_____| | | | | | || | \___ |\n"
     printf "${cg}| |___ / ___ \| |_____| |_| | |_| || |  __) |\n"
     printf "${cb} \____/_/   \_\_|     |____/ \___/ |_| |____/\n"
-    printf "${cr}     The Dotfiles with catppuccin colors\n"
+    printf "${cr} The Dotfiles themed with catppuccin colors\n"
     echo
 
     echo
@@ -50,11 +50,18 @@ install_packages () {
     case $install in
         N|n)
             printf "${cr}[-] Aborting!\n "
+	    exit 0
         ;;
         Y|y)
-            printf "${cg}[*] Updating System\n" && sleep 2
-            sudo pacman --noconfirm --needed -Syu git xorg base-devel
-            aur_helper
+	    if command -v pacman; then
+            	printf "${cg}[*] Updating System\n" && sleep 2
+            	sudo pacman --noconfirm --needed -Syu git xorg base-devel
+            	aur_helper
+	    else
+		printf "${cr}[-] System is not archlinux\n" && sleep 1
+  		printf "${cb}[*] Using manual mode\n" && sleep 2
+    		copying_files
+            fi
         ;;
     esac
 }
