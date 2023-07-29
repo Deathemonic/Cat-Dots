@@ -32,7 +32,8 @@ Go to the [wiki](https://github.com/Deathemonic/Cat-Dots/wiki/Installation) for 
 Update soon
 
 What's in the update?
-- Added 4 new catppuccin colorscheme
+- Added 4 new catppuccin colorpallete
+  - Colorpallete switcher
 - Rewrite configs and scripts
 - [NixOS](https://nixos.org/) support
 
