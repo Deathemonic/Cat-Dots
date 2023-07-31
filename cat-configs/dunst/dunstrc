@@ -5,14 +5,13 @@
   padding = 20
   horizontal_padding = 20
   
-  width = 275
+  width = 265
   height = 100
-  offset = 10x50
+  offset = 10x70
   origin = top-right
 
   frame_width = 2
   separator_height = 2
-  frame_color = "#161320"
   separator_color = "#161320"
 
   sort = no
@@ -41,18 +40,16 @@
 
 [urgency_low]
   background = "#1E1E2E"
-  foreground = "#D9E0EE"
-  frame_color = "#96CDFB"
+  foreground = "#CDD6F4"
   timeout = 5
 
 [urgency_normal]
   background = "#1E1E2E"
-  frame_color = "#B5E8E0"
-  foreground = "#D9E0EE"
+  foreground = "#CDD6F4"
   timeout = 10
 
 [urgency_critical]
   background = "#1E1E2E"
-  frame_color = "#F88D96"
-  foreground = "#D9E0EE"
+  frame_color = "#FE6400"
+  foreground = "#CDD6F4"
   timeout = 20
