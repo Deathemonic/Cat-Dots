@@ -161,6 +161,10 @@ first_choice () {
             make_backups
             install_packages
         ;;
+        *)
+            docs
+            first_choice
+        ;;
     esac
 }
 
