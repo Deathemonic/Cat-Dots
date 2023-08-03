@@ -11,16 +11,17 @@ cache_dir="$HOME/.cache"
 cache="$cache_dir/Cat-Dots"
 home_config="$HOME/.config"
 
-packages="bspwm-git sxhkd-git \
-    polybar-git rofi zsh alacritty picom-pijulius-git dunst \
-    gtk3 gtk-engine-murrine gnome-themes-extra \
+packages="bspwm sxhkd \
+    polybar rofi zsh alacritty picom-ftlabs-git dunst \
+    gtk3 gtk4 gtk-engine-murrine gnome-themes-extra \
     pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber alsa-utils pamixer \
     feh brightnessctl bluez-utils i3lock-color \
     yad xclip stalonetray \
-    nerd-fonts-jetbrains-mono ttf-jetbrains-mono ttf-iosevka ttf-iosevka-nerd \
+    nerd-fonts-jetbrains-mono ttf-jetbrains-mono ttf-sarasa-gothic ttf-roboto \
     mpd mpdris2 ncmpcpp playerctl \
     polkit-gnome xfce4-power-manager \
-    viewnior maim libnotify notify-send-py"
+    viewnior maim libnotify notify-send-py \
+    xdg-utils xdg-user-dirs"
 
 clear
 
