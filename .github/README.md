@@ -38,7 +38,7 @@ What's in the update?
 - [NixOS](https://nixos.org/) support
 
 Will you be switching from Wayland?
-- No, unfortunately this dotfiles will xorg only. But you can switch the window manager other than bspwm.
+- No, unfortunately this dotfiles will x11 only. But you can switch the window manager other than bspwm.
 
 
 <details>
