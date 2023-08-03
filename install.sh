@@ -139,10 +139,13 @@ Options:
     install    -   Standard install
 	"
 }
+
 first_choice () {
     docs
     echo
     printf "${cg}[*] Choose what do you want to do\n"
+    echo
+    printf "${cb}[*] backup, nobackup, or install\n"
     echo
     printf "${cr}"
     read -p "[-] Operation : " choice
