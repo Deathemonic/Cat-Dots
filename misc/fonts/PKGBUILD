@@ -1,0 +1,39 @@
+# Maintainer: deathemonic <deathemonic@gmail.com>
+
+pkgname=phosphor-icons
+pkgver=2.0.2
+pkgrel=1
+pkgdesc="Phosphor is a flexible icon family for interfaces, diagrams, presentations - whatever, really."
+arch=('any')
+url="https://phosphoricons.com"
+license=('MIT')
+
+source=(
+    "https://raw.githubusercontent.com/phosphor-icons/web/master/src/bold/Phosphor-Bold.ttf"
+    "https://raw.githubusercontent.com/phosphor-icons/web/master/src/duotone/Phosphor-Duotone.ttf"
+    "https://raw.githubusercontent.com/phosphor-icons/web/master/src/fill/Phosphor-Fill.ttf"
+    "https://raw.githubusercontent.com/phosphor-icons/web/master/src/light/Phosphor-Light.ttf"
+    "https://raw.githubusercontent.com/phosphor-icons/web/master/src/regular/Phosphor.ttf"
+    "https://raw.githubusercontent.com/phosphor-icons/web/master/src/thin/Phosphor-Thin.ttf"
+    "https://raw.githubusercontent.com/phosphor-icons/web/master/LICENSE"
+)
+
+noextract=(
+    "Phosphor-Bold.ttf"
+	"Phosphor-Duotone.ttf"
+	"Phosphor-Fill.ttf"
+	"Phosphor-Light.ttf"
+	"Phosphor.ttf"
+    "Phosphor-Thin.ttf"
+	"LICENSE"
+)
+
+package() {
+	install -Dm644 Phosphor-Bold.ttf "$pkgdir/usr/share/fonts/TTF/Phosphor-Bold.ttf"
+	install -Dm644 Phosphor-Duotone.ttf "$pkgdir/usr/share/fonts/TTF/Phosphor-Duotone.ttf"
+	install -Dm644 Phosphor-Fill.ttf "$pkgdir/usr/share/fonts/TTF/Phosphor-Fill.ttf"
+	install -Dm644 Phosphor-Light.ttf "$pkgdir/usr/share/fonts/TTF/Phosphor-Light.ttf"
+	install -Dm644 Phosphor.ttf "$pkgdir/usr/share/fonts/TTF/Phosphor.ttf"
+	install -Dm644 Phosphor-Thin.ttf "$pkgdir/usr/share/fonts/TTF/Phosphor-Thin.ttf"
+	install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
