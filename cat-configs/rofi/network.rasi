@@ -1,151 +1,150 @@
 configuration {
-    show-icons:                     false;
-    display-drun: 		            "";
-    drun-display-format:            "{icon} {name}";
-    disable-history:                false;
-    click-to-exit: 		            true;
-    location:                       0;
+   font:                                "JetBrains Mono Medium 10";
+   show-icons:                          false;
+   drun-display-format:                 "{icon} {name}";
+   disable-history:                     false;
+   click-to-exit: 		                true;
+   location:                            2;
 }
 
-@import "font.rasi"
 @import "colors.rasi"
 
 window {
-    transparency:                   "real";
-    background-color:               @BG;
-    text-color:                     @FG;
-    border:                         2px;
-    border-color:                   @BDR;
-    border-radius:                  10px;
-    width:                          400px;
-    anchor:                         center;
-    x-offset:                       0;
-    y-offset:                       0;
+   transparency:                        "real";
+   background-color:                    @base;
+   text-color:                          @text;
+   border:                  	        2px;
+   border-color:                        @accent;
+   border-radius:                       20px;
+   width:                               400px;
+   height:                              420px;
+   anchor:                              center;
+   x-offset:                            330;
+   y-offset:                            280;
 }
 
 prompt {
-    enabled: 			            true;
-    margin: 			            0px 8px 0px 8px;
-    padding: 			            8px;
-    background-color: 		        @IMG;
-    text-color: 		            @BG;
-    border:                  	    0px 0px 0px 0px;
-    border-color:                   @BDR;
-    border-radius:                  10px;
+   enabled: 				            true;
+   margin: 				                0px 0px 0px 8px;
+   padding:    				            9px 0px 6px 0px;
+   background-color: 			        @accent;
+   text-color: 				            @base;
+   border:                  		    0px 0px 0px 0px;
+   border-color:                  	    @accent;
+   border-radius:                       0px;
 }
 
 textbox-prompt-colon {
-    expand: 			            false;
-    str: 			                "直";
-    border-radius:                  100%;
-    background-color:               @SEL;
-    text-color:                     @FG;
-    padding:                        8px 12px 8px 12px;
-    font:			                "Iosevka Nerd Font 10";
+   expand: 				                false;
+   str: 				                "";
+   border-radius: 			            100%;
+   background-color:             	    @base;
+   text-color: 				            @text;
+   padding:    				            10px 10px 6px 10px;
+   font:				                "Phosphor 10";
 }
 
 entry {
-    background-color:               @BG;
-    text-color:                     @FG;
-    placeholder-color:              @FG;
-    expand:                         true;
-    horizontal-align:               0;
-    placeholder:                    "";
-    blink:                          true;
-    border:                  	    0px 0px 2px 0px;
-    border-color:                   @BDR;
-    border-radius:                  10px;
-    padding:                        8px;
+   background-color:                    @base;
+   text-color:                          @text;
+   placeholder-color:                   @text;
+   expand:                              false;
+   placeholder:                         "";
+   blink:                               true;
+   border:                              2px;
+   border-color:                        @accent;
+   border-radius:                       100px;
+   padding:                             8px;
 }
 
 inputbar {
-    children: 		                [ textbox-prompt-colon, prompt, entry ];
-    background-color:               @BG;
-    text-color:                     @FG;
-    expand:                         false;
-    border:                  	    0px 0px 0px 0px;
-    border-radius:                  0px;
-    border-color:                   @BDR;
-    margin:                         0px 0px 0px 0px;
-    padding:                        0px;
-    position:                       center;
+   children: 				            [ textbox-prompt-colon, prompt ];
+   background-color:             	    @accent;
+   spacing:    				            0px;
+   text-color:                          @text;
+   border:                  		    0px;
+   border-radius:                       100%;
+   border-color:                  	    @accent;
+   expand:                              false;
+   margin:                              0px 0px 0px 0px;
+   padding:                             2px;
+   position:                            center;
 }
 
 case-indicator {
-    background-color:               @BG;
-    text-color:                     @FG;
-    spacing:                        0;
+   background-color:                    @base;
+   text-color:                          @text;
 }
 
 
 listview {
-    background-color:               @BG;
-    columns:                        1;
-    lines:			                7;
-    spacing:                        4px;
-    cycle:                          true;
-    dynamic:                        true;
-    layout:                         vertical;
+   background-color:                    @base;
+   columns:                             1;
+   lines:			                    8;
+   spacing:                             4px;
+   cycle:                               true;
+   dynamic:                             true;
+   layout:                              vertical;
 }
 
 mainbox {
-    background-color:               @BG;
-    children:                       [ inputbar, listview ];
-    spacing:                        15px;
-    padding:                        15px;
+   background-color:                    @base;
+   children:                            [ inputbar, entry, listview ];
+   spacing:                             15px;
+   padding:                             20px;
 }
 
 element {
-    background-color:               @BG;
-    text-color:                     @FG;
-    orientation:                    horizontal;
-    border-radius:                  4px;
-    padding:                        6px 6px 6px 6px;
+   background-color:                    @base;
+   text-color:                          @text;
+   orientation:                         horizontal;
+   padding:                             6px;
 }
 
 element-icon {
-    background-color: 	            inherit;
-    text-color:       		        inherit;
-    size:                           0px;
-    border:                         0px;
+   background-color: 			        inherit;
+   text-color:       		            inherit;
+   horizontal-align:                    0.5;
+   vertical-align:                      0.5;
 }
 
 element-text {
-    background-color: 	            inherit;
-    text-color:       		        inherit;
-    expand:                         true;
-    horizontal-align:               0;
-    vertical-align:                 0.5;
-    margin:                         2px 0px 2px 6px;
-}
-
-element normal.urgent,
-element alternate.urgent {
-    background-color:               @UGT;
-    text-color:                     @FG;
-    border-radius:                  9px;
-}
-
-element normal.active,
-element alternate.active {
-    background-color:               @BGA;
-    text-color:                     @FG;
+   background-color: 			        inherit;
+   text-color:       			        inherit;
+   expand:                              true;
+   vertical-align:                      0.5;
+   margin:                              2px 0px 2px 2px;
 }
 
 element selected {
-    background-color:               @BGA;
-    text-color:                     @SEL;
-    border:                  	    0px 0px 0px 0px;
-    border-radius:                  10px;
-    border-color:                   @BDR;
+   background-color:                    @accent;
+   text-color:                          @base;
+   border-color:                  	    @accent;
+   border-radius:                       100%;
 }
 
-element selected.urgent {
-    background-color:               @UGT;
-    text-color:                     @FG;
+element.active,
+element.selected.urgent {
+   background-color:                    @green;
+   text-color:                          @base;
+   border-color:                        @green;
+   border-radius:                       100%;
 }
 
-element selected.active {
-    background-color:               @BGA;
-    color:                          @FG;
+element.selected.urgent {
+   border-color:                        @accent;
+   border-radius:                       100%;
+}
+
+element.urgent,
+element.selected.active {
+   background-color:                    @red;
+   text-color:                          @base;
+   border-color:                        @red;
+   border-radius:                       100%;
+}
+
+element.selected.active {
+   border-color:                        @accent;
+   border-radius:                       100%;
 }

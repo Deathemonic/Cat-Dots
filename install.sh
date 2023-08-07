@@ -21,7 +21,8 @@ packages="bspwm sxhkd \
     mpd mpdris2 ncmpcpp playerctl \
     polkit-gnome xfce4-power-manager \
     gpick maim libnotify notify-send-py \
-    xdg-utils xdg-user-dirs"
+    xdg-utils xdg-user-dirs \
+    python3 pypy3 python-gobject" \
 
 clear
 

@@ -75,22 +75,20 @@ timer () {
     notify_user
 }
 
-capture_rofi () {
-	config="$(xdg-user-dir CONFIG)/cat-dots/rofi/screen.rasi"
+menu () {
+	config="$(xdg-user-dir CONFIG)/cat-configs/rofi/screen.rasi"
 
-	capture=""
-	area=""
-	timer=""
-    stop=""
-    withaudio=""
-	withoutaudio=""
+	capture=""
+	area=""
+	timer=""
+    stop=""
+    withaudio=""
+	withoutaudio=""
 
-	options="$capture\n$area\n$timer\n$stop"
-    audio_options="$withaudio\n$withoutaudio"
-	chosen=$(print %s "$options" | rofi -theme "$config" -p 'Take Screenshot' -dmenu -selected-row 0 -theme-str 'listview {lines: 4;}')
+	chosen=$(printf "%s\n%s\n%s\n%s\n" "$capture" "$area" "$timer" "$stop" | rofi -theme "$config" -p 'Take Screenshot' -dmenu -selected-row 0 -theme-str 'listview {lines: 4;}')
 
     audio_chooser () {
-        audio_chosen=$(printf %s "$audio_options" | rofi -theme "$config" -p 'Choose' -dmenu -selected-row 0 -theme-str 'listview {lines: 2;}')
+        audio_chosen=$(printf "%s\n%s\n" "$withaudio" "$withoutaudio" | rofi -theme "$config" -p 'Choose' -dmenu -selected-row 0 -theme-str 'listview {lines: 2;}')
         
         if [ "$chosen" = "$capture" ]; then
             case "$audio_chosen" in
@@ -147,9 +145,9 @@ Options:
     --area	-	Record the selected area
     --timer	-	Set a custom timer to record
     --menu	-	Opens a gui selector
-    --stop  -   Stops the record
+    --stop	-	Stops the record
 Arguments:
-    --noaudio   -   Removes the audio
+    --noaudio   -	Removes the audio
 	"
 }
 

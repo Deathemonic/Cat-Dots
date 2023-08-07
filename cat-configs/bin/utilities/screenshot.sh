@@ -11,14 +11,14 @@ file="Screenshot_${clock}_${geometry}.png"
 
 [ ! -d "$dir" ] && mkdir -p "$dir"
 
-notify_user () {
+notify_user() {
 	paplay /usr/share/sounds/freedesktop/stereo/screen-capture.oga 2>/dev/null &
 	notify-send \
-	 	-a Clipboard \
-	 	-i "$icon_path/$colorscheme/clipboard.svg" \
-	 	-u low \
-	 	-r 699 "Clipboard" "Screenshot saved on clipboard"
-	
+		-a Clipboard \
+		-i "$icon_path/$colorscheme/clipboard.svg" \
+		-u low \
+		-r 699 "Clipboard" "Screenshot saved on clipboard"
+
 	xdg-open "$dir/$file"
 
 	if [ -e "$dir/$file" ]; then
@@ -28,7 +28,7 @@ notify_user () {
 	fi
 }
 
-countdown () {
+countdown() {
 	for sec in $(seq "$1" -1 1); do
 		notify-send \
 			-a Clock \
@@ -40,36 +40,36 @@ countdown () {
 	done
 }
 
-effects () {
+effects() {
 	convert "$file" +antialias \
-		\( +clone  -alpha extract \
-    	-draw 'fill black polygon 0,0 0,20 20,0 fill white circle 20,20 20,0' \
-    	\( +clone -flip \) -compose Multiply -composite \
-    	\( +clone -flop \) -compose Multiply -composite \
-  		\) -alpha off -compose CopyOpacity -composite "$file"
+		\( +clone -alpha extract \
+		-draw 'fill black polygon 0,0 0,20 20,0 fill white circle 20,20 20,0' \
+		\( +clone -flip \) -compose Multiply -composite \
+		\( +clone -flop \) -compose Multiply -composite \
+		\) -alpha off -compose CopyOpacity -composite "$file"
 
 	convert "$file" \
 		\( +clone -background black -shadow 69x20+0+10 \) \
 		+swap -background none -layers merge +repage "$file"
 }
 
-screen () {
+screen() {
 	cd "$dir" || exit
-	maim -u -f png "$file" 
+	maim -u -f png "$file"
 	effects
 	xclip -selection clipboard -t image/png -i "$file"
 	notify_user
 }
 
-window () {
+window() {
 	cd "$dir" || exit
-	maim -u -f png -i "$(xdotool getactivewindow)" "$file" 
-	effects 
+	maim -u -f png -i "$(xdotool getactivewindow)" "$file"
+	effects
 	xclip -selection clipboard -t image/png -i "$file"
 	notify_user
 }
 
-area () {
+area() {
 	cd "$dir" || exit
 	maim -u -f png -s -b 2 -c 0.35,0.55,0.85,0.25 -l "$file"
 	effects
@@ -77,50 +77,50 @@ area () {
 	notify_user
 }
 
-timer () {
-	action=$(yad \
-		--scale \
-		--min-value 1 \
-		--max-value 100 \
-		--title "Set a number of seconds" \
-		--on-top --center \
-		--width 350 \
-		--height 100
+timer() {
+	action=$(
+		yad \
+			--scale \
+			--min-value 1 \
+			--max-value 100 \
+			--title "Set a number of seconds" \
+			--on-top --center \
+			--width 350 \
+			--height 100
 	)
 
 	countdown "$action"
-	sleep 1 
+	sleep 1
 	screen
 }
 
-menu () {
-	config="$(xdg-user-dir CONFIG)/cat-dots/rofi/screen.rasi"
+menu() {
+	config="$(xdg-user-dir CONFIG)/cat-configs/rofi/screen.rasi"
 
 	screen=""
 	area=""
 	window=""
 	timer=""
 
-	options="$screen\n$area\n$window\n$timer"
-	chosen="$(printf %s "$options" | rofi -theme "$config" -p 'Take Screenshot' -dmenu -selected-row 0 -theme-str 'listview {lines: 4;}')"
+	chosen="$(printf "%s\n%s\n%s\n%s\n" "$screen" "$area" "$window" "$timer" | rofi -theme "$config" -p 'Take Screenshot' -dmenu -selected-row 0 -theme-str 'listview {lines: 4;}')"
 
 	case $chosen in
-  		"$screen")
-			screen
+	"$screen")
+		screen
 		;;
-  		"$area")
-			area
+	"$area")
+		area
 		;;
-  		"$window")
-			window
+	"$window")
+		window
 		;;
-		"$timer")
-			timer
+	"$timer")
+		timer
 		;;
 	esac
 }
 
-docs () {
+docs() {
 	echo "
 Usage:	screenshot [Options]
     --help	-	Prints this message
@@ -134,22 +134,22 @@ Options:
 }
 
 case $1 in
-	--shot)
-		screen
+--shot)
+	screen
 	;;
-	--window)
-    	window
-  	;;
-  	--area)
-		area
-  	;;
-	--timer)
-		timer
-  	;;
-	--menu)
-		menu
+--window)
+	window
 	;;
-  	--help | *)
-		docs
-  	;;
+--area)
+	area
+	;;
+--timer)
+	timer
+	;;
+--menu)
+	menu
+	;;
+--help | *)
+	docs
+	;;
 esac
