@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ "$(pidof dunst)" ]; then
+if [ "$(pgrep dunst)" ]; then
 	pkill dunst
 fi
 

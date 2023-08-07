@@ -5,7 +5,7 @@
 # Kill already running processs
 process="xsettingsd sxhkd polybar picom dunst mpd mpDris2 xfce4-power-manager bspc"
 for processed in $process; do
-  if [ "$(pidof "$processed")" ]; then
+  if [ "$(pgrep "$processed")" ]; then
 	  killall -9 "$processed"
   fi
 done
@@ -20,7 +20,7 @@ xsetroot -cursor_name left_ptr &
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Polkit agent (Gnome)
-if [ ! "$(pidof polkit-gnome-authentication-agent-1)" ]; then
+if [ ! "$(pgrep polkit-gnome-authentication-agent-1)" ]; then
   /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 fi
 
