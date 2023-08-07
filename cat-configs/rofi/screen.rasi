@@ -14,8 +14,6 @@ window {
     transparency:                   "real";
     background-color:               @base;
     text-color:                     @text;
-    border:                  		2px;
-    border-color:                  	@accent;
     border-radius:                  30px;
     width:                          100px;
     x-offset:                       -10;
@@ -49,6 +47,7 @@ element {
     orientation:                    horizontal;
     border-radius:                  100%;
     padding:                        14px;
+    cursor:                         pointer;
 }
 
 element-icon {
@@ -68,6 +67,7 @@ element-text {
     horizontal-align:               0.5;
     vertical-align:                 0.5;
     margin:                         0px;
+    cursor:                         pointer;
 }
 
 element selected {

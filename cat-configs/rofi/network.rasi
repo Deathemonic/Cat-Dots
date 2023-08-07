@@ -13,9 +13,7 @@ window {
    transparency:                        "real";
    background-color:                    @base;
    text-color:                          @text;
-   border:                  	        2px;
-   border-color:                        @accent;
-   border-radius:                       20px;
+   border-radius:                       8px;
    width:                               400px;
    height:                              420px;
    anchor:                              center;
@@ -24,42 +22,41 @@ window {
 }
 
 prompt {
-   enabled: 				            true;
-   margin: 				                0px 0px 0px 8px;
-   padding:    				            9px 0px 6px 0px;
-   background-color: 			        @accent;
-   text-color: 				            @base;
-   border:                  		    0px 0px 0px 0px;
+   enabled: 				                true;
+   margin: 				                   0px 0px 0px 8px;
+   padding:    				             9px 0px 6px 0px;
+   background-color: 			          @accent;
+   text-color: 				             @base;
+   border:                  		       0px 0px 0px 0px;
    border-color:                  	    @accent;
    border-radius:                       0px;
 }
 
 textbox-prompt-colon {
-   expand: 				                false;
-   str: 				                "";
-   border-radius: 			            100%;
-   background-color:             	    @base;
-   text-color: 				            @text;
-   padding:    				            10px 10px 6px 10px;
-   font:				                "Phosphor 10";
+   expand: 				                  false;
+   str: 				                     "";
+   padding:                            12px 15px;
+   border-radius:                      100%;
+   background-color:                   @mantle;
+   text-color:                         inherit;
+   font:                               "Phosphor 10";
 }
 
 entry {
-   background-color:                    @base;
-   text-color:                          @text;
-   placeholder-color:                   @text;
-   expand:                              false;
-   placeholder:                         "";
-   blink:                               true;
-   border:                              2px;
-   border-color:                        @accent;
-   border-radius:                       100px;
-   padding:                             8px;
+   expand:                         true;
+   width:                          250px;
+   padding:                        12px 16px;
+   border-radius:                  80%;
+   background-color:               @mantle;
+   text-color:                     inherit;
+   cursor:                         text;
+   placeholder:                    "Network";
+   placeholder-color:              inherit;
 }
 
 inputbar {
-   children: 				            [ textbox-prompt-colon, prompt ];
-   background-color:             	    @accent;
+   children: 				            [ textbox-prompt-colon, entry ];
+   background-color:               transparent;
    spacing:    				            0px;
    text-color:                          @text;
    border:                  		    0px;
@@ -89,7 +86,7 @@ listview {
 
 mainbox {
    background-color:                    @base;
-   children:                            [ inputbar, entry, listview ];
+   children:                            [ inputbar, listview ];
    spacing:                             15px;
    padding:                             20px;
 }
@@ -99,6 +96,7 @@ element {
    text-color:                          @text;
    orientation:                         horizontal;
    padding:                             6px;
+   cursor:                              pointer;
 }
 
 element-icon {
@@ -114,6 +112,7 @@ element-text {
    expand:                              true;
    vertical-align:                      0.5;
    margin:                              2px 0px 2px 2px;
+   cursor:                              pointer;
 }
 
 element selected {
