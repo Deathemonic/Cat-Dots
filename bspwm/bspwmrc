@@ -1,6 +1,10 @@
 #!/bin/sh
 
-bspc monitor -d 1 2 3 4 5 6 7 8
+name=1
+for monitor in $(bspc query -M); do
+	bspc monitor "${monitor}" -n "$name" -d '1' '2' '3' '4' '5' '6' '7' '8'
+	name++
+done
 
 bspc config border_width 0
 bspc config window_gap 10
@@ -12,11 +16,18 @@ bspc config gapless_monocle false
 bspc config focus_follows_pointer true
 bspc config paddingless_monocle true
 bspc config single_monocle false
+bspc config presel_feedback true
 
-bspc rule -a feh state=floating
-bspc rule -a sxiv state=floating
-bspc rule -a Conky state=floating
-bspc rule -a stalonetray state=floating
-bspc rule -a Lxappearance state=floating
+bspc wm --adopt-orphans
 
-$HOME/.config/cat-configs/bin/system/autostart
+bspc rule -r .:*
+
+media="alacritty_float Onboard feh Viewnior Nm-connection-editor stalonetray Lxappearance Yad"
+for i in $media; do
+   bspc rule -a "$i" state=floating; done
+
+bspc rule -a alacritty_fullscreen state=fullscreen
+bspc rule -a Conky state=floating manage=off
+bspc rule -a stalonetray state=floating manage=off
+
+sh "$HOME/.config/cat-configs/bin/system/autostart.sh" &
