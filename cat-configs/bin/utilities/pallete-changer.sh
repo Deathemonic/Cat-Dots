@@ -12,7 +12,6 @@
 screenshot="$(xdg-user-dir CONFIG)/cat-configs/bin/utilities/screenshot.sh"
 dunstrc="$(xdg-user-dir CONFIG)/cat-configs/dunst/dunstrc"
 colorsini="$(xdg-user-dir CONFIG)/cat-configs/polybar/colors.ini"
-stlntryrc="$(xdg-user-dir CONFIG)/cat-configs/polybar/stalonetrayrc"
 
 notification () {
   case $1 in
@@ -86,8 +85,6 @@ panel () {
       sed -i 's/pink = .*/pink = #ea76cb/g' "$colorsini"
       sed -i 's/flamingo = .*/flamingo = #dd7878/g' "$colorsini"
       sed -i 's/rosewater = .*/rosewater = #dc8a78/g' "$colorsini"
-
-      sed -i 's/background ".*"/background "#eff1f5"/g' "$stlntryrc"
     ;;
     frappe)
       sed -i 's/base = .*/base = #303446/g' "$colorsini"
@@ -120,8 +117,6 @@ panel () {
       sed -i 's/pink = .*/pink = #f4b8e4/g' "$colorsini"
       sed -i 's/flamingo = .*/flamingo = #eebebe/g' "$colorsini"
       sed -i 's/rosewater = .*/rosewater = #f2d5cf/g' "$colorsini"
-
-      sed -i 's/background ".*"/background "#303446"/g' "$stlntryrc"
     ;;
     macchiato)
       sed -i 's/base = .*/base = #24273a/g' "$colorsini"
@@ -154,8 +149,6 @@ panel () {
       sed -i 's/pink = .*/pink = #f5bde6/g' "$colorsini"
       sed -i 's/flamingo = .*/flamingo = #f0c6c6/g' "$colorsini"
       sed -i 's/rosewater = .*/rosewater = #f4dbd6/g' "$colorsini"
-
-      sed -i 's/background ".*"/background "#24273a"/g' "$stlntryrc"
     ;;
     mocha)
       sed -i 's/base = .*/base = #1e1e2e/g' "$colorsini"
@@ -188,8 +181,6 @@ panel () {
       sed -i 's/pink = .*/pink = #f5c2e7/g' "$colorsini"
       sed -i 's/flamingo = .*/flamingo = #f2cdcd/g' "$colorsini"
       sed -i 's/rosewater = .*/rosewater = #f5e0dc/g' "$colorsini"
-
-      sed -i 's/background ".*"/background "#1e1e2e"/g' "$stlntryrc"
     ;;
     *)
       echo "Invalid colorscheme, try: latte, frappe, macchiato, mocha"

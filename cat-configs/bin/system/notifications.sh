@@ -1,7 +1,7 @@
 #!/bin/sh
 
-if [ `pidof dunst` ]; then
+if [ "$(pidof dunst)" ]; then
 	pkill dunst
 fi
 
-dunst -config $HOME/.config/cat-configs/dunst/dunstrc &
+dunst -config "$(xdg-user-dir CONFIG)"/cat-configs/dunst/dunstrc &

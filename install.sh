@@ -20,47 +20,48 @@ packages="bspwm sxhkd \
     nerd-fonts-jetbrains-mono ttf-jetbrains-mono ttf-sarasa-gothic ttf-roboto \
     mpd mpdris2 ncmpcpp playerctl \
     polkit-gnome xfce4-power-manager \
-    viewnior maim libnotify notify-send-py \
+    gpick maim libnotify notify-send-py \
     xdg-utils xdg-user-dirs"
 
 clear
 
 make_backups () {
-    [ ! -d $HOME/.backups ] && mkdir $HOME/.backups 2>/dev/null
-    [ ! -d $HOME/.fonts ] && mkdir $HOME/.fonts 2>/dev/null
+    [ ! -d "$HOME/.backups" ] && mkdir "$HOME/.backups" 2>/dev/null
+    [ ! -d "$HOME/.fonts" ] && mkdir "$HOME/.fonts" 2>/dev/null
     
-    tempdir=$(mktemp -d -p $HOME/.backups)
-    [ -d $home_config/bspwm ] && mv $home_config/bspwm $tempdir
+    tempdir=$(mktemp -d -p "$HOME/.backups")
+    [ -d "$home_config/bspwm" ] && mv "$home_config/bspwm" "$tempdir"
 }
 
 install_packages () {
     echo
-    printf "${cb}  ____    _  _____     ____   ___ _____ ____\n"
-    printf "${cg} / ___|  / \|_   _|   |  _ \ / _ \_   _/ ___|\n"
-    printf "${cr}| |     / _ \ | |_____| | | | | | || | \___ |\n"
-    printf "${cg}| |___ / ___ \| |_____| |_| | |_| || |  __) |\n"
-    printf "${cb} \____/_/   \_\_|     |____/ \___/ |_| |____/\n"
-    printf "${cr} The Dotfiles themed with catppuccin colors\n"
+    printf "%s  ____    _  _____     ____   ___ _____ ____\n" "${cb}"
+    printf "%s / ___|  / \|_   _|   |  _ \ / _ \_   _/ ___|\n" "${cg}"
+    printf "%s| |     / _ \ | |_____| | | | | | || | \___ |\n" "${cr}"
+    printf "%s| |___ / ___ \| |_____| |_| | |_| || |  __) |\n" "${cg}"
+    printf "%s \____/_/   \_\_|     |____/ \___/ |_| |____/\n" "${cb}"
+    printf "%s The Dotfiles themed with catppuccin colors\n" "${cr}"
     echo
 
     echo
-    printf "${cg}[*] PROCEDING WILL MAKE A BACKUP FOR ALL YOUR CONFIGS IN ($HOME/.backups)\n" && sleep 1
-    printf "${cr}"
-    read -p "[-] DO YOU WANT TO PROCEED [Y/N] : " install
+    printf "%s[*] PROCEDING WILL MAKE A BACKUP FOR ALL YOUR CONFIGS IN ($HOME/.backups)\n" "${cg}" && sleep 1
+    printf %s "${cr}"
+    echo "[-] DO YOU WANT TO PROCEED [Y/N] : \c"
+    read -r install
 
     case $install in
         N|n)
-            printf "${cr}[-] Aborting!\n "
+            printf "%s[-] Aborting!\n " "${cr}"
 	    exit 0
         ;;
         Y|y)
 	    if command -v pacman; then
-            	printf "${cg}[*] Updating System\n" && sleep 2
+            	printf "%s[*] Updating System\n" "${cg}" && sleep 2
             	sudo pacman --noconfirm --needed -Syu git xorg base-devel
             	aur_helper
 	    else
-		printf "${cr}[-] System is not archlinux\n" && sleep 1
-  		printf "${cb}[*] Using manual mode\n" && sleep 2
+		printf "%s[-] System is not archlinux\n" "${cr}" && sleep 1
+  		printf "%s[*] Using manual mode\n" "${cb}" && sleep 2
     		copying_files
             fi
         ;;
@@ -68,33 +69,34 @@ install_packages () {
 }
 
 aur_helper () {
-    printf "${cr}[*] Select a AUR helper (Required)\n"
-    printf "${cr}"
-    read -p "[-] (1)paru | (2)yay : " helper
+    printf "%s[*] Select a AUR helper (Required)\n" "${cr}"
+    printf %s "${cr}"
+    echo "[-] (1)paru | (2)yay : \c"
+    read -r helper
 
     case $helper in
         1)
             if command -v paru; then
-                paru -S $packages --needed
+                paru -S "$packages" --needed
             else
-                cd $cache_dir
+                cd "$cache_dir" || exit
                 git clone https://aur.archlinux.org/paru-bin.git
-                cd paru-bin
+                cd paru-bin || exit
                 makepkg -si
-                paru -S $packages --needed
+                paru -S "$packages" --needed
             fi
 	    
 	    copying_files
         ;;
         2)
             if command -v yay; then
-                yay -S $packages --needed
+                yay -S "$packages" --needed
             else
-                cd $cache_dir
+                cd "$cache_dir" || exit
                 git clone https://aur.archlinux.org/yay-bin.git
-                cd yay-bin
+                cd yay-bin || exit
                 makepkg -si
-                yay -S $packages --needed
+                yay -S "$packages" --needed
             fi
 	    
 	    copying_files
@@ -103,31 +105,31 @@ aur_helper () {
 }
 
 copying_files () {
-    printf "${cb}[*] Getting dotfiles\n" && sleep 2
-    cd $cache_dir && git clone https://github.com/Deathemonic/Cat-Dots.git
+    printf "%s[*] Getting dotfiles\n" "${cb}" && sleep 2
+    cd "$cache_dir" && git clone https://github.com/Deathemonic/Cat-Dots.git
 
-    cp -rf $cache/bspwm $home_config
-    cp -rf $cache/cat-configs $home_config
-    cp -f $cache/misc/fonts/* $HOME/.fonts
+    cp -rf "$cache/bspwm" "$home_config"
+    cp -rf "$cache/cat-configs" "$home_config"
+    cp -f "$cache/misc/fonts/*" "$HOME/.fonts"
 
-    chmod +x $home_config/cat-configs/bin/bar/*
-    chmod +x $home_config/cat-configs/bin/menu/*
-    chmod +x $home_config/cat-configs/bin/system/*
-    chmod +x $home_config/cat-configs/bin/utilities/*
+    chmod +x "$home_config/cat-configs/bin/bar/*"
+    chmod +x "$home_config/cat-configs/bin/menu/*"
+    chmod +x "$home_config/cat-configs/bin/system/*"
+    chmod +x "$home_config/cat-configs/bin/utilities/*"
     
     finishing
 }
 
 finishing () {
-    printf "${cb}[-] Done\n" && sleep 3
+    printf "%s[-] Done\n" "${cb}" && sleep 3
     echo
-    printf "${cr}[*] Please Reboot your system!!\n"
+    printf "%s[*] Please Reboot your system!!\n" "${cr}"
     echo
-    printf "${cb}[|] If the installer has problem installing or missing feature please summit a pull requise or issue on the Github Page\n" # This is a message
-    printf "${cb}[|] For extra information like spotify setup or firefox setup please go to this Cat-Dot's Github Wiki Page\n"
-    printf "${cb}[|] Please go to the Cat-Dot's Github Wiki Page for Manual Installation and fixes\n"
+    printf "%s[|] If the installer has problem installing or missing feature please summit a pull requise or issue on the Github Page\n" "${cb}"
+    printf "%s[|] For extra information like spotify setup or firefox setup please go to this Cat-Dot's Github Wiki Page\n" "${cb}"
+    printf "%s[|] Please go to the Cat-Dot's Github Wiki Page for Manual Installation and fixes\n" "${cb}"
     echo
-    printf "${cr}[-] Exiting!\n"
+    printf "%s[-] Exiting!\n" "${cr}"
 }
 
 docs () {
@@ -144,12 +146,13 @@ Options:
 first_choice () {
     docs
     echo
-    printf "${cg}[*] Choose what do you want to do\n"
+    printf "%s[*] Choose what do you want to do\n" "${cg}"
     echo
-    printf "${cb}[*] backup, nobackup, or install\n"
+    printf "%s[*] backup, nobackup, or install\n" "${cb}"
     echo
-    printf "${cr}"
-    read -p "[-] Operation : " choice
+    printf %s "${cr}"
+    echo "[-] Operation : \c"
+    read -r choice
 
     case $choice in
         backup)
