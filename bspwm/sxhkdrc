@@ -48,14 +48,14 @@ super + alt + ctrl + t
     $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/screenrecord.sh --timer
 
 # Function Keys
-# XF86MonBrightness{Up,Down}
-#     $HOME/.config/sweetconfigs-xorg/bin/utilities/brightness{ up, down}
-# XF86Audio{RaiseVolume,LowerVolume,Mute}
-#     $HOME/.config/sweetconfigs-xorg/bin/utilities/volume{ up, down, mute}
-# XF86Audio{Next,Prev,Play}
-#     playerctl -p spotify,%any,firefox,chromium,brave,mpd{ next, previous, play-pause}
-# XF86AudioStop
-#     playerctl -a stop
+XF86MonBrightness{Up,Down}
+    $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/brightness.sh {--up,--down}
+XF86Audio{RaiseVolume,LowerVolume,Mute}
+    $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/volume.sh {--up,--down,--mute}
+XF86Audio{Next,Prev,Play}
+    playerctl -p spotify,%any,firefox,chromium,brave,mpd {next,previous,play-pause}
+XF86AudioStop
+    playerctl -a stop
 
 # Reload Keybinds
 super + Escape
