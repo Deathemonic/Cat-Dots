@@ -1,7 +1,7 @@
 #!/bin/sh
 
 icon_path="$(xdg-user-dir CONFIG)/cat-configs/dunst/icons"
-colorscheme=mocha
+colorscheme=frappe
 
 clock=$(date +%Y-%m-%d-%I-%M-%S)
 geometry=$(xrandr | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current')
@@ -84,7 +84,7 @@ timer() {
 			--min-value 1 \
 			--max-value 100 \
 			--title "Set a number of seconds" \
-			--on-top --center \
+			--on-top --center --no_escape \
 			--width 350 \
 			--height 100
 	)

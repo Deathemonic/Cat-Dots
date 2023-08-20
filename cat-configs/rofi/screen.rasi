@@ -1,103 +1,61 @@
 configuration {
-    location:                       4;
-    font:                           "JetBrains Mono Medium 10";
-    show-icons:                     false;
-    display-drun: 					"";
-    drun-display-format:            "{icon} {name}";
-    disable-history:                false;
-	click-to-exit: 					true;
+  location:                       4;
+  show-icons:                     false;
+  click-to-exit: 					        true;
 }
 
-@import "colors.rasi"
+@import "fonts"
+@import "colors"
 
 window {
-    transparency:                   "real";
-    background-color:               @base;
-    text-color:                     @text;
-    border-radius:                  30px;
-    width:                          100px;
-    x-offset:                       -10;
-    y-offset:                       0;
-}
-
-case-indicator {
-    background-color:               @base;
-    text-color:                     @text;
-}
-
-listview {
-    background-color:               @base;
-    columns:                        1;
-    spacing:                        10px;
-    cycle:                          true;
-    dynamic:                        true;
-    layout:                         vertical;
+  transparency:                   "real";
+  background-color:               @base;
+  text-color:                     @text;
+  border-radius:                  12px;
+  width:                          100px;
+  x-offset:                       -10;
+  y-offset:                       0;
 }
 
 mainbox {
-    background-color:               @base;
-    children:                       [ listview ];
-    spacing:                       	10px;
-    padding:                        20px;
+  background-color:               @base;
+  spacing:                       	10px;
+  padding:                        20px;
+  children:                       [ listview ];
+}
+
+listview {
+  background-color:               @mantle;
+  border-radius:                  100%;
+  columns:                        1;
+  cycle:                          true;
+  dynamic:                        true;
+  fixed-height:                   true;
+  fixed-columns:                  true;
+  layout:                         vertical;
 }
 
 element {
-    background-color:               @mantle;
-    text-color:                     @text;
-    orientation:                    horizontal;
-    border-radius:                  100%;
-    padding:                        14px;
-    cursor:                         pointer;
+  background-color:               transparent;
+  text-color:                     @text;
+  orientation:                    horizontal;
+  border-radius:                  100%;
+  padding:                        14px;
+  cursor:                         pointer;
 }
 
-element-icon {
-    background-color: 				inherit;
-    text-color:       				inherit;
-    horizontal-align:               0.5;
-    vertical-align:                 0.5;
-    size:                           0px;
-    border:                         0px;
-}
 
 element-text {
-    background-color: 				inherit;
-    text-color:       				inherit;
-	font:							"Phosphor 16";
-    expand:                         true;
-    horizontal-align:               0.5;
-    vertical-align:                 0.5;
-    margin:                         0px;
-    cursor:                         pointer;
+  background-color: 				      inherit;
+  text-color:       				      inherit;
+	font:							              "Phosphor 16";
+  horizontal-align:               0.5;
+  vertical-align:                 0.5;
+  margin:                         0px;
+  cursor:                         inherit;
 }
 
-element selected {
-    background-color:               @accent;
-    text-color:                     @base;
-    border:                  		0px;
-    border-radius:                  100%;
-    border-color:                  	@accent;
-}
-
-element.active,
-element.selected.urgent {
-    background-color:               @green;
-    text-color:                     @base;
-    border-color:                   @green;
-    border-radius:                  100%;
-}
-
-element.selected.urgent {
-  border-color:                     @accent;
-}
-
-element.urgent,
-element.selected.active {
-    background-color:               @red;
-    text-color:                     @base;
-    border-color:                   @red;
-    border-radius:                  100%;
-}
-
-element.selected.active {
-    border-color:                   @accent;
+element selected.normal {
+  background-color:               @accent;
+  text-color:                     @mantle;
 }

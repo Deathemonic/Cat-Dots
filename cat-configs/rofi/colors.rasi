@@ -1,10 +1,5 @@
 * {
-    base: #1e1e2e;
-    mantle: #181825;
-    text: #cdd6f4;
-    subtext1: #bac2de;
-    red: #f38ba8;
-    green: #a6e3a1;
-
-    accent: #89dceb;
+  accent: #eebebe;
 }
+
+@import "../palletes/rofi/frappe"

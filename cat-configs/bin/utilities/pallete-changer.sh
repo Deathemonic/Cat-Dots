@@ -1,242 +1,185 @@
 #!/bin/sh
 
-# Powered by sed
+catconfigs="$(xdg-user-dir CONFIG)/cat-configs"
 
-# Note: There's also the copy method.
-# Where I have a bunch of cached colorscheme and just overwrite it.
-# Esentially we copy the contents from the cached file then overwrite the orginal file.
-# `cp ./cache/mocha.ini ./config/colors.ini`
-# The problem is when if I want to modify the file everthing gets replace so it's not really the best method.
-# Also the problem of the sed method it just look bloated and complicated but it does the job right.
+screenshot="$catconfigs/bin/utilities/screenshot.sh"
+screenshot="$catconfigs/bin/utilities/screenrecord.sh"
+lockscreen="$catconfigs/bin/utilities/lockscreen.sh"
 
-# Feel free to optimize or change this.
+network="$catconfigss/rofi/network.ini"
+alacritty="$catconfigs/alacritty/alacritty.yml"
+dunst="$catconfigs/dunst/dunstrc"
+polybar="$catconfigs/polybar/config.ini"
+rofi="$catconfigs/rofi/colors.rasi"
 
-screenshot="$(xdg-user-dir CONFIG)/cat-configs/bin/utilities/screenshot.sh"
-dunstrc="$(xdg-user-dir CONFIG)/cat-configs/dunst/dunstrc"
-colorsini="$(xdg-user-dir CONFIG)/cat-configs/polybar/colors.ini"
-locksh="$(xdg-user-dir CONFIG)/cat-configs/bin/utilities/lockscreen.sh"
+
+invalid_color () {
+  echo "Invalid colorpallete, try: latte, frappe, macchiato, mocha"
+  exit
+}
+
 
 notification () {
   case $1 in
     latte)
-      sed -i -e 's/background = ".*"/background = "#EFF1F5"/g' "$dunstrc"
-      sed -i -e 's/foreground = ".*"/foreground = "#4C4F69"/g' "$dunstrc"
-      sed -i -e 's/frame_color = ".*"/frame_color = "#FE640B"/g' "$dunstrc"
+      sed -i 's/background = ".*"/background = "#EFF1F5"/g' "$dunst"
+      sed -i 's/foreground = ".*"/foreground = "#4C4F69"/g' "$dunst"
+      sed -i 's/frame_color = ".*"/frame_color = "#FE640B"/g' "$dunst"
 
-      sed -i -e 's/colorscheme=.*/colorscheme=latte/g' "$screenshot"
+      sed -i 's/colorscheme=.*/colorscheme=latte/g' "$screenshot"
+      sed -i 's/colorscheme=.*/colorscheme=latte/g' "$screenrecord"
+      sed -i 's/icons\/.*\/network\.svg/icons\/latte\/network\.svg/g' "$network"
     ;;
     frappe)
-      sed -i -e 's/background = ".*"/background = "#303446"/g' "$dunstrc"
-      sed -i -e 's/foreground = ".*"/foreground = "#C6D0F5"/g' "$dunstrc"
-      sed -i -e 's/frame_color = ".*"/frame_color = "#EF9F76"/g' "$dunstrc"
+      sed -i 's/background = ".*"/background = "#303446"/g' "$dunst"
+      sed -i 's/foreground = ".*"/foreground = "#C6D0F5"/g' "$dunst"
+      sed -i 's/frame_color = ".*"/frame_color = "#EF9F76"/g' "$dunst"
 
-      sed -i -e 's/colorscheme=.*/colorscheme=frappe/g' "$screenshot"
+      sed -i 's/colorscheme=.*/colorscheme=frappe/g' "$screenshot"
+      sed -i 's/colorscheme=.*/colorscheme=frappe/g' "$screenrecord"
+      sed -i 's/icons\/.*\/network\.svg/icons\/frappe\/network\.svg/g' "$network"
     ;;
     macchiato)
-      sed -i -e 's/background = ".*"/background = "#24273A"/g' "$dunstrc"
-      sed -i -e 's/foreground = ".*"/foreground = "#CAD3F5"/g' "$dunstrc"
-      sed -i -e 's/frame_color = ".*"/frame_color = "#F5A97F"/g' "$dunstrc"
+      sed -i 's/background = ".*"/background = "#24273A"/g' "$dunst"
+      sed -i 's/foreground = ".*"/foreground = "#CAD3F5"/g' "$dunst"
+      sed -i 's/frame_color = ".*"/frame_color = "#F5A97F"/g' "$dunst"
 
-      sed -i -e 's/colorscheme=.*/colorscheme=macchiato/g' "$screenshot"
+      sed -i 's/colorscheme=.*/colorscheme=macchiato/g' "$screenshot"
+      sed -i 's/colorscheme=.*/colorscheme=macchiato/g' "$screenrecord"
+      sed -i 's/icons\/.*\/network\.svg/icons\/macchiato\/network\.svg/g' "$network"
     ;;
     mocha)
-      sed -i -e 's/background = ".*"/background = "#1E1E2E"/g' "$dunstrc"
-      sed -i -e 's/foreground = ".*"/foreground = "#CDD6F4"/g' "$dunstrc"
-      sed -i -e 's/frame_color = ".*"/frame_color = "#FE6400"/g' "$dunstrc"
+      sed -i 's/background = ".*"/background = "#1E1E2E"/g' "$dunst"
+      sed -i 's/foreground = ".*"/foreground = "#CDD6F4"/g' "$dunst"
+      sed -i 's/frame_color = ".*"/frame_color = "#FE6400"/g' "$dunst"
 
-      sed -i -e 's/colorscheme=.*/colorscheme=mocha/g' "$screenshot"
+      sed -i 's/colorscheme=.*/colorscheme=macchiato/g' "$screenshot"
+      sed -i 's/colorscheme=.*/colorscheme=macchiato/g' "$screenrecord"
+      sed -i 's/icons\/.*\/network\.svg/icons\/mocha\/network\.svg/g' "$network"
     ;;
     *)
-      echo "Invalid colorscheme, try: latte, frappe, macchiato, mocha"
-      exit
+      invalid_color
     ;;
   esac
 
-  sh "$(xdg-user-dir CONFIG)"/cat-configs/bin/system/notifications.sh
+  sh "$catconfigs/bin/system/notifications.sh"
 }
 
 panel () {
   case $1 in
     latte)
-      sed -i -e 's/base = .*/base = #eff1f5/g' "$colorsini"
-      sed -i -e 's/mantle = .*/mantle = #e6e9ef/g' "$colorsini"
-      sed -i -e 's/crust = .*/crust = #dce0e8/g' "$colorsini"
-      
-      sed -i -e 's/text = .*/text = #4c4f69/g' "$colorsini"
-      sed -i -e 's/subtext0 = .*/subtext0 = #6c6f85/g' "$colorsini"
-      sed -i -e 's/subtext1 = .*/subtext1 = #5c5f77/g' "$colorsini"
-      
-      sed -i -e 's/surface0 = .*/surface0 = #ccd0da/g' "$colorsini"
-      sed -i -e 's/surface1 = .*/surface1 = #bcc0cc/g' "$colorsini"
-      sed -i -e 's/surface2 = .*/surface2 = #acb0be/g' "$colorsini"
-      
-      sed -i -e 's/overlay0 = .*/overlay0 = #9ca0b0/g' "$colorsini"
-      sed -i -e 's/overlay1 = .*/overlay1 = #8c8fa1/g' "$colorsini"
-      sed -i -e 's/overlay2 = .*/overlay2 = #7c7f93/g' "$colorsini"
-      
-      sed -i -e 's/blue = .*/blue = #1e66f5/g' "$colorsini"
-      sed -i -e 's/lavender = .*/lavender = #7287fd/g' "$colorsini"
-      sed -i -e 's/sapphire = .*/sapphire = #209fb5/g' "$colorsini"
-      sed -i -e 's/sky = .*/sky = #04a5e5/g' "$colorsini"
-      sed -i -e 's/teal = .*/teal = #179299/g' "$colorsini"
-      sed -i -e 's/green = .*/green = #40a02b/g' "$colorsini"
-      sed -i -e 's/yellow = .*/yellow = #df8e1d/g' "$colorsini"
-      sed -i -e 's/peach = .*/peach = #fe640b/g' "$colorsini"
-      sed -i -e 's/maroon = .*/maroon = #e64553/g' "$colorsini"
-      sed -i -e 's/red = .*/red = #d20f39/g' "$colorsini"
-      sed -i -e 's/mauve = .*/mauve = #8839ef/g' "$colorsini"
-      sed -i -e 's/pink = .*/pink = #ea76cb/g' "$colorsini"
-      sed -i -e 's/flamingo = .*/flamingo = #dd7878/g' "$colorsini"
-      sed -i -e 's/rosewater = .*/rosewater = #dc8a78/g' "$colorsini"
+      sed -i 's/palletes\/polybar\/.*\.ini/palletes\/polybar\/latte\.ini/g' "$polybar"
     ;;
     frappe)
-      sed -i -e 's/base = .*/base = #303446/g' "$colorsini"
-      sed -i -e 's/mantle = .*/mantle = #292c3c/g' "$colorsini"
-      sed -i -e 's/crust = .*/crust = #232634/g' "$colorsini"
+      sed -i 's/palletes\/polybar\/.*\.ini/palletes\/polybar\/frappe\.ini/g' "$polybar"
 
-      sed -i -e 's/text = .*/text = #c6d0f5/g' "$colorsini"
-      sed -i -e 's/subtext0 = .*/subtext0 = #a5adce/g' "$colorsini"
-      sed -i -e 's/subtext1 = .*/subtext1 = #b5bfe2/g' "$colorsini"
-
-      sed -i -e 's/surface0 = .*/surface0 = #414559/g' "$colorsini"
-      sed -i -e 's/surface1 = .*/surface1 = #51576d/g' "$colorsini"
-      sed -i -e 's/surface2 = .*/surface2 = #626880/g' "$colorsini"
-
-      sed -i -e 's/overlay0 = .*/overlay0 = #737994/g' "$colorsini"
-      sed -i -e 's/overlay1 = .*/overlay1 = #838ba7/g' "$colorsini"
-      sed -i -e 's/overlay2 = .*/overlay2 = #949cbb/g' "$colorsini"
-
-      sed -i -e 's/blue = .*/blue = #8caaee/g' "$colorsini"
-      sed -i -e 's/lavender = .*/lavender = #babbf1/g' "$colorsini"
-      sed -i -e 's/sapphire = .*/sapphire = #85c1dc/g' "$colorsini"
-      sed -i -e 's/sky = .*/sky = #99d1db/g' "$colorsini"
-      sed -i -e 's/teal = .*/teal = #81c8be/g' "$colorsini"
-      sed -i -e 's/green = .*/green = #a6d189/g' "$colorsini"
-      sed -i -e 's/yellow = .*/yellow = #e5c890/g' "$colorsini"
-      sed -i -e 's/peach = .*/peach = #ef9f76/g' "$colorsini"
-      sed -i -e 's/maroon = .*/maroon = #ea999c/g' "$colorsini"
-      sed -i -e 's/red = .*/red = #e78284/g' "$colorsini"
-      sed -i -e 's/mauve = .*/mauve = #ca9ee6/g' "$colorsini"
-      sed -i -e 's/pink = .*/pink = #f4b8e4/g' "$colorsini"
-      sed -i -e 's/flamingo = .*/flamingo = #eebebe/g' "$colorsini"
-      sed -i -e 's/rosewater = .*/rosewater = #f2d5cf/g' "$colorsini"
     ;;
     macchiato)
-      sed -i -e 's/base = .*/base = #24273a/g' "$colorsini"
-      sed -i -e 's/mantle = .*/mantle = #1e2030/g' "$colorsini"
-      sed -i -e 's/crust = .*/crust = #181926/g' "$colorsini"
+      sed -i 's/palletes\/polybar\/.*\.ini/palletes\/polybar\/macchiato\.ini/g' "$polybar"
 
-      sed -i -e 's/text = .*/text = #cad3f5/g' "$colorsini"
-      sed -i -e 's/subtext0 = .*/subtext0 = #a5adcb/g' "$colorsini"
-      sed -i -e 's/subtext1 = .*/subtext1 = #b8c0e0/g' "$colorsini"
-
-      sed -i -e 's/surface0 = .*/surface0 = #363a4f/g' "$colorsini"
-      sed -i -e 's/surface1 = .*/surface1 = #494d64/g' "$colorsini"
-      sed -i -e 's/surface2 = .*/surface2 = #5b6078/g' "$colorsini"
-
-      sed -i -e 's/overlay0 = .*/overlay0 = #6e738d/g' "$colorsini"
-      sed -i -e 's/overlay1 = .*/overlay1 = #8087a2/g' "$colorsini"
-      sed -i -e 's/overlay2 = .*/overlay2 = #939ab7/g' "$colorsini"
-
-      sed -i -e 's/blue = .*/blue = #8aadf4/g' "$colorsini"
-      sed -i -e 's/lavender = .*/lavender = #b7bdf8/g' "$colorsini"
-      sed -i -e 's/sapphire = .*/sapphire = #7dc4e4/g' "$colorsini"
-      sed -i -e 's/sky = .*/sky = #91d7e3/g' "$colorsini"
-      sed -i -e 's/teal = .*/teal = #8bd5ca/g' "$colorsini"
-      sed -i -e 's/green = .*/green = #a6da95/g' "$colorsini"
-      sed -i -e 's/yellow = .*/yellow = #eed49f/g' "$colorsini"
-      sed -i -e 's/peach = .*/peach = #f5a97f/g' "$colorsini"
-      sed -i -e 's/maroon = .*/maroon = #ee99a0/g' "$colorsini"
-      sed -i -e 's/red = .*/red = #ed8796/g' "$colorsini"
-      sed -i -e 's/mauve = .*/mauve = #c6a0f6/g' "$colorsini"
-      sed -i -e 's/pink = .*/pink = #f5bde6/g' "$colorsini"
-      sed -i -e 's/flamingo = .*/flamingo = #f0c6c6/g' "$colorsini"
-      sed -i -e 's/rosewater = .*/rosewater = #f4dbd6/g' "$colorsini"
     ;;
     mocha)
-      sed -i -e 's/base = .*/base = #1e1e2e/g' "$colorsini"
-      sed -i -e 's/mantle = .*/mantle = #181825/g' "$colorsini"
-      sed -i -e 's/crust = .*/crust = #11111b/g' "$colorsini"
-
-      sed -i -e 's/text = .*/text = #cdd6f4/g' "$colorsini"
-      sed -i -e 's/subtext0 = .*/subtext0 = #a6adc8/g' "$colorsini"
-      sed -i -e 's/subtext1 = .*/subtext1 = #bac2de/g' "$colorsini"
-
-      sed -i -e 's/surface0 = .*/surface0 = #313244/g' "$colorsini"
-      sed -i -e 's/surface1 = .*/surface1 = #45475a/g' "$colorsini"
-      sed -i -e 's/surface2 = .*/surface2 = #585b70/g' "$colorsini"
-
-      sed -i -e 's/overlay0 = .*/overlay0 = #6c7086/g' "$colorsini"
-      sed -i -e 's/overlay1 = .*/overlay1 = #7f849c/g' "$colorsini"
-      sed -i -e 's/overlay2 = .*/overlay2 = #9399b2/g' "$colorsini"
-
-      sed -i -e 's/blue = .*/blue = #89b4fa/g' "$colorsini"
-      sed -i -e 's/lavender = .*/lavender = #b4befe/g' "$colorsini"
-      sed -i -e 's/sapphire = .*/sapphire = #74c7ec/g' "$colorsini"
-      sed -i -e 's/sky = .*/sky = #89dceb/g' "$colorsini"
-      sed -i -e 's/teal = .*/teal = #94e2d5/g' "$colorsini"
-      sed -i -e 's/green = .*/green = #a6e3a1/g' "$colorsini"
-      sed -i -e 's/yellow = .*/yellow = #f9e2af/g' "$colorsini"
-      sed -i -e 's/peach = .*/peach = #fab387/g' "$colorsini"
-      sed -i -e 's/maroon = .*/maroon = #eba0ac/g' "$colorsini"
-      sed -i -e 's/red = .*/red = #f38ba8/g' "$colorsini"
-      sed -i -e 's/mauve = .*/mauve = #cba6f7/g' "$colorsini"
-      sed -i -e 's/pink = .*/pink = #f5c2e7/g' "$colorsini"
-      sed -i -e 's/flamingo = .*/flamingo = #f2cdcd/g' "$colorsini"
-      sed -i -e 's/rosewater = .*/rosewater = #f5e0dc/g' "$colorsini"
+      sed -i 's/palletes\/polybar\/.*\.ini/palletes\/polybar\/mocha\.ini/g' "$polybar"
     ;;
     *)
-      echo "Invalid colorscheme, try: latte, frappe, macchiato, mocha"
-      exit
+      invalid_color
     ;;
   esac
 
-  sh "$(xdg-user-dir CONFIG)/cat-configs/bin/system/panel.sh"
+  sh "$catconfigs/bin/system/panel.sh"
+}
+
+terminal () {
+  case $1 in
+    latte)
+      sed -i 's/palletes\/alacritty\/.*\.yml/palletes\/alacritty\/latte\.yml/g' "$alacritty"
+    ;;
+    frappe)
+      sed -i 's/palletes\/alacritty\/.*\.yml/palletes\/alacritty\/frappe\.yml/g' "$alacritty"
+
+    ;;
+    macchiato)
+      sed -i 's/palletes\/alacritty\/.*\.yml/palletes\/alacritty\/macchiato\.yml/g' "$alacritty"
+
+    ;;
+    mocha)
+      sed -i 's/palletes\/alacritty\/.*\.yml/palletes\/alacritty\/mocha\.yml/g' "$alacritty"
+    ;;
+    *)
+      invalid_color
+    ;;
+  esac
+}
+
+menu () {
+  case $1 in
+    latte)
+      sed -i 's/palletes\/rofi\/.*/palletes\/rofi\/latte/g' "$rofi"
+    ;;
+    frappe)
+      sed -i 's/palletes\/rofi\/.*/palletes\/rofi\/frappe/g' "$rofi"
+    ;;
+    macchiato)
+      sed -i 's/palletes\/rofi\/.*/palletes\/rofi\/macchiato/g' "$rofi"
+
+    ;;
+    mocha)
+      sed -i 's/palletes\/rofi\/.*/palletes\/rofi\/mocha/g' "$rofi"
+    ;;
+    *)
+      invalid_color
+    ;;
+  esac
 }
 
 lockscreen () {
   case $1 in
     latte)
-      sed -i -e 's/base=.*/base=#eff1f5/g' "$locksh"
-      sed -i -e 's/mantle=.*/mantle=#e6e9ef/g' "$locksh"
-      sed -i -e 's/green=.*/green=#40a02b/g' "$locksh"
-      sed -i -e 's/red=.*/red=#d20f39/g' "$locksh"
-      sed -i -e 's/text=.*/text=#4c4f69/g' "$locksh"
+      sed -i 's/base=.*/base=#eff1f5/g' "$lockscreen"
+      sed -i 's/mantle=.*/mantle=#e6e9ef/g' "$lockscreen"
+      sed -i 's/green=.*/green=#40a02b/g' "$lockscreen"
+      sed -i 's/red=.*/red=#d20f39/g' "$lockscreen"
+      sed -i 's/text=.*/text=#4c4f69/g' "$lockscreen"
     ;;
     frappe)
-      sed -i -e 's/base=.*/base=#303446/g' "$locksh"
-      sed -i -e 's/mantle=.*/mantle=#292c3c/g' "$locksh"
-      sed -i -e 's/green=.*/green=#a6d189/g' "$locksh"
-      sed -i -e 's/red=.*/red=#e78284/g' "$locksh"
-      sed -i -e 's/text=.*/text=#c6d0f5/g' "$locksh"
+      sed -i 's/base=.*/base=#303446/g' "$lockscreen"
+      sed -i 's/mantle=.*/mantle=#292c3c/g' "$lockscreen"
+      sed -i 's/green=.*/green=#a6d189/g' "$lockscreen"
+      sed -i 's/red=.*/red=#e78284/g' "$lockscreen"
+      sed -i 's/text=.*/text=#c6d0f5/g' "$lockscreen"
     ;;
     macchiato)
-      sed -i -e 's/base=.*/base=#24273a/g' "$locksh"
-      sed -i -e 's/mantle=.*/mantle=#1e2030/g' "$locksh"
-      sed -i -e 's/green=.*/green=#a6da95/g' "$locksh"
-      sed -i -e 's/red=.*/red=#ed8796/g' "$locksh"
-      sed -i -e 's/text=.*/text=#cad3f5/g' "$locksh"
+      sed -i 's/base=.*/base=#24273a/g' "$lockscreen"
+      sed -i 's/mantle=.*/mantle=#1e2030/g' "$lockscreen"
+      sed -i 's/green=.*/green=#a6da95/g' "$lockscreen"
+      sed -i 's/red=.*/red=#ed8796/g' "$lockscreen"
+      sed -i 's/text=.*/text=#cad3f5/g' "$lockscreen"
     ;;
     mocha)
-      sed -i -e 's/base=.*/base=#1e1e2e/g' "$locksh"
-      sed -i -e 's/mantle=.*/mantle=#181825/g' "$locksh"
-      sed -i -e 's/green=.*/green=#a6e3a1/g' "$locksh"
-      sed -i -e 's/red=.*/red=#f38ba8/g' "$locksh"
-      sed -i -e 's/text=.*/text=#cdd6f4/g' "$locksh"
+      sed -i 's/base=.*/base=#1e1e2e/g' "$lockscreen"
+      sed -i 's/mantle=.*/mantle=#181825/g' "$lockscreen"
+      sed -i 's/green=.*/green=#a6e3a1/g' "$lockscreen"
+      sed -i 's/red=.*/red=#f38ba8/g' "$lockscreen"
+      sed -i 's/text=.*/text=#cdd6f4/g' "$lockscreen"
     ;;
     *)
-      echo "Invalid colorscheme, try: latte, frappe, macchiato, mocha"
-      exit
+      invalid_color
     ;;
   esac
 }
 
 case $1 in
+  --terminal | -t)
+    terminal "$2"
+  ;;
   --notification | -n)
     notification "$2"
   ;;
   --panel | -p)
     panel "$2"
+  ;;
+  --menu | -m)
+    menu "$2"
   ;;
   --lockscreen | -l)
     lockscreen "$2"

@@ -1,0 +1,7 @@
+* {
+  base: #eff1f5;
+  mantle: #ccd0da; // Switch to sureface0 for more darker color
+  text: #4c4f69;
+  red: #d20f39;
+  green: #40a02b;
+}

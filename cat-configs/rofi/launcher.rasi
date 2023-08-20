@@ -1,203 +1,191 @@
 configuration {
-	modi:                           "drun,filebrowser,window";
-    show-icons:                     true;
-    display-drun:                   "";
-    display-run:                    "";
-    display-filebrowser:            "";
-    display-window:                 "";
+  modi:                           "drun,filebrowser,window";
+  show-icons:                     true;
+  display-drun:                   "";
+  display-run:                    "";
+  display-filebrowser:            "";
+  display-window:                 "";
 	drun-display-format:            "{name}";
 	window-format:                  "{w} · {c} · {t}";
 }
 
 @import "colors.rasi"
-
-* {
-    font:                           "Jetbrains Mono Medium 10";
-    background-color:               @base;
-}
+@import "fonts.rasi"
 
 window {
-    transparency:                   "real";
-    location:                       center;
-    anchor:                         center;
-    fullscreen:                     false;
-    width:                          600px;
-    x-offset:                       0px;
-    y-offset:                       0px;
-
-    enabled:                        true;
-    border-radius:                  8px;
-    cursor:                         "default";
-    background-color:               @base;
+  enabled:                        true;
+  transparency:                   "real";
+  location:                       center;
+  anchor:                         center;
+  fullscreen:                     false;
+  width:                          530px;
+  x-offset:                       0px;
+  y-offset:                       0px;
+  border-radius:                  8px;
+  cursor:                         default;
+  background-color:               @base;
 }
 
 mainbox {
-    enabled:                        true;
-    spacing:                        0px;
-    background-color:               transparent;
-    orientation:                    vertical;
-    children:                       [ "inputbar", "listbox" ];
-}
-
-listbox {
-    spacing:                        20px;
-    padding:                        20px;
-    background-color:               transparent;
-    orientation:                    vertical;
-    children:                       [ "message", "listview" ];
+  enabled:                        true;
+  spacing:                        0px;
+  padding:                        25px;
+  orientation:                    vertical;
+  background-color:               transparent;
+  children:                       [ "inputbar", "listbox", "mode-switcher" ];
 }
 
 inputbar {
-    enabled:                        true;
-    spacing:                        10px;
-    padding:                        50px 30px;
-    background-color:               transparent;
-    background-image:               url("~/.wall.png", width);
-    text-color:                     @text;
-    orientation:                    horizontal;
-    children:                       [ "textbox-prompt-colon", "entry", "dummy", "mode-switcher" ];
+  enabled:                        true;
+  spacing:                        10px;
+  padding:                        35px;
+  text-color:                     @text;
+  orientation:                    horizontal;
+  border-radius:                  12px;
+  background-image:               url("~/.wall.png", width);
+  background-color:               transparent;
+  children:                       [ "prompt", "entry" ];
 }
 
-textbox-prompt-colon {
-    enabled:                        true;
-    expand:                         false;
-    str:                            "";
-    padding:                        12px 15px;
-    border-radius:                  100%;
-    background-color:               @mantle;
-    text-color:                     inherit;
-    font:                           "Phosphor 10";
+prompt {
+  enabled:                        true;
+  expand:                         false;
+  padding:                        12px;
+  border-radius:                  100%;
+  vertical-align:                 0.5;
+  background-color:               @accent;
+  text-color:                     @mantle;
+  font:                           "Phosphor\-bold 12";
 }
 
 entry {
-    enabled:                        true;
-    expand:                         false;
-    width:                          250px;
-    padding:                        12px 16px;
-    border-radius:                  80%;
-    background-color:               @mantle;
-    text-color:                     inherit;
-    cursor:                         text;
-    placeholder:                    "Search";
-    placeholder-color:              inherit;
+  enabled:                        true;
+  expand:                         true;
+  padding:                        12px 16px;
+  border-radius:                  80%;
+  background-color:               @mantle;
+  text-color:                     inherit;
+  cursor:                         text;
+  vertical-align:                 0.5;
+  placeholder:                    "Search";
+  placeholder-color:              inherit;
 }
 
-dummy {
-    expand:                         true;
-    background-color:               transparent;
+listbox {
+  spacing:                        20px;
+  padding:                        20px 10px;
+  orientation:                    vertical;
+  background-color:               transparent;
+  children:                       [ "message", "listview" ];
 }
 
 mode-switcher{
-    enabled:                        true;
-    spacing:                        10px;
-    background-color:               transparent;
-    text-color:                     @text;
+  enabled:                        true;
+  spacing:                        10px;
+  background-color:               transparent;
+  text-color:                     @text;
 }
 
 button {
-    width:                          45px;
-    padding:                        12px;
-    border-radius:                  100%;
-    background-color:               @mantle;
-    text-color:                     inherit;
-    cursor:                         pointer;
-    font:                           "Phosphor 10";
+  width:                          45px;
+  padding:                        12px;
+  border-radius:                  100%;
+  background-color:               @mantle;
+  text-color:                     inherit;
+  cursor:                         pointer;
+  font:                           "Phosphor\-bold 10";
 }
 
 button selected {
-    background-color:               @accent;
-    text-color:                     @mantle;
+  background-color:               @accent;
+  text-color:                     @mantle;
 }
 
 listview {
-    enabled:                        true;
-    columns:                        1;
-    lines:                          5;
-    cycle:                          true;
-    dynamic:                        true;
-    scrollbar:                      false;
-    layout:                         vertical;
-    reverse:                        false;
-    fixed-height:                   true;
-    fixed-columns:                  true;
-    
-    spacing:                        15px;
-    background-color:               transparent;
-    text-color:                     @text;
-    cursor:                         "default";
+  enabled:                        true;
+  layout:                         vertical;
+  columns:                        1;
+  lines:                          5;
+  cycle:                          true;
+  dynamic:                        true;
+  scrollbar:                      false;
+  reverse:                        false;
+  fixed-height:                   true;
+  fixed-columns:                  true;   
+  spacing:                        15px;
+  background-color:               transparent;
+  text-color:                     @text;
 }
 
 element {
-    enabled:                        true;
-    spacing:                        10px;
-    padding:                        4px;
-    border-radius:                  8px;
-    background-color:               transparent;
-    text-color:                     @text;
-    cursor:                         pointer;
+  enabled:                        true;
+  spacing:                        10px;
+  padding:                        6px;
+  border-radius:                  8px;
+  background-color:               transparent;
+  text-color:                     @text;
+  cursor:                         pointer;
 }
 
 element normal.normal {
-    background-color:               inherit;
-    text-color:                     inherit;
+  background-color:               inherit;
+  text-color:                     inherit;
 }
 
 element normal.urgent {
-    background-color:               @red;
-    text-color:                     @mantle;
+  background-color:               @red;
+  text-color:                     @mantle;
 }
 
 element normal.active {
-    background-color:               @accent;
-    text-color:                     @mantle;
+  background-color:               @accent;
+  text-color:                     @mantle;
 }
 
 element selected.normal {
-    background-color:               @accent;
-    text-color:                     @mantle;
+  background-color:               @accent;
+  text-color:                     @mantle;
 }
 
 element selected.urgent {
-    background-color:               @red;
-    text-color:                     @mantle;
+  background-color:               @red;
+  text-color:                     @mantle;
 }
 
 element selected.active {
-    background-color:               @green;
-    text-color:                     @mantle;
+  background-color:               @green;
+  text-color:                     @mantle;
 }
 
 element-icon {
-    background-color:               transparent;
-    text-color:                     inherit;
-    size:                           32px;
-    cursor:                         inherit;
+  background-color:               transparent;
+  text-color:                     inherit;
+  size:                           32px;
+  cursor:                         inherit;
 }
 
 element-text {
-    background-color:               transparent;
-    text-color:                     inherit;
-    cursor:                         inherit;
-    vertical-align:                 0.5;
-    horizontal-align:               0.0;
+  background-color:               transparent;
+  text-color:                     inherit;
+  cursor:                         inherit;
+  vertical-align:                 0.5;
 }
 
 message {
-    background-color:               transparent;
+  background-color:               transparent;
 }
 
 textbox {
-    padding:                        12px;
-    border-radius:                  100%;
-    background-color:               @mantle;
-    text-color:                     @text;
-    vertical-align:                 0.5;
-    horizontal-align:               0.0;
+  padding:                        12px;
+  border-radius:                  8px;
+  background-color:               @mantle;
+  text-color:                     @text;
+  vertical-align:                 0.5;
 }
 
 error-message {
-    padding:                        12px;
-    border-radius:                  20px;
-    background-color:               @base;
-    text-color:                     @text;
+  padding:                        12px;
+  border-radius:                  20px;
+  background-color:               @red;
+  text-color:                     @mantle;
 }

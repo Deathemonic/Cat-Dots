@@ -1,0 +1,127 @@
+configuration {
+  show-icons:                     false;
+}
+
+@import "colors.rasi"
+@import "fonts.rasi"
+
+window {
+  enabled:                        true;
+  transparency:                   "real";
+  location:                       center;
+  anchor:                         center;
+  fullscreen:                     false;
+  width:                          600px;
+  x-offset:                       0px;
+  y-offset:                       0px;
+  border-radius:                  8px;
+  cursor:                         default;
+  background-color:               @base;
+}
+
+mainbox {
+  enabled:                        true;
+  padding:                        25px;
+  orientation:                    vertical;
+  background-color:               transparent;
+  children:                       [ "inputbar", "listview" ];
+}
+
+inputbar {
+  enabled:                        true;
+  padding:                        0px 0px 25px;
+  text-color:                     @text;
+  orientation:                    horizontal;
+  border-radius:                  12px;
+  background-color:               transparent;
+  children:                       [ "textbox-prompt-colon", "dummy", "prompt" ];
+}
+
+dummy {
+  background-color:               transparent;
+}
+
+textbox-prompt-colon {
+  enabled:                        true;
+  expand:                         false;
+  str:                            "System";
+  padding:                        15px;
+  border-radius:                  100%;
+  background-color:               @mantle;
+  text-color:                     @accent;
+}
+
+prompt {
+  enabled:                        true;
+  padding:                        15px;
+  border-radius:                  100px;
+  background-color:               @accent;
+  text-color:                     @mantle;
+}
+
+listview {
+  enabled:                        true;
+  columns:                        5;
+  lines:                          1;
+  cycle:                          true;
+  dynamic:                        true;
+  scrollbar:                      false;
+  layout:                         vertical;
+  reverse:                        false;
+  fixed-height:                   true;
+  fixed-columns:                  true;
+  border-radius:                  100%;
+  background-color:               @mantle;
+  text-color:                     @text;
+  cursor:                         default;
+}
+
+element {
+  enabled:                        true;
+  padding:                        30px 15px;
+  border-radius:                  8px;
+  background-color:               transparent;
+  text-color:                     @text;
+  cursor:                         pointer;
+}
+
+element-text {
+  font:                           "Phosphor\-Bold 20";
+  background-color:               transparent;
+  text-color:                     inherit;
+  cursor:                         inherit;
+  vertical-align:                 0.5;
+  horizontal-align:               0.5;
+}
+
+element selected.normal {
+  background-color:               @accent;
+  text-color:                     @mantle;
+}
+
+message {
+  enabled:                        true;
+  padding:                        15px;
+  border:                         0px;
+  border-radius:                  100%;
+  border-color:                   @accent;
+  background-color:               @mantle;
+  text-color:                     @text;
+}
+textbox {
+  background-color:               inherit;
+  text-color:                     inherit;
+  vertical-align:                 0.5;
+  horizontal-align:               0.5;
+  placeholder-color:              @text;
+  blink:                          true;
+  markup:                         true;
+}
+error-message {
+  padding:                        15px;
+  border:                         0px solid;
+  border-radius:                  100%;
+  border-color:                   @red;
+  background-color:               @mantle;
+  text-color:                     @red;
+}

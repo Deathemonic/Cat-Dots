@@ -1,0 +1,7 @@
+* {
+  base: #303446;
+  mantle: #292c3c;
+  text: #c6d0f5;
+  red: #e78284;
+  green: #a6d189;
+}

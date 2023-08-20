@@ -1,33 +1,34 @@
-#!/usr/bin/env pypy3
-# encoding:utf8
+#!/usr/bin/env python3
 
-import pathlib
-import struct
+# Modified version networkmanager_dmenu with some patches
+
 import configparser
+import contextlib
 import locale
 import os
-from os.path import basename, expanduser
+import pathlib
 import shlex
-from shutil import which
-import sys
-from time import sleep
-import uuid
+import struct
 import subprocess
+import sys
+import uuid
+from shutil import which
+from time import sleep
 
-# pylint: disable=import-error
 import gi
+
 gi.require_version('NM', '1.0')
-from gi.repository import GLib, NM  # noqa pylint: disable=wrong-import-position
-# pylint: enable=import-error
+from gi.repository import NM, GLib  # noqa: E402
 
 ENV = os.environ.copy()
 ENC = locale.getpreferredencoding()
 
 CONF = configparser.ConfigParser()
-CONF.read(expanduser("~/.config/cat-configs/rofi/network.ini"))
+CONF.read(os.path.expanduser("~/.config/cat-configs/rofi/network.ini"))
+# Static configuration not really nessary this dotfiles
 
 
-def cli_args():
+def cli_args() -> list[str]:
     """
     Don't override dmenu_cmd function arguments with CLI args. Removes -l
     and -p if those are passed on the command line.
@@ -35,115 +36,168 @@ def cli_args():
     Exception: if -l is passed and dmenu_command is not defined, assume that the
     user wants to switch dmenu to the vertical layout and include -l.
 
-        Returns: List of additional CLI arguments
+    Returns: List of additional CLI arguments
     """
+
     args = sys.argv[1:]
     cmd = CONF.get('dmenu', 'dmenu_command', fallback=False)
     if "-l" in args or "-p" in args:
         for nope in ['-l', '-p'] if cmd is not False else ['-p']:
-            try:
+            with contextlib.suppress(ValueError):
                 nope_idx = args.index(nope)
                 del args[nope_idx]
                 del args[nope_idx]
-            except ValueError:
-                pass
     return args
 
 
-def dmenu_pass(command, color):
+def dmenu_pass(command: str, color: str) -> list | None:
     """
     Check if dmenu passphrase patch is applied and return the correct command
     line arg list
 
-    Args: command - string
-          color - obscure color string
+    Args:
+        command - string
+        color - obscure color string
+
     Returns: list or None
     """
+
     if command != 'dmenu':
         return None
+
     try:
         # Check for dmenu password patch
-        dm_patch = b'P' in subprocess.run(["dmenu", "-h"],
-                                          capture_output=True,
-                                          check=False).stderr
+        dm_patch = (
+            b'P'
+            in subprocess.run(["dmenu", "-h"], capture_output=True, check=False).stderr
+        )
+
     except FileNotFoundError:
         dm_patch = False
+
     return ["-P"] if dm_patch else ["-nb", color, "-nf", color]
 
 
-def dmenu_cmd(num_lines, prompt="Networks", active_lines=None):
-    """Parse config.ini for menu options
-
-    Args: args - num_lines: number of lines to display
-                 prompt: prompt to show
-                 active_lines: list of line numbers to tag as active
-    Returns: command invocation (as a list of strings) for example
-                ["dmenu", "-l", "<num_lines>", "-p", "<prompt>", "-i"]
-
+def dmenu_cmd(
+    num_lines: int, prompt: str = "Networks:", active_lines: list | None = None
+) -> list[str]:
     """
+    Parse config.ini for menu options
+
+    Args:
+        args - num_lines: number of lines to display
+        prompt: prompt to show
+        active_lines: list of line numbers to tag as active
+
+    Returns: command invocation (as a list of strings) for example
+            ["dmenu", "-l", "<num_lines>", "-p", "<prompt>", "-i"]
+    """
+
     # Create command string
-    commands = {"dmenu": ["-p", str(prompt)],
-                "rofi": ["-dmenu", "-p", str(prompt)],
-                "bemenu": ["-p", str(prompt)],
-                "wofi": ["-p", str(prompt)],
-                "fuzzel": ["-p", str(prompt), "-l", str(num_lines), "--log-level", "none"]}
+    commands = {
+        "dmenu": [
+            "-p",
+            prompt,
+        ],
+        "rofi": [
+            "-dmenu",
+            "-mesg",
+            prompt,
+        ],
+        "bemenu": [
+            "-p",
+            prompt,
+        ],
+        "wofi": ["-p", prompt],
+        "fuzzel": [
+            "-p",
+            prompt,
+            "-l",
+            str(num_lines),
+            "--log-level",
+            "none",
+        ],
+    }
+
     command = shlex.split(CONF.get('dmenu', 'dmenu_command', fallback="dmenu"))
-    cmd_base = basename(command[0])
+    cmd_base = os.path.basename(command[0])
     command.extend(cli_args())
     command.extend(commands.get(cmd_base, []))
+
     # Rofi Highlighting
     rofi_highlight = CONF.getboolean('dmenu', 'rofi_highlight', fallback=False)
     if rofi_highlight is True and cmd_base == "rofi" and active_lines:
         command.extend(["-a", ",".join([str(num) for num in active_lines])])
+
     # Passphrase prompts
     obscure = CONF.getboolean('dmenu_passphrase', 'obscure', fallback=False)
     if prompt == "Passphrase" and obscure is True:
-        obscure_color = CONF.get('dmenu_passphrase', 'obscure_color', fallback='#222222')
-        pass_prompts = {"dmenu": dmenu_pass(cmd_base, obscure_color),
-                        "rofi": ['-password'],
-                        "bemenu": ['-x'],
-                        "wofi": ['-P'],
-                        "fuzzel": ['--password']}
+        obscure_color = CONF.get(
+            'dmenu_passphrase', 'obscure_color', fallback='#222222'
+        )
+        pass_prompts = {
+            "dmenu": dmenu_pass(cmd_base, obscure_color),
+            "rofi": ['-password'],
+            "bemenu": ['-x'],
+            "wofi": ['-P'],
+            "fuzzel": ['--password'],
+        }
         command.extend(pass_prompts.get(cmd_base, []))
+
     return command
 
 
-def choose_adapter(client):
-    """If there is more than one wifi adapter installed, ask which one to use
-
+def choose_adapter(client) -> None | str:
     """
+    If there is more than one wifi adapter installed, ask which one to use
+    """
+
     devices = client.get_devices()
     devices = [i for i in devices if i.get_device_type() == NM.DeviceType.WIFI]
+
     if not devices:
         return None
+
     if len(devices) == 1:
         return devices[0]
+
     device_names = "\n".join([d.get_iface() for d in devices])
-    sel = subprocess.run(dmenu_cmd(len(devices), "CHOOSE ADAPTER:"),
-                         capture_output=True,
-                         check=False,
-                         env=ENV,
-                         input=device_names,
-                         encoding=ENC).stdout
+    sel = subprocess.run(
+        dmenu_cmd(len(devices), "Choose Adapter:"),
+        capture_output=True,
+        check=False,
+        env=ENV,
+        input=device_names,
+        encoding=ENC,
+    ).stdout
+
     if not sel.strip():
         sys.exit()
+
     devices = [i for i in devices if i.get_iface() == sel.strip()]
+
     if len(devices) != 1:
         raise ValueError(f"Selection was ambiguous: '{str(sel.strip())}'")
+
     return devices[0]
 
 
-def is_installed(cmd):
-    """Check if a utility is installed"""
+def is_installed(cmd: str) -> bool | None:
+    """
+    Check if a utility is installed
+    """
+
     return which(cmd) is not None
 
 
-def bluetooth_get_enabled():
-    """Check if bluetooth is enabled via rfkill.
+def bluetooth_get_enabled() -> None:
+    """
+    Check if bluetooth is enabled via rfkill.
 
     Returns None if no bluetooth device was found.
     """
     # See https://www.kernel.org/doc/Documentation/ABI/stable/sysfs-class-rfkill
+
     for path in pathlib.Path('/sys/class/rfkill/').glob('rfkill*'):
         if (path / 'type').read_text().strip() == 'bluetooth':
             return (path / 'soft').read_text().strip() == '0'
@@ -151,9 +205,10 @@ def bluetooth_get_enabled():
 
 
 def create_other_actions(client):
-    """Return list of other actions that can be taken
-
     """
+    Return list of other actions that can be taken
+    """
+
     networking_enabled = client.networking_get_enabled()
     networking_action = "Disable" if networking_enabled else "Enable"
 
@@ -163,15 +218,23 @@ def create_other_actions(client):
     bluetooth_enabled = bluetooth_get_enabled()
     bluetooth_action = "Disable" if bluetooth_enabled else "Enable"
 
-    actions = [Action(f"{wifi_action} Wifi", toggle_wifi,
-                      not wifi_enabled),
-               Action(f"{networking_action} Networking",
-                      toggle_networking, not networking_enabled)]
+    actions = [
+        Action(f"{wifi_action} Wifi", toggle_wifi, not wifi_enabled),
+        Action(
+            f"{networking_action} Networking", toggle_networking, not networking_enabled
+        ),
+    ]
     if bluetooth_enabled is not None:
-        actions.append(Action(f"{bluetooth_action} Bluetooth",
-                              toggle_bluetooth, not bluetooth_enabled))
-    actions += [Action("Launch Connection Manager", launch_connection_editor),
-                Action("Delete a Connection", delete_connection)]
+        actions.append(
+            Action(
+                f"{bluetooth_action} Bluetooth", toggle_bluetooth, not bluetooth_enabled
+            )
+        )
+    actions += [
+        Action("Launch Connection Manager", launch_connection_editor),
+        Action("Delete a Connection", delete_connection),
+    ]
+
     if wifi_enabled:
         actions.append(Action("Rescan Wifi Networks", rescan_wifi))
     return actions
@@ -198,9 +261,7 @@ def rescan_wifi():
 
 
 def rescan_cb(dev, res, data):
-    """Callback for rescan_wifi. Just for notifications
-
-    """
+    """Callback for rescan_wifi. Just for notifications"""
     if dev.request_scan_finish(res) is True:
         notify("Wifi scan running...")
     else:
@@ -209,7 +270,7 @@ def rescan_cb(dev, res, data):
 
 
 def ssid_to_utf8(nm_ap):
-    """ Convert binary ssid to utf-8 """
+    """Convert binary ssid to utf-8"""
     ssid = nm_ap.get_ssid()
     if not ssid:
         return ""
@@ -225,13 +286,16 @@ def prompt_saved(saved_cons):
 
 
 def ap_security(nm_ap):
-    """Parse the security flags to return a string with 'WPA2', etc. """
+    """Parse the security flags to return a string with 'WPA2', etc."""
     flags = nm_ap.get_flags()
     wpa_flags = nm_ap.get_wpa_flags()
     rsn_flags = nm_ap.get_rsn_flags()
     sec_str = ""
-    if ((flags & getattr(NM, '80211ApFlags').PRIVACY) and
-            (wpa_flags == 0) and (rsn_flags == 0)):
+    if (
+        (flags & getattr(NM, '80211ApFlags').PRIVACY)
+        and (wpa_flags == 0)
+        and (rsn_flags == 0)
+    ):
         sec_str = " WEP"
     if wpa_flags:
         sec_str = " WPA1"
@@ -239,11 +303,13 @@ def ap_security(nm_ap):
         sec_str += " WPA2"
     if rsn_flags & getattr(NM, '80211ApSecurityFlags').KEY_MGMT_SAE:
         sec_str += " WPA3"
-    if ((wpa_flags & getattr(NM, '80211ApSecurityFlags').KEY_MGMT_802_1X) or
-            (rsn_flags & getattr(NM, '80211ApSecurityFlags').KEY_MGMT_802_1X)):
+    if (wpa_flags & getattr(NM, '80211ApSecurityFlags').KEY_MGMT_802_1X) or (
+        rsn_flags & getattr(NM, '80211ApSecurityFlags').KEY_MGMT_802_1X
+    ):
         sec_str += " 802.1X"
-    if ((wpa_flags & getattr(NM, '80211ApSecurityFlags').KEY_MGMT_OWE) or
-            (rsn_flags & getattr(NM, '80211ApSecurityFlags').KEY_MGMT_OWE)):
+    if (wpa_flags & getattr(NM, '80211ApSecurityFlags').KEY_MGMT_OWE) or (
+        rsn_flags & getattr(NM, '80211ApSecurityFlags').KEY_MGMT_OWE
+    ):
         sec_str += " OWE"
 
     # If there is no security use "--"
@@ -252,13 +318,10 @@ def ap_security(nm_ap):
     return sec_str.lstrip()
 
 
-class Action():  # pylint: disable=too-few-public-methods
+class Action:  # pylint: disable=too-few-public-methods
     """Helper class to execute functions from a string variable"""
-    def __init__(self,
-                 name,
-                 func,
-                 args=None,
-                 active=False):
+
+    def __init__(self, name, func, args=None, active=False):
         self.name = name
         self.func = func
         self.is_active = active
@@ -313,16 +376,19 @@ def process_ap(nm_ap, is_active, adapter):
         CLIENT.deactivate_connection_async(nm_ap, None, deactivate_cb, nm_ap)
         LOOP.run()
     else:
-        conns_cur = [i for i in CONNS if
-                     i.get_setting_wireless() is not None and
-                     conn_matches_adapter(i, adapter)]
+        conns_cur = [
+            i
+            for i in CONNS
+            if i.get_setting_wireless() is not None and conn_matches_adapter(i, adapter)
+        ]
         con = nm_ap.filter_connections(conns_cur)
         if len(con) > 1:
             raise ValueError("There are multiple connections possible")
 
         if len(con) == 1:
-            CLIENT.activate_connection_async(con[0], adapter, nm_ap.get_path(),
-                                             None, activate_cb, nm_ap)
+            CLIENT.activate_connection_async(
+                con[0], adapter, nm_ap.get_path(), None, activate_cb, nm_ap
+            )
             LOOP.run()
         else:
             if ap_security(nm_ap) != "--":
@@ -333,9 +399,7 @@ def process_ap(nm_ap, is_active, adapter):
 
 
 def activate_cb(dev, res, data):
-    """Notification if activate connection completed successfully
-
-    """
+    """Notification if activate connection completed successfully"""
     try:
         conn = dev.activate_connection_finish(res)
     except GLib.Error:
@@ -348,9 +412,7 @@ def activate_cb(dev, res, data):
 
 
 def deactivate_cb(dev, res, data):
-    """Notification if deactivate connection completed successfully
-
-    """
+    """Notification if deactivate connection completed successfully"""
     if dev.deactivate_connection_finish(res) is True:
         notify(f"Deactivated {data.get_id()}")
     else:
@@ -361,11 +423,11 @@ def deactivate_cb(dev, res, data):
 def process_vpngsm(con, activate):
     """Activate/deactive VPN or GSM connections"""
     if activate:
-        CLIENT.activate_connection_async(con, None, None,
-                                         None, activate_cb, con)
+        CLIENT.activate_connection_async(con, None, None, None, activate_cb, con)
     else:
         CLIENT.deactivate_connection_async(con, None, deactivate_cb, con)
     LOOP.run()
+
 
 def strength_bars(signal_strength):
     bars = NM.utils_wifi_strength_bars(signal_strength)
@@ -382,7 +444,9 @@ def strength_icon(signal_strength):
     return ""
 
 
-def create_ap_actions(aps, active_ap, active_connection, adapter):  # noqa pylint: disable=too-many-locals,line-too-long
+def create_ap_actions(
+    aps, active_ap, active_connection, adapter
+):  # noqa pylint: disable=too-many-locals,line-too-long
     """For each AP in a list, create the string and its attached function
     (activate/deactivate)
 
@@ -399,22 +463,37 @@ def create_ap_actions(aps, active_ap, active_connection, adapter):  # noqa pylin
     if CONF.getboolean("dmenu", "compact", fallback=False):
         format = CONF.get("dmenu", "format", fallback="{name}  {sec}  {bars}")
     else:
-        format = CONF.get("dmenu", "format", fallback="{name:<{max_len_name}s}  {sec:<{max_len_sec}s} {bars:>4}")
+        format = CONF.get(
+            "dmenu",
+            "format",
+            fallback="{name:<{max_len_name}s}  {sec:<{max_len_sec}s} {bars:>4}",
+        )
 
     for nm_ap, name, sec in zip(aps, names, secs):
         is_active = nm_ap.get_bssid() == active_ap_bssid
         signal_strength = nm_ap.get_strength()
         bars = strength_bars(signal_strength)
         icon = strength_icon(signal_strength)
-        action_name = format.format(name=name, sec=sec, signal=signal_strength, bars=bars, icon=icon,
-                                    max_len_name=max_len_name, max_len_sec=max_len_sec)
+        action_name = format.format(
+            name=name,
+            sec=sec,
+            signal=signal_strength,
+            bars=bars,
+            icon=icon,
+            max_len_name=max_len_name,
+            max_len_sec=max_len_sec,
+        )
         if is_active:
-            ap_actions.append(Action(action_name, process_ap,
-                                     [active_connection, True, adapter],
-                                     active=True))
+            ap_actions.append(
+                Action(
+                    action_name,
+                    process_ap,
+                    [active_connection, True, adapter],
+                    active=True,
+                )
+            )
         else:
-            ap_actions.append(Action(action_name, process_ap,
-                                     [nm_ap, False, adapter]))
+            ap_actions.append(Action(action_name, process_ap, [nm_ap, False, adapter]))
     return ap_actions
 
 
@@ -448,9 +527,12 @@ def create_eth_actions(eths, active):
 def create_gsm_actions(gsms, active):
     """Create the list of strings to display with associated function
     (activate/deactivate) GSM connections."""
-    active_gsms = [i for i in active if
-                   i.get_connection() is not None and
-                   i.get_connection().is_type(NM.SETTING_GSM_SETTING_NAME)]
+    active_gsms = [
+        i
+        for i in active
+        if i.get_connection() is not None
+        and i.get_connection().is_type(NM.SETTING_GSM_SETTING_NAME)
+    ]
     return _create_vpngsm_actions(gsms, active_gsms, "GSM")
 
 
@@ -459,9 +541,12 @@ def create_blue_actions(blues, active):
     Create the list of strings to display with associated function
     (activate/deactivate) Bluetooth connections.
     """
-    active_blues = [i for i in active if
-                    i.get_connection() is not None and
-                    i.get_connection().is_type(NM.SETTING_BLUETOOTH_SETTING_NAME)]
+    active_blues = [
+        i
+        for i in active
+        if i.get_connection() is not None
+        and i.get_connection().is_type(NM.SETTING_BLUETOOTH_SETTING_NAME)
+    ]
     return _create_vpngsm_actions(blues, active_blues, "Bluetooth")
 
 
@@ -480,24 +565,23 @@ def _create_vpngsm_actions(cons, active_cons, label):
         is_active = con.get_id() in active_con_ids
         action_name = f"{con.get_id()}:{label}"
         if is_active:
-            active_connection = [a for a in active_cons
-                                 if a.get_id() == con.get_id()]
+            active_connection = [a for a in active_cons if a.get_id() == con.get_id()]
             if len(active_connection) != 1:
                 raise ValueError(f"Multiple active connections match {con.get_id()}")
             active_connection = active_connection[0]
 
-            actions.append(Action(action_name, process_vpngsm,
-                                  [active_connection, False], active=True))
+            actions.append(
+                Action(
+                    action_name, process_vpngsm, [active_connection, False], active=True
+                )
+            )
         else:
-            actions.append(Action(action_name, process_vpngsm,
-                                  [con, True]))
+            actions.append(Action(action_name, process_vpngsm, [con, True]))
     return actions
 
 
 def create_wwan_actions(client):
-    """Create WWWAN actions
-
-    """
+    """Create WWWAN actions"""
     wwan_enabled = client.wwan_get_enabled()
     wwan_action = "Disable" if wwan_enabled else "Enable"
     return [Action(f"{wwan_action} WWAN", toggle_wwan, not wwan_enabled)]
@@ -539,28 +623,36 @@ def get_selection(all_actions):
     if rofi_highlight is True:
         inp = [str(action) for action in all_actions]
     else:
-        inp = [('== ' if action.is_active else '   ') + str(action)
-               for action in all_actions]
-    active_lines = [index for index, action in enumerate(all_actions)
-                    if action.is_active]
+        inp = [
+            ('== ' if action.is_active else '   ') + str(action)
+            for action in all_actions
+        ]
+    active_lines = [
+        index for index, action in enumerate(all_actions) if action.is_active
+    ]
 
     command = dmenu_cmd(len(inp), active_lines=active_lines)
-    sel = subprocess.run(command,
-                         capture_output=True,
-                         check=False,
-                         input="\n".join(inp),
-                         encoding=ENC,
-                         env=ENV).stdout
+    sel = subprocess.run(
+        command,
+        capture_output=True,
+        check=False,
+        input="\n".join(inp),
+        encoding=ENC,
+        env=ENV,
+    ).stdout
 
     if not sel.rstrip():
         sys.exit()
 
     if rofi_highlight is False:
-        action = [i for i in all_actions
-                  if ((str(i).strip() == str(sel.strip())
-                       and not i.is_active) or
-                      ('== ' + str(i) == str(sel.rstrip('\n'))
-                       and i.is_active))]
+        action = [
+            i
+            for i in all_actions
+            if (
+                (str(i).strip() == str(sel.strip()) and not i.is_active)
+                or ('== ' + str(i) == str(sel.rstrip('\n')) and i.is_active)
+            )
+        ]
     else:
         action = [i for i in all_actions if str(i).strip() == sel.strip()]
     if len(action) != 1:
@@ -576,8 +668,17 @@ def toggle_networking(enable):
     """
     toggle = GLib.Variant.new_tuple(GLib.Variant.new_boolean(enable))
     try:
-        CLIENT.dbus_call(NM.DBUS_PATH, NM.DBUS_INTERFACE, "Enable", toggle,
-                         None, -1, None, None, None)
+        CLIENT.dbus_call(
+            NM.DBUS_PATH,
+            NM.DBUS_INTERFACE,
+            "Enable",
+            toggle,
+            None,
+            -1,
+            None,
+            None,
+            None,
+        )
     except AttributeError:
         # Workaround for older versions of python-gobject
         CLIENT.networking_set_enabled(enable)
@@ -592,8 +693,16 @@ def toggle_wifi(enable):
     """
     toggle = GLib.Variant.new_boolean(enable)
     try:
-        CLIENT.dbus_set_property(NM.DBUS_PATH, NM.DBUS_INTERFACE, "WirelessEnabled", toggle,
-                                 -1, None, None, None)
+        CLIENT.dbus_set_property(
+            NM.DBUS_PATH,
+            NM.DBUS_INTERFACE,
+            "WirelessEnabled",
+            toggle,
+            -1,
+            None,
+            None,
+            None,
+        )
     except AttributeError:
         # Workaround for older versions of python-gobject
         CLIENT.wireless_set_enabled(enable)
@@ -608,8 +717,9 @@ def toggle_wwan(enable):
     """
     toggle = GLib.Variant.new_boolean(enable)
     try:
-        CLIENT.dbus_set_property(NM.DBUS_PATH, NM.DBUS_INTERFACE, "WwanEnabled", toggle,
-                                 -1, None, None, None)
+        CLIENT.dbus_set_property(
+            NM.DBUS_PATH, NM.DBUS_INTERFACE, "WwanEnabled", toggle, -1, None, None, None
+        )
     except AttributeError:
         # Workaround for older versions of python-gobject
         CLIENT.wwan_set_enabled(enable)
@@ -633,16 +743,19 @@ def toggle_bluetooth(enable):
     soft_state = 0 if enable else 1
     hard_state = 0
 
-    data = struct.pack("IBBBB", idx, type_bluetooth, op_change_all,
-                       soft_state, hard_state)
+    data = struct.pack(
+        "IBBBB", idx, type_bluetooth, op_change_all, soft_state, hard_state
+    )
 
     try:
         with open('/dev/rfkill', 'r+b', buffering=0) as rff:
             rff.write(data)
     except PermissionError:
-        notify("Lacking permission to write to /dev/rfkill.",
-               "Check README for configuration options.",
-               urgency="critical")
+        notify(
+            "Lacking permission to write to /dev/rfkill.",
+            "Check README for configuration options.",
+            urgency="critical",
+        )
     else:
         notify(f"Bluetooth {'enabled' if enable else 'disabled'}")
 
@@ -673,38 +786,48 @@ def get_passphrase():
     """
     pinentry = CONF.get("dmenu", "pinentry", fallback=None)
     if pinentry:
-        description = CONF.get("pinentry", "description", fallback="Get network password")
+        description = CONF.get(
+            "pinentry", "description", fallback="Get network password"
+        )
         prompt = CONF.get("pinentry", "prompt", fallback="Password: ")
         pin = ""
-        out = subprocess.run(pinentry,
-                             capture_output=True,
-                             check=False,
-                             encoding=ENC,
-                             input=f"setdesc {description}\nsetprompt {prompt}\ngetpin\n").stdout
+        out = subprocess.run(
+            pinentry,
+            capture_output=True,
+            check=False,
+            encoding=ENC,
+            input=f"setdesc {description}\nsetprompt {prompt}\ngetpin\n",
+        ).stdout
         if out:
             res = out.split("\n")[2]
             if res.startswith("D "):
                 pin = res.split("D ")[1]
         return pin
-    return subprocess.run(dmenu_cmd(0, "Passphrase"),
-                          stdin=subprocess.DEVNULL,
-                          capture_output=True,
-                          check=False,
-                          encoding=ENC).stdout
+    return subprocess.run(
+        dmenu_cmd(0, "Passphrase"),
+        stdin=subprocess.DEVNULL,
+        capture_output=True,
+        check=False,
+        encoding=ENC,
+    ).stdout
 
 
 def delete_connection():
     """
     Display list of NM connections and delete the selected one
     """
-    conn_acts = [Action(i.get_id(), i.delete_async, args=[None, delete_cb, None]) for i in CONNS]
+    conn_acts = [
+        Action(i.get_id(), i.delete_async, args=[None, delete_cb, None]) for i in CONNS
+    ]
     conn_names = "\n".join([str(i) for i in conn_acts])
-    sel = subprocess.run(dmenu_cmd(len(conn_acts), "CHOOSE CONNECTION TO DELETE:"),
-                         capture_output=True,
-                         check=False,
-                         input=conn_names,
-                         encoding=ENC,
-                         env=ENV).stdout
+    sel = subprocess.run(
+        dmenu_cmd(len(conn_acts), "Choose a connection to delete:"),
+        capture_output=True,
+        check=False,
+        input=conn_names,
+        encoding=ENC,
+        env=ENV,
+    ).stdout
     if not sel.strip():
         sys.exit()
     action = [i for i in conn_acts if str(i) == sel.rstrip("\n")]
@@ -734,8 +857,9 @@ def set_new_connection(nm_ap, nm_pw, adapter):
     """
     nm_pw = str(nm_pw).strip()
     profile = create_wifi_profile(nm_ap, nm_pw, adapter)
-    CLIENT.add_and_activate_connection_async(profile, adapter, nm_ap.get_path(),
-                                             None, verify_conn, profile)
+    CLIENT.add_and_activate_connection_async(
+        profile, adapter, nm_ap.get_path(), None, verify_conn, profile
+    )
     LOOP.run()
 
 
@@ -757,7 +881,9 @@ def create_wifi_profile(nm_ap, password, adapter):
     s_wifi = NM.SettingWireless.new()
     s_wifi.set_property(NM.SETTING_WIRELESS_SSID, nm_ap.get_ssid())
     s_wifi.set_property(NM.SETTING_WIRELESS_MODE, 'infrastructure')
-    s_wifi.set_property(NM.SETTING_WIRELESS_MAC_ADDRESS, adapter.get_permanent_hw_address())
+    s_wifi.set_property(
+        NM.SETTING_WIRELESS_MAC_ADDRESS, adapter.get_permanent_hw_address()
+    )
     profile.add_setting(s_wifi)
 
     s_ip4 = NM.SettingIP4Config.new()
@@ -772,19 +898,18 @@ def create_wifi_profile(nm_ap, password, adapter):
         s_wifi_sec = NM.SettingWirelessSecurity.new()
         if "WPA" in ap_sec:
             if "WPA3" in ap_sec:
-                s_wifi_sec.set_property(NM.SETTING_WIRELESS_SECURITY_KEY_MGMT,
-                                        "sae")
+                s_wifi_sec.set_property(NM.SETTING_WIRELESS_SECURITY_KEY_MGMT, "sae")
             else:
-                s_wifi_sec.set_property(NM.SETTING_WIRELESS_SECURITY_KEY_MGMT,
-                                        "wpa-psk")
-            s_wifi_sec.set_property(NM.SETTING_WIRELESS_SECURITY_AUTH_ALG,
-                                    "open")
+                s_wifi_sec.set_property(
+                    NM.SETTING_WIRELESS_SECURITY_KEY_MGMT, "wpa-psk"
+                )
+            s_wifi_sec.set_property(NM.SETTING_WIRELESS_SECURITY_AUTH_ALG, "open")
             s_wifi_sec.set_property(NM.SETTING_WIRELESS_SECURITY_PSK, password)
         elif "WEP" in ap_sec:
-            s_wifi_sec.set_property(NM.SETTING_WIRELESS_SECURITY_KEY_MGMT,
-                                    "None")
-            s_wifi_sec.set_property(NM.SETTING_WIRELESS_SECURITY_WEP_KEY_TYPE,
-                                    NM.WepKeyType.PASSPHRASE)
+            s_wifi_sec.set_property(NM.SETTING_WIRELESS_SECURITY_KEY_MGMT, "None")
+            s_wifi_sec.set_property(
+                NM.SETTING_WIRELESS_SECURITY_WEP_KEY_TYPE, NM.WepKeyType.PASSPHRASE
+            )
             s_wifi_sec.set_wep_key(0, password)
         profile.add_setting(s_wifi_sec)
 
@@ -798,22 +923,23 @@ def verify_conn(client, result, data):
     Check if connection completes successfully. Delete the connection if there
     is an error.
     """
+
     try:
         act_conn = client.add_and_activate_connection_finish(result)
         conn = act_conn.get_connection()
-        if not all([conn.verify(),
-                    conn.verify_secrets(),
-                    data.verify(),
-                    data.verify_secrets()]):
+        if not all(
+            [conn.verify(), conn.verify_secrets(), data.verify(), data.verify_secrets()]
+        ):
             raise GLib.Error
         notify(f"Added {conn.get_id()}")
     except GLib.Error:
         try:
-            notify(f"Connection to {conn.get_id()} failed",
-                   urgency="critical")
+            notify(f"Connection to {conn.get_id()} failed", urgency="critical")
             conn.delete_async(None, None, None)
+
         except UnboundLocalError:
             pass
+
     finally:
         LOOP.quit()
 
@@ -833,54 +959,84 @@ def create_ap_list(adapter, active_connections):
     aps = []
     ap_names = []
     active_ap = adapter.get_active_access_point()
-    aps_all = sorted(adapter.get_access_points(),
-                     key=lambda a: a.get_strength(), reverse=True)
-    conns_cur = [i for i in CONNS if
-                 i.get_setting_wireless() is not None and
-                 conn_matches_adapter(i, adapter)]
+    aps_all = sorted(
+        adapter.get_access_points(), key=lambda a: a.get_strength(), reverse=True
+    )
+    conns_cur = [
+        i
+        for i in CONNS
+        if i.get_setting_wireless() is not None and conn_matches_adapter(i, adapter)
+    ]
     try:
         ap_conns = active_ap.filter_connections(conns_cur)
         active_ap_name = ssid_to_utf8(active_ap)
-        active_ap_con = [active_conn for active_conn in active_connections
-                         if active_conn.get_connection() in ap_conns]
+        active_ap_con = [
+            active_conn
+            for active_conn in active_connections
+            if active_conn.get_connection() in ap_conns
+        ]
+
     except AttributeError:
         active_ap_name = None
         active_ap_con = []
+
     if len(active_ap_con) > 1:
-        raise ValueError("Multiple connection profiles match"
-                         " the wireless AP")
+        raise ValueError("Multiple connection profiles match" " the wireless AP")
+
     active_ap_con = active_ap_con[0] if active_ap_con else None
     for nm_ap in aps_all:
         ap_name = ssid_to_utf8(nm_ap)
+
         if nm_ap != active_ap and ap_name == active_ap_name:
             # Skip adding AP if it's not active but same name as active AP
             continue
+
         if ap_name not in ap_names:
             ap_names.append(ap_name)
             aps.append(nm_ap)
+
     return aps, active_ap, active_ap_con, adapter
 
 
-def notify(message, details=None, urgency="low"):
+def notify(message: str, details: str | None = None, urgency: str = "low") -> None:
     """
     Use notify-send if available for notifications
     """
+
     delay = CONF.getint('nmdm', 'rescan_delay', fallback=5)
-    args = ["-u", urgency, "-a", "networkmanager-dmenu",
-            "-t", str(delay * 1000), message]
+    icon = CONF.get('icon', 'path', fallback=False)
+
+    args = [
+        "-u",
+        urgency,
+        "-a",
+        "networkmanager-dmenu",
+        "-i",
+        os.path.expandvars(os.path.expanduser(icon)),
+        "-t",
+        str(delay * 1000),
+        message,
+    ]
+
     if details is not None:
         args.append(details)
+
     if is_installed("notify-send"):
-        subprocess.run(["notify-send"] + args, check=False)
+        subprocess.run(["notify-send"] + args, timeout=5, check=False)
 
 
-def run():  # pylint: disable=too-many-locals
-    """Main script entrypoint"""
+def run():
+    """
+    Main script entrypoint
+    """
+
     try:
         subprocess.check_output(["pidof", "NetworkManager"])
+
     except subprocess.CalledProcessError:
         notify("WARNING: NetworkManager don't seems to be running")
         print("WARNING: NetworkManager don't seems to be running")
+
     active = CLIENT.get_active_connections()
     adapter = choose_adapter(CLIENT)
     if adapter:
@@ -918,11 +1074,24 @@ def run():  # pylint: disable=too-many-locals
     else:
         saved_actions = [Action("Saved connections", prompt_saved, [saved_cons])]
 
-    actions = combine_actions(eth_actions, ap_actions, vpn_actions, wg_actions,
-                              gsm_actions, blue_actions, wwan_actions,
-                              other_actions, saved_actions)
+    actions = combine_actions(
+        eth_actions,
+        ap_actions,
+        vpn_actions,
+        wg_actions,
+        gsm_actions,
+        blue_actions,
+        wwan_actions,
+        other_actions,
+        saved_actions,
+    )
     sel = get_selection(actions)
     sel()
+
+
+def accent():
+    current_dir = pathlib.Path(__file__).resolve().parent
+    subprocess.run([f'{current_dir}/accent.sh'])
 
 
 def main():
@@ -934,6 +1103,7 @@ def main():
     LOOP = GLib.MainLoop()
     CONNS = CLIENT.get_connections()
 
+    accent()
     run()
 
 

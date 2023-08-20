@@ -7,9 +7,14 @@ clock=$(date +%Y-%m-%d-%I-%M-%S)
 geometry=$(xrandr | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current')
 
 dir="$(xdg-user-dir VIDEOS)/Screenrecords"
-file="Capture_$clock.mp4"
+file="Capture_$clock_$geometry.mp4"
 
 [ ! -d "$dir" ] && mkdir -p "$dir"
+
+pre_notify () {
+  notify-send -u low -a Screenrecorder "Recording Now!" -t 1000 -i "$icon_path/$colorscheme/video.svg"
+  sleep 1
+}
 
 notify_user () {
 	if [ -e "$dir/$file" ]; then
@@ -31,8 +36,10 @@ capture () {
 	sleep 1
 
 	if [ "$1" = "--noaudio" ]; then
+    pre_notify
 		ffmpeg -video_size "$geometry" -framerate 25 -f x11grab -i :0.0+0,0 "$dir/$file"
-	else 
+	else
+	  pre_notify
 		ffmpeg -video_size "$geometry" -framerate 25 -f x11grab -i :0.0+0,0 -f pulse -ac 2 -i default "$dir/$file"
 	fi
 	notify_user
@@ -46,8 +53,10 @@ area () {
 	sleep 1
 
 	if [ "$1" = "--noaudio" ]; then
+    pre_notify
 		ffmpeg -video_size "${W}x${H}" -framerate 25 -f x11grab -i :0.0+"${X},${Y}" "$dir/$file"
 	else
+    pre_notify
 		ffmpeg -video_size "${W}x${H}" -framerate 25 -f x11grab -i :0.0+"${X},${Y}" -f pulse -ac 2 -i default "$dir/$file"
 	fi
 
@@ -67,8 +76,10 @@ timer () {
 
 	countdown "$action"
 	if [ "$1" = "--noaudio" ]; then
+      pre_notify
 	    ffmpeg -video_size "$geometry" -framerate 25 -f x11grab -i :0.0+0,0 "$dir/$file"
 	else 
+      pre_notify
 	    ffmpeg -video_size "$geometry" -framerate 25 -f x11grab -i :0.0+0,0 -f pulse -ac 2 -i default "$dir/$file"
 	fi
 	
