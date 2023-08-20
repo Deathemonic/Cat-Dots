@@ -3,6 +3,8 @@
 cache="$(xdg-user-dir CACHE)/polybar/tray.lock"
 config="$(xdg-user-dir CONFIG)/cat-configs/polybar/modules.ini"
 
+[ ! -d "$(xdg-user-dir CACHE)/polybar" ] && mkdir -p "$(xdg-user-dir CACHE)/polybar"
+
 if [ "$(pgrep stalonetray)" ]; then
     if [ ! -e "$cache" ]; then
         polybar-msg action "#tray.hook.1"
@@ -17,5 +19,5 @@ if [ "$(pgrep stalonetray)" ]; then
         sed -i 's/tray\ninitial=.*/tray\ninitial=1/g' "$config"
     fi
 else
-    stalonetray -c "$(xdg-user-dir CONFIG)"/polybar/stalonetrayrc &
+    stalonetray -c "$(xdg-user-dir CONFIG)/cat-configs/polybar/stalonetrayrc" &
 fi
