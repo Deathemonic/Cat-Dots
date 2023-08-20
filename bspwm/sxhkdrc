@@ -1,72 +1,67 @@
-# Keybinds
-
-# Terminal (kitty)
+# Terminal
 super + Return
-  alacritty --config-file=$HOME/.config/cat-configs/alacritty/alacritty.yml
+    $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/terminal.sh
 
-# Rofi App Launcher
-super + shift + space
-	$HOME/.config/cat-configs/bin/menu/launcher
-
-# Rofi Menus/Applets
-super + {r,m,p,a,n,b}
-	$HOME/.config/cat-configs/bin/menu/{runner,music,powermenu,asroot,network,bluetooth}
-super + s
-	$HOME/.config/cat-configs/bin/menu/screenshot rofi
-super + b
-    rofi-bluetooth
-
-# Dashboard (Unused)
-super + d
-	$HOME/.local/bin/dashboard
-
-# Applications
-
-# Launch Apps
-super + shift + {b,n}
-	{firefox,geany}
+# GUI Apps
+super + shift {t,w}
+    {gedit,firefox}
 super + e
-	nautilus
+    nautilus
 
-# Terminal Apps
-ctrl + alt + {v,n,r,h}
-	alacritty --config-file=$HOME/.config/cat-configs/alacritty/alacritty.yml --command {vim,nvim,ranger,htop}
+# TUI Apps
+super + alt + {v,e,h}
+    $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/terminal.sh -e {nvim,ranger,htop}
 
-# Lockscreen
-ctrl + alt + l
-	$HOME/.config/cat-configs/bin/system/lock
+# Menus
+super + {a,r,w}
+    $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/menu/launcher.sh {drun,run,window}
+super + p
+    $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/menu/power.sh
+super + shift + f
+    $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/menu/launcher.sh filebrowser
+super + shift + n
+    $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/menu/network.py
+super + shift + {s,r}
+    $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/{screenshot.sh,screenrecord.sh} --menu
 
-# System Keys
+# System
+# Color Picker
+super + g
+    $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/color-picker.sh
 
 # Take a screenshot
 Print
-    $HOME/.config/cat-configs/bin/utilities/screenshot now
+    $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/screenshot.sh --shot
 super + alt + {w,a}
-    $HOME/.config/cat-configs/bin/utilities/screenshot{ window, area}
-super + alt + {ctrl,shift}
-    $HOME/.config/cat-configs/bin/utilities/screenshot{ in3, in10}
+    $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/screenshot.sh {--window,--area}
+  super + ctrl + t
+    $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/screenshot.sh --timer
 
-# Take screenshot of area
-ctrl + alt + Print
-	$HOME/.config/cat-configs/bin/utilities/screenshot --area
+# Capture the screen
+super + alt + {r,s}
+    $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/screenrecord.sh {--capture,--stop}
+super + alt + shift + {r,a,t}
+    $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/screenrecord.sh {--capture --noaudio,--area --noaudio,--timer --noaudio}
+super + alt + ctrl + a
+    $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/screenrecord.sh --area
+super + alt + ctrl + t
+    $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/screenrecord.sh --timer
 
-# Brighness control
-XF86MonBrightness{Up,Down}
-	$HOME/.config/cat-configs/bin/utilities/brightness{ up, down}
-	
-# Volume control
-XF86Audio{RaiseVolume,LowerVolume,Mute}
-    $HOME/.config/cat-configs/bin/utilities/volume{ up, down, mute}
-	
-# Music control
-XF86Audio{Next,Prev,Play}
-	playerctl -p spotify,%any,firefox,chromium,brave,mpd{ next, previous, play-pause}
+# Function Keys
+# XF86MonBrightness{Up,Down}
+#     $HOME/.config/sweetconfigs-xorg/bin/utilities/brightness{ up, down}
+# XF86Audio{RaiseVolume,LowerVolume,Mute}
+#     $HOME/.config/sweetconfigs-xorg/bin/utilities/volume{ up, down, mute}
+# XF86Audio{Next,Prev,Play}
+#     playerctl -p spotify,%any,firefox,chromium,brave,mpd{ next, previous, play-pause}
+# XF86AudioStop
+#     playerctl -a stop
 
-XF86AudioStop
-    playerctl -a stop
+# Reload Keybinds
+super + Escape
+    pkill -USR1 -x sxhkd
 
 # Window Manager
-
 # Close App
 super + {_,shift + }x
 	bspc node -{c,k}
@@ -75,11 +70,11 @@ super + {_,shift + }x
 super + Escape
 	pkill -USR1 -x sxhkd
 
-# kill window
+# Kill window
 ctrl + alt + Escape
     xkill
 
-# Quit/Restart bspwm
+# Quit/Restart sweetconfigs-xorg
 ctrl + shift + {q,r}
 	bspc {quit,wm -r}
 	
@@ -87,12 +82,6 @@ ctrl + shift + {q,r}
 super + {h,v,q}
 	bspc node -p {east,south,cancel}
 
-# Fullscreen or Monocle
-F11
-    bspc node -t "~"fullscreen
-
-super + f
-    bspc node -t "~"fullscreen
 
 # Toggle beetwen floating & tiled
 super + space
@@ -140,7 +129,7 @@ alt + shift + {Left,Down,Up,Right}
 
 # Hide/Unhide Window
 super + shift + i
-	winmask		
+    winmask
 
 # Preselect the direction
 super + ctrl + alt +{Left,Right,Up,Down}

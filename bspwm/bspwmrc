@@ -1,10 +1,15 @@
 #!/bin/sh
 
-name=1
-for monitor in $(bspc query -M); do
-	bspc monitor "${monitor}" -n "$name" -d '1' '2' '3' '4' '5' '6' '7' '8'
-	name++
-done
+# name=1
+# for monitor in $(bspc query -M); do
+# 	bspc monitor "$monitor" -n "$name" -d '1' '2' '3' '4' '5' '6' '7' '8'
+# 	name=$((name + 1))
+# done
+
+xrandr --output VGA1 --primary --auto
+xrandr --output LVDS1 --off
+
+bspc monitor VGA1 -d '1' '2' '3' '4' '5' '6' '7' '8'
 
 bspc config border_width 0
 bspc config window_gap 10
@@ -22,9 +27,9 @@ bspc wm --adopt-orphans
 
 bspc rule -r .:*
 
-media="alacritty_float Onboard feh Viewnior Nm-connection-editor stalonetray Lxappearance Yad"
-for i in $media; do
-   bspc rule -a "$i" state=floating; done
+programs="alacritty_float Onboard feh Viewnior Nm-connection-editor stalonetray Lxappearance Yad"
+for rules in $programs; do
+   bspc rule -a "$rules" state=floating; done
 
 bspc rule -a alacritty_fullscreen state=fullscreen
 bspc rule -a Conky state=floating manage=off
