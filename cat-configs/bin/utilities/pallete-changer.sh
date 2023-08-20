@@ -112,17 +112,17 @@ terminal () {
 menu () {
   case $1 in
     latte)
-      sed -i 's/palletes\/rofi\/.*/palletes\/rofi\/latte/g' "$rofi"
+      sed -i 's/palletes\/rofi\/.*/palletes\/rofi\/latte"/g' "$rofi"
     ;;
     frappe)
-      sed -i 's/palletes\/rofi\/.*/palletes\/rofi\/frappe/g' "$rofi"
+      sed -i 's/palletes\/rofi\/.*/palletes\/rofi\/frappe"/g' "$rofi"
     ;;
     macchiato)
-      sed -i 's/palletes\/rofi\/.*/palletes\/rofi\/macchiato/g' "$rofi"
+      sed -i 's/palletes\/rofi\/.*/palletes\/rofi\/macchiato"/g' "$rofi"
 
     ;;
     mocha)
-      sed -i 's/palletes\/rofi\/.*/palletes\/rofi\/mocha/g' "$rofi"
+      sed -i 's/palletes\/rofi\/.*/palletes\/rofi\/mocha"/g' "$rofi"
     ;;
     *)
       invalid_color

@@ -37,8 +37,7 @@ sh "$(xdg-user-dir CONFIG)/cat-configs/bin/system/panel.sh" &
 sh "$(xdg-user-dir CONFIG)/cat-configs/bin/system/notifications.sh" &
 
 # Compositor
-# Disabled for testing
-# sh "$(xdg-user-dir CONFIG)/cat-configs/bin/system/compositor.sh" &
+sh "$(xdg-user-dir CONFIG)/cat-configs/bin/system/compositor.sh" &
 
 # Keybinds
 sxhkd -c "$(xdg-user-dir CONFIG)"/bspwm/sxhkdrc &
