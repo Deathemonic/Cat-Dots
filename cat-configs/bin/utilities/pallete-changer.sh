@@ -11,6 +11,7 @@ alacritty="$catconfigs/alacritty/alacritty.yml"
 dunst="$catconfigs/dunst/dunstrc"
 polybar="$catconfigs/polybar/config.ini"
 rofi="$catconfigs/rofi/colors.rasi"
+stalonetray="$catconfigs/polybar/stalonetrayrc"
 
 
 invalid_color () {
@@ -69,17 +70,19 @@ panel () {
   case $1 in
     latte)
       sed -i 's/palletes\/polybar\/.*\.ini/palletes\/polybar\/latte\.ini/g' "$polybar"
+      sed -i 's/background ".*"/background "#EFF1F5"/g' "$stalonetray"
     ;;
     frappe)
       sed -i 's/palletes\/polybar\/.*\.ini/palletes\/polybar\/frappe\.ini/g' "$polybar"
-
+      sed -i 's/background ".*"/background "#303446"/g' "$stalonetray"
     ;;
     macchiato)
       sed -i 's/palletes\/polybar\/.*\.ini/palletes\/polybar\/macchiato\.ini/g' "$polybar"
-
+      sed -i 's/background ".*"/background "#24273A"/g' "$stalonetray"
     ;;
     mocha)
       sed -i 's/palletes\/polybar\/.*\.ini/palletes\/polybar\/mocha\.ini/g' "$polybar"
+      sed -i 's/background ".*"/background "#1E1E2E"/g' "$stalonetray"
     ;;
     *)
       invalid_color
