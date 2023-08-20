@@ -5,13 +5,14 @@ catconfigs="$(xdg-user-dir CONFIG)/cat-configs"
 screenshot="$catconfigs/bin/utilities/screenshot.sh"
 screenshot="$catconfigs/bin/utilities/screenrecord.sh"
 lockscreen="$catconfigs/bin/utilities/lockscreen.sh"
+volume="$catconfigs/bin/utilities/volume.sh"
+brightness="$catconfigs/bin/utilities/brightness.sh"
 
 network="$catconfigss/rofi/network.ini"
 alacritty="$catconfigs/alacritty/alacritty.yml"
 dunst="$catconfigs/dunst/dunstrc"
 polybar="$catconfigs/polybar/config.ini"
 rofi="$catconfigs/rofi/colors.rasi"
-stalonetray="$catconfigs/polybar/stalonetrayrc"
 
 
 invalid_color () {
@@ -27,8 +28,7 @@ notification () {
       sed -i 's/foreground = ".*"/foreground = "#4C4F69"/g' "$dunst"
       sed -i 's/frame_color = ".*"/frame_color = "#FE640B"/g' "$dunst"
 
-      sed -i 's/colorscheme=.*/colorscheme=latte/g' "$screenshot"
-      sed -i 's/colorscheme=.*/colorscheme=latte/g' "$screenrecord"
+      sed -i 's/colorscheme=.*/colorscheme=latte/g' "$screenshot" "$screenrecord" "$volume" "$brightness"
       sed -i 's/icons\/.*\/network\.svg/icons\/latte\/network\.svg/g' "$network"
     ;;
     frappe)
@@ -36,8 +36,7 @@ notification () {
       sed -i 's/foreground = ".*"/foreground = "#C6D0F5"/g' "$dunst"
       sed -i 's/frame_color = ".*"/frame_color = "#EF9F76"/g' "$dunst"
 
-      sed -i 's/colorscheme=.*/colorscheme=frappe/g' "$screenshot"
-      sed -i 's/colorscheme=.*/colorscheme=frappe/g' "$screenrecord"
+      sed -i 's/colorscheme=.*/colorscheme=frappe/g' "$screenshot" "$screenrecord" "$volume" "$brightness"
       sed -i 's/icons\/.*\/network\.svg/icons\/frappe\/network\.svg/g' "$network"
     ;;
     macchiato)
@@ -45,8 +44,7 @@ notification () {
       sed -i 's/foreground = ".*"/foreground = "#CAD3F5"/g' "$dunst"
       sed -i 's/frame_color = ".*"/frame_color = "#F5A97F"/g' "$dunst"
 
-      sed -i 's/colorscheme=.*/colorscheme=macchiato/g' "$screenshot"
-      sed -i 's/colorscheme=.*/colorscheme=macchiato/g' "$screenrecord"
+      sed -i 's/colorscheme=.*/colorscheme=macchiato/g' "$screenshot" "$screenrecord" "$volume" "$brightness"
       sed -i 's/icons\/.*\/network\.svg/icons\/macchiato\/network\.svg/g' "$network"
     ;;
     mocha)
@@ -54,8 +52,7 @@ notification () {
       sed -i 's/foreground = ".*"/foreground = "#CDD6F4"/g' "$dunst"
       sed -i 's/frame_color = ".*"/frame_color = "#FE6400"/g' "$dunst"
 
-      sed -i 's/colorscheme=.*/colorscheme=macchiato/g' "$screenshot"
-      sed -i 's/colorscheme=.*/colorscheme=macchiato/g' "$screenrecord"
+      sed -i 's/colorscheme=.*/colorscheme=mocha/g' "$screenshot" "$screenrecord" "$volume" "$brightness"
       sed -i 's/icons\/.*\/network\.svg/icons\/mocha\/network\.svg/g' "$network"
     ;;
     *)
@@ -70,19 +67,17 @@ panel () {
   case $1 in
     latte)
       sed -i 's/palletes\/polybar\/.*\.ini/palletes\/polybar\/latte\.ini/g' "$polybar"
-      sed -i 's/background ".*"/background "#EFF1F5"/g' "$stalonetray"
     ;;
     frappe)
       sed -i 's/palletes\/polybar\/.*\.ini/palletes\/polybar\/frappe\.ini/g' "$polybar"
-      sed -i 's/background ".*"/background "#303446"/g' "$stalonetray"
+
     ;;
     macchiato)
       sed -i 's/palletes\/polybar\/.*\.ini/palletes\/polybar\/macchiato\.ini/g' "$polybar"
-      sed -i 's/background ".*"/background "#24273A"/g' "$stalonetray"
+
     ;;
     mocha)
       sed -i 's/palletes\/polybar\/.*\.ini/palletes\/polybar\/mocha\.ini/g' "$polybar"
-      sed -i 's/background ".*"/background "#1E1E2E"/g' "$stalonetray"
     ;;
     *)
       invalid_color

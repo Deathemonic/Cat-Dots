@@ -1,25 +1,17 @@
 #!/bin/sh
 
 icon_path="$(xdg-user-dir CONFIG)/cat-configs/dunst/icons"
-colorscheme=mocha
+colorscheme=latte
 
 notify () {
   brightness=$(brightnessctl i | grep -oP '\(\K[^%\)]+')
 
-    if [ "$brightness" -lt "15" ]; then
-        icon="$icon_path/$colorscheme/brightness-1.svg"
-    elif [ "$brightness" -lt "30" ]; then
-        icon="$icon_path/$colorscheme/brightness-2.svg"
-    elif [ "$brightness" -lt "45" ]; then
-        icon="$icon_path/$colorscheme/brightness-3.svg"
-    elif [ "$brightness" -lt "60" ]; then
-        icon="$icon_path/$colorscheme/brightness-4.svg"
+    if [ "$brightness" -lt "35" ]; then
+        icon="$icon_path/$colorscheme/moon.svg"
     elif [ "$brightness" -lt "75" ]; then
-        icon="$icon_path/$colorscheme/brightness-5.svg"
-    elif [ "$brightness" -lt "90" ]; then
-        icon="$icon_path/$colorscheme/brightness-6.svg"
+        icon="$icon_path/$colorscheme/sun-dim.svg"
     else
-        icon="$icon_path/$colorscheme/brightness-7.svg"
+        icon="$icon_path/$colorscheme/sun.svg"
     fi
 
     notify-send -a Brightness -i "$icon" -t 2000 -r 969696 "Brightness : $brightness"
