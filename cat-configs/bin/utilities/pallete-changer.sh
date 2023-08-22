@@ -3,12 +3,12 @@
 catconfigs="$(xdg-user-dir CONFIG)/cat-configs"
 
 screenshot="$catconfigs/bin/utilities/screenshot.sh"
-screenshot="$catconfigs/bin/utilities/screenrecord.sh"
+screenrecord="$catconfigs/bin/utilities/screenrecord.sh"
 lockscreen="$catconfigs/bin/utilities/lockscreen.sh"
 volume="$catconfigs/bin/utilities/volume.sh"
 brightness="$catconfigs/bin/utilities/brightness.sh"
 
-network="$catconfigss/rofi/network.ini"
+network="$catconfigs/rofi/network.ini"
 alacritty="$catconfigs/alacritty/alacritty.yml"
 dunst="$catconfigs/dunst/dunstrc"
 polybar="$catconfigs/polybar/config.ini"
@@ -19,7 +19,6 @@ invalid_color () {
   echo "Invalid colorpallete, try: latte, frappe, macchiato, mocha"
   exit
 }
-
 
 notification () {
   case $1 in
@@ -162,6 +161,23 @@ lockscreen () {
     ;;
     *)
       invalid_color
+    ;;
+  esac
+}
+
+theme () {
+  case $1 in
+    latte)
+
+    ;;
+    frappe)
+
+    ;;
+    macchiato)
+
+    ;;
+    mocha)
+
     ;;
   esac
 }

@@ -82,6 +82,9 @@ ctrl + shift + {q,r}
 super + {h,v,q}
 	bspc node -p {east,south,cancel}
 
+# Toggle fullscreen
+F11
+    bspc node -t "~"fullscreen
 
 # Toggle beetwen floating & tiled
 super + space
