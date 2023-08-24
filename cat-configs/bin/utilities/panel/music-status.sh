@@ -21,7 +21,8 @@ else
 fi
 
 scroll () {
-  zscroll -l 20 \
+  zscroll \
+    -l 20 \
     --delay 1 \
     --scroll-padding " | " \
     --match-command "echo $status" \
@@ -64,3 +65,4 @@ case $1 in
     playerctl -p $players play-pause
   ;;
 esac
+

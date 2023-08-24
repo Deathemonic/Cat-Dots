@@ -12,8 +12,8 @@ window {
   anchor:                         center;
   fullscreen:                     false;
   width:                          600px;
-  x-offset:                       0px;
-  y-offset:                       0px;
+  border:                         2px solid;
+  border-color:                   @mantle;
   border-radius:                  8px;
   cursor:                         default;
   background-color:               @base;

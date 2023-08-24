@@ -7,12 +7,19 @@ screenrecord="$catconfigs/bin/utilities/screenrecord.sh"
 lockscreen="$catconfigs/bin/utilities/lockscreen.sh"
 volume="$catconfigs/bin/utilities/volume.sh"
 brightness="$catconfigs/bin/utilities/brightness.sh"
+accent="$catconfigs/bin/utilities/menu/accent.sh"
 
 network="$catconfigs/rofi/network.ini"
 alacritty="$catconfigs/alacritty/alacritty.yml"
 dunst="$catconfigs/dunst/dunstrc"
+stalonetray="$catconfigs/polybar/stalonetrayrc"
 polybar="$catconfigs/polybar/config.ini"
 rofi="$catconfigs/rofi/colors.rasi"
+wallpapers="$catconfigs/wallpapers"
+
+themes="$HOME/.themes"
+gtk_4="$(xdg-user-dir CONFIG)/gtk-4.0"
+xsettingsd="$(xdg-user-dir CONFIG)/xsettingsd/xsettingsd.conf"
 
 
 invalid_color () {
@@ -69,11 +76,9 @@ panel () {
     ;;
     frappe)
       sed -i 's/palletes\/polybar\/.*\.ini/palletes\/polybar\/frappe\.ini/g' "$polybar"
-
     ;;
     macchiato)
       sed -i 's/palletes\/polybar\/.*\.ini/palletes\/polybar\/macchiato\.ini/g' "$polybar"
-
     ;;
     mocha)
       sed -i 's/palletes\/polybar\/.*\.ini/palletes\/polybar\/mocha\.ini/g' "$polybar"
@@ -90,17 +95,19 @@ terminal () {
   case $1 in
     latte)
       sed -i 's/palletes\/alacritty\/.*\.yml/palletes\/alacritty\/latte\.yml/g' "$alacritty"
+      sed -i 's/background .*/background "#EFF1F5"/g' "$stalonetray"
     ;;
     frappe)
       sed -i 's/palletes\/alacritty\/.*\.yml/palletes\/alacritty\/frappe\.yml/g' "$alacritty"
-
+      sed -i 's/background .*/background "#303446"/g' "$stalonetray"
     ;;
     macchiato)
       sed -i 's/palletes\/alacritty\/.*\.yml/palletes\/alacritty\/macchiato\.yml/g' "$alacritty"
-
+      sed -i 's/background .*/background "#24273A"/g' "$stalonetray"
     ;;
     mocha)
       sed -i 's/palletes\/alacritty\/.*\.yml/palletes\/alacritty\/mocha\.yml/g' "$alacritty"
+      sed -i 's/background .*/background "#1E1E2E"/g' "$stalonetray"
     ;;
     *)
       invalid_color
@@ -112,16 +119,19 @@ menu () {
   case $1 in
     latte)
       sed -i 's/palletes\/rofi\/.*/palletes\/rofi\/latte"/g' "$rofi"
+      sed -i 's/pallete=.*/pallete="$latte"/g' "$accent"
     ;;
     frappe)
       sed -i 's/palletes\/rofi\/.*/palletes\/rofi\/frappe"/g' "$rofi"
+      sed -i 's/pallete=.*/pallete="$frappe"/g' "$accent"
     ;;
     macchiato)
       sed -i 's/palletes\/rofi\/.*/palletes\/rofi\/macchiato"/g' "$rofi"
-
+      sed -i 's/pallete=.*/pallete="$macchiato"/g' "$accent"
     ;;
     mocha)
       sed -i 's/palletes\/rofi\/.*/palletes\/rofi\/mocha"/g' "$rofi"
+      sed -i 's/pallete=.*/pallete="$mocha"/g' "$accent"
     ;;
     *)
       invalid_color
@@ -165,24 +175,136 @@ lockscreen () {
   esac
 }
 
-theme () {
+wallpapers () {
   case $1 in
     latte)
-
+      feh --bg-fill -r "$wallpapers/latte.png"
+      cp "$wallpapers/latte.png" "$HOME/.wall"
     ;;
     frappe)
-
+      feh --bg-fill -r "$wallpapers/frappe.png"
+      cp "$wallpapers/frappe.png" "$HOME/.wall"
     ;;
     macchiato)
-
+      feh --bg-fill -r "$wallpapers/macchiato.png"
+      cp "$wallpapers/macchiato.png" "$HOME/.wall"
     ;;
     mocha)
+      feh --bg-fill -r "$wallpapers/mocha.png"
+      cp "$wallpapers/mocha.png" "$HOME/.wall"
+    ;;
+    *)
+      invalid_color
+    ;;
+  esac
+}
 
+color_randomizer () {
+  schemes="rosewater flamingo pink mauve red maroon peach yellow green teal sky sapphire blue lavender"
+  length=$(echo "$schemes" | wc -w)
+  index=$(awk -v n="$length" 'BEGIN {srand (); print int (1+rand ()*n)}')
+  echo "$schemes" | cut -d " " -f "$index"
+}
+
+# Note that changing the theme in the root filesystem requires a password to proceed
+# Which is not ideal to do for a pallete changer
+# But if you still want to use the root filesystem you can just add /usr/share/themes and /usr/share/icons to your user
+themes () {
+  color=$(color_randomizer)
+  first_char=$(printf "%s" "${color%"${color#?}"}" | tr '[:lower:]' '[:upper:]')
+  color_uppercase="${first_char}${color#?}"
+
+  [ ! -d "$gtk_4" ] && mkdir -p "$gtk_4"
+  
+  case $1 in
+    latte)
+      gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Latte-Standard-$color_uppercase-Light"
+      ln -sf "$themes/Catppuccin-Latte-Standard-$color_uppercase-Light/gtk-4.0/assets" "$gtk_4/assets"
+      ln -sf "$themes/Catppuccin-Latte-Standard-$color_uppercase-Light/gtk-4.0/gtk.css" "$gtk_4/gtk.css"
+      ln -sf "$themes/Catppuccin-Latte-Standard-$color_uppercase-Light/gtk-4.0/gtk-dark.css" "$gtk_4/gtk-dark.css"
+      sed -i "s/Net\/ThemeName \".*\"/Net\/ThemeName \"Catppuccin-Latte-Standard-$color_uppercase-Light\"/g" "$xsettingsd"
+      pkill xsettingsd
+      xsettingsd &
+    ;;
+    frappe)
+      gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Frappe-Standard-$color_uppercase-Dark"
+      ln -sf "$themes/Catppuccin-Frappe-Standard-$color_uppercase-Dark/gtk-4.0/assets" "$gtk_4/assets"
+      ln -sf "$themes/Catppuccin-Frappe-Standard-$color_uppercase-Dark/gtk-4.0/gtk.css" "$gtk_4/gtk.css"
+      ln -sf "$themes/Catppuccin-Frappe-Standard-$color_uppercase-Dark/gtk-4.0/gtk-dark.css" "$gtk_4/gtk-dark.css"
+      sed -i "s/Net\/ThemeName \".*\"/Net\/ThemeName \"Catppuccin-Frappe-Standard-$color_uppercase-Dark\"/g" "$xsettingsd"
+      pkill xsettingsd
+      xsettingsd &
+    ;;
+    macchiato)
+      gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-$color_uppercase-Dark"
+      ln -sf "$themes/Catppuccin-Macchiato-Standard-$color_uppercase-Dark/gtk-4.0/assets" "$gtk_4/assets"
+      ln -sf "$themes/Catppuccin-Macchiato-Standard-$color_uppercase-Dark/gtk-4.0/gtk.css" "$gtk_4/gtk.css"
+      ln -sf "$themes/Catppuccin-Macchiato-Standard-$color_uppercase-Dark/gtk-4.0/gtk-dark.css" "$gtk_4/gtk-dark.css"
+      sed -i "s/Net\/ThemeName \".*\"/Net\/ThemeName \"Catppuccin-Macchiato-Standard-$color_uppercase-Dark\"/g" "$xsettingsd"
+      pkill xsettingsd
+      xsettingsd &
+    ;;
+    mocha)
+      gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-$color_uppercase-Dark"
+      ln -sf "$themes/Catppuccin-Mocha-Standard-$color_uppercase-Dark/gtk-4.0/assets" "$gtk_4/assets"
+      ln -sf "$themes/Catppuccin-Mocha-Standard-$color_uppercase-Dark/gtk-4.0/gtk.css" "$gtk_4/gtk.css"
+      ln -sf "$themes/Catppuccin-Mocha-Standard-$color_uppercase-Dark/gtk-4.0/gtk-dark.css" "$gtk_4/gtk-dark.css"
+      sed -i "s/Net\/ThemeName \".*\"/Net\/ThemeName \"Catppuccin-Mocha-Standard-$color_uppercase-Dark\"/g" "$xsettingsd"
+      pkill xsettingsd
+      xsettingsd &
+    ;;
+    *)
+      invalid_color
+    ;;
+  esac
+}
+
+icons () {
+  color=$(color_randomizer)
+
+  case $1 in
+    latte)
+      gsettings set org.gnome.desktop.interface icon-theme Papirus-Light
+      papirus-folders -C "cat-latte-$color" --theme Papirus-Light
+      sed -i 's/Net\/IconThemeName ".*"/Net\/IconThemeName "Papirus-Light"/g' "$xsettingsd"
+      pkill xsettingsd
+      xsettingsd &
+    ;;
+    frappe)
+      gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark
+      papirus-folders -C "cat-frappe-$color" --theme Papirus-Dark
+      sed -i 's/Net\/IconThemeName ".*"/Net\/IconThemeName "Papirus-Light"/g' "$xsettingsd"
+      pkill xsettingsd
+      xsettingsd &
+    ;;
+    macchiato)
+      gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark
+      papirus-folders -C "cat-macchiato-$color" --theme Papirus-Dark
+      sed -i 's/Net\/IconThemeName ".*"/Net\/IconThemeName "Papirus-Light"/g' "$xsettingsd"
+      pkill xsettingsd
+      xsettingsd &
+    ;;
+    mocha)
+      gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark
+      papirus-folders -C "cat-mocha-$color" --theme Papirus-Dark
+      sed -i 's/Net\/IconThemeName ".*"/Net\/IconThemeName "Papirus-Dark"/g' "$xsettingsd"
+      pkill xsettingsd
+      xsettingsd &
     ;;
   esac
 }
 
 case $1 in
+  --all | -a)
+    terminal "$2"
+    notification "$2"
+    panel "$2"
+    menu "$2"
+    lockscreen "$2"
+    wallpapers "$2"
+    themes "$2"
+    icons "$2"
+  ;;
   --terminal | -t)
     terminal "$2"
   ;;
@@ -197,6 +319,15 @@ case $1 in
   ;;
   --lockscreen | -l)
     lockscreen "$2"
+  ;;
+  --wallpapers | -w)
+    wallpapers "$2"
+  ;;
+  --themes | -g)
+    themes "$2"
+  ;;
+  --icons | -i)
+    icons "$2"
   ;;
 esac
 

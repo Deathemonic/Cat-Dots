@@ -30,8 +30,8 @@
   max_icon_size= 60
   sticky_history = no
   history_length = 6
-  title = Dunst
-  class = Dunst
+  title = Notification
+  class = Notification
   corner_radius = 20
 
   mouse_left_click = close_current
@@ -39,17 +39,17 @@
   mouse_right_click = close_all
 
 [urgency_low]
-  background = "#303446"
-  foreground = "#C6D0F5"
+  background = "#24273A"
+  foreground = "#CAD3F5"
   timeout = 5
 
 [urgency_normal]
-  background = "#303446"
-  foreground = "#C6D0F5"
+  background = "#24273A"
+  foreground = "#CAD3F5"
   timeout = 10
 
 [urgency_critical]
-  background = "#303446"
-  frame_color = "#EF9F76"
-  foreground = "#C6D0F5"
+  background = "#24273A"
+  foreground = "#CAD3F5"
+  frame_color = "#F5A97F"
   timeout = 20

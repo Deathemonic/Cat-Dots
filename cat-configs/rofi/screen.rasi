@@ -11,10 +11,11 @@ window {
   transparency:                   "real";
   background-color:               @base;
   text-color:                     @text;
+  border:                         2px solid;
+  border-color:                   @mantle;
   border-radius:                  12px;
   width:                          100px;
   x-offset:                       -10;
-  y-offset:                       0;
 }
 
 mainbox {

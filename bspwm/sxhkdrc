@@ -21,6 +21,8 @@ super + shift + f
     $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/menu/launcher.sh filebrowser
 super + shift + n
     $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/menu/network.py
+super + shift + p
+    $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/menu/pallete.sh
 super + shift + {s,r}
     $(xdg-user-dir CONFIG)/cat-configs/bin/utilities/{screenshot.sh,screenrecord.sh} --menu
 
@@ -64,11 +66,11 @@ super + Escape
 # Window Manager
 # Close App
 super + {_,shift + }x
-	bspc node -{c,k}
+	  bspc node -{c,k}
 
 # Reload Keybindings
 super + Escape
-	pkill -USR1 -x sxhkd
+	  pkill -USR1 -x sxhkd
 
 # Kill window
 ctrl + alt + Escape
@@ -76,11 +78,11 @@ ctrl + alt + Escape
 
 # Quit/Restart sweetconfigs-xorg
 ctrl + shift + {q,r}
-	bspc {quit,wm -r}
+	  bspc {quit,wm -r}
 	
 # Split horizontal, vertical or cancel
 super + {h,v,q}
-	bspc node -p {east,south,cancel}
+	  bspc node -p {east,south,cancel}
 
 # Toggle fullscreen
 F11
@@ -96,39 +98,39 @@ super + alt + {p,t}
 
 # Set the node flags
 super + ctrl + {m,x,y,z}
-	bspc node -g {marked,locked,sticky,private}
+	  bspc node -g {marked,locked,sticky,private}
 
 # Send the window to another edge of the screen
 super + {_,shift + }{Left,Down,Up,Right}
-	bspc node -{f,s} {west,south,north,east}
+	  bspc node -{f,s} {west,south,north,east}
 
 # Change focus to next window, including floating window
 alt + {_,shift + }Tab
-	bspc node -f {next.local,prev.local}
+	  bspc node -f {next.local,prev.local}
 
 # Switch workspace
 ctrl + alt + {Left,Right}
-	bspc desktop -f {prev.local,next.local}
+	  bspc desktop -f {prev.local,next.local}
 
 # Switch to last opened workspace
 super + {Tab,grave}
-	bspc {node,desktop} -f last
+	  bspc {node,desktop} -f last
 
 # Send focused window to another workspace
 super + {_,shift + }{1-8}
-	bspc {desktop -f,node -d} '^{1-8}'
+	  bspc {desktop -f,node -d} '^{1-8}'
 
 # Expanding windows
 super + control + {Left,Right,Up,Down}
-	bspc node -z {left -20 0,right 20 0,top 0 -20,bottom 0 20}
+	  bspc node -z {left -20 0,right 20 0,top 0 -20,bottom 0 20}
 	
 # Shrinking windows
 super + alt + {Left,Right,Up,Down}
-	bspc node -z {left 20 0,right -20 0,top 0 20,bottom 0 -20}
+	  bspc node -z {left 20 0,right -20 0,top 0 20,bottom 0 -20}
 	
 # Move floating windows
 alt + shift + {Left,Down,Up,Right}
-	bspc node -v {20 0,0 20,0 -20,-20 0}
+	  bspc node -v {20 0,0 20,0 -20,-20 0}
 
 # Hide/Unhide Window
 super + shift + i
@@ -136,16 +138,16 @@ super + shift + i
 
 # Preselect the direction
 super + ctrl + alt +{Left,Right,Up,Down}
-	bspc node -p {west,east,north,south}
+	  bspc node -p {west,east,north,south}
 
 # Preselect the ratio
 super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
+	  bspc node -o 0.{1-9}
 
 # Cancel the preselection for the focused node
 super + ctrl + space
-	bspc node -p cancel
+	  bspc node -p cancel
 
 # Cancel the preselection for the focused desktop
 super + ctrl + shift + space
-	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+	  bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel

@@ -28,7 +28,7 @@ fi
 xfce4-power-manager &
 
 # Set/Restore wallpaper
-feh --bg-fill -r -z "$(xdg-user-dir CONFIG)/cat-configs/wallpapers" &
+feh --bg-fill -r "$HOME/.wall" &
 
 # Panel
 sh "$(xdg-user-dir CONFIG)/cat-configs/bin/system/panel.sh" &
@@ -36,11 +36,11 @@ sh "$(xdg-user-dir CONFIG)/cat-configs/bin/system/panel.sh" &
 # Notification
 sh "$(xdg-user-dir CONFIG)/cat-configs/bin/system/notifications.sh" &
 
-# Compositor
+Compositor
 sh "$(xdg-user-dir CONFIG)/cat-configs/bin/system/compositor.sh" &
 
 # Keybinds
-sxhkd -c "$(xdg-user-dir CONFIG)"/bspwm/sxhkdrc &
+sxhkd -c "$(xdg-user-dir CONFIG)/bspwm/sxhkdrc" &
 
 # Start programs
 exec mpd &

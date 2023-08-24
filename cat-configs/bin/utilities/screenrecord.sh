@@ -1,7 +1,8 @@
 #!/bin/sh
 
+script_dir="$(cd "$(dirname "$0")" >/dev/null 2>&1 && pwd)"
 icon_path="$(xdg-user-dir CONFIG)/cat-configs/dunst/icons"
-colorscheme=mocha
+colorscheme=macchiato
 
 clock=$(date +%Y-%m-%d-%I-%M-%S)
 geometry=$(xrandr | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current')
@@ -92,9 +93,11 @@ menu () {
 	capture=""
 	area=""
 	timer=""
-    stop=""
-    withaudio=""
+  stop=""
+  withaudio=""
 	withoutaudio=""
+
+  sh "$script_dir/menu/accent.sh"
 
 	chosen=$(printf "%s\n%s\n%s\n%s\n" "$capture" "$area" "$timer" "$stop" | rofi -theme "$config" -p 'Take Screenshot' -dmenu -selected-row 0 -theme-str 'listview {lines: 4;}')
 

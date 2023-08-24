@@ -19,8 +19,8 @@ window {
   anchor:                         center;
   fullscreen:                     false;
   width:                          530px;
-  x-offset:                       0px;
-  y-offset:                       0px;
+  border:                         2px solid;
+  border-color:                   @mantle;
   border-radius:                  8px;
   cursor:                         default;
   background-color:               @base;
@@ -38,11 +38,11 @@ mainbox {
 inputbar {
   enabled:                        true;
   spacing:                        10px;
-  padding:                        35px;
+  padding:                        55px;
   text-color:                     @text;
   orientation:                    horizontal;
   border-radius:                  12px;
-  background-image:               url("~/.wall.png", width);
+  background-image:               url("~/.wall", width);
   background-color:               transparent;
   children:                       [ "prompt", "entry" ];
 }

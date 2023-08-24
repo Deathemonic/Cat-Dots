@@ -1,0 +1,144 @@
+configuration {
+  show-icons:                     false;
+}
+
+@import "colors.rasi"
+@import "fonts.rasi"
+
+window {
+  enabled:                        true;
+  fullscreen:                     true;
+  transparency:                   "real";
+  location:                       center;
+  anchor:                         center;
+  cursor:                         default;
+  background-color:               @base;
+}
+
+mainbox {
+  enabled:                        true;
+  spacing:                        0px;
+  padding:                        0px;
+  orientation:                    vertical;
+  background-color:               transparent;
+  children:                       [ "inputbar", "listview-split" ];
+}
+
+listview-split {
+  background-color:               inherit;
+  orientation:                    horizontal;
+  children:                       [ "icon-current-entry", "listbox" ];
+}
+
+icon-current-entry {
+  expand:                         true;
+  size:                           80%;
+  background-color:               inherit;
+}
+
+inputbar {
+  enabled:                        true;
+  spacing:                        10px;
+  padding:                        20px;
+  margin:                         30px;
+  text-color:                     @text;
+  orientation:                    horizontal;
+  border-radius:                  12px;
+  background-color:               transparent;
+  children:                       [ "textbox-prompt-colon", "dummy", "prompt" ];
+}
+
+dummy {
+  background-color:               transparent;
+}
+
+textbox-prompt-colon {
+  enabled:                        true;
+  expand:                         false;
+  width:                          50px;
+  padding:                        12px;
+  border-radius:                  100%;
+  text-color:                     @mantle;
+  background-color:               @accent;
+  horizontal-align:               0.5;
+  vertical-align:                 0.5;
+  str:                            "";
+  font:                           "Phosphor\-bold 12";
+}
+
+prompt {
+  enabled:                        true;
+  padding:                        15px;
+  border-radius:                  100px;
+  background-color:               @accent;
+  text-color:                     @mantle;
+}
+
+listbox {
+  spacing:                        20px;
+  padding:                        20px;
+  orientation:                    vertical;
+  background-color:               transparent;
+  children:                       [ "listview" ];
+}
+
+listview {
+  enabled:                        true;
+  flow:                           vertical;
+  columns:                        4;
+  cycle:                          true;
+  dynamic:                        true;
+  fixed-colums:                   true;
+  scrollbar:                      false;
+  margin:                         125px;
+  spacing:                        10px;
+  background-color:               transparent;
+  text-color:                     @text;
+}
+
+element {
+  enabled:                        true;
+  padding:                        25px;
+  border-radius:                  8px;
+  background-color:               transparent;
+  text-color:                     @text;
+  cursor:                         pointer;
+}
+
+element normal.normal {
+  background-color:               inherit;
+  text-color:                     inherit;
+}
+
+element normal.active {
+  background-color:               @accent;
+  text-color:                     @mantle;
+}
+
+element selected.normal {
+  background-color:               @accent;
+  text-color:                     @mantle;
+}
+
+element-icon {
+  background-color:               inherit;
+  size:                           0px;
+  cursor:                         inherit;
+}
+
+element-text {
+  background-color:               transparent;
+  text-color:                     inherit;
+  cursor:                         inherit;
+  horizontal-align:               0.5;
+}
+
+message {
+  enabled:                        true;
+  margin:                         5px;
+  padding:                        2px;
+  border-radius:                  8px;
+  background-color:               @mantle;
+  text-color:                     @text;
+}
+
