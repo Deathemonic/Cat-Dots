@@ -1,15 +1,10 @@
 #!/bin/sh
 
-# name=1
-# for monitor in $(bspc query -M); do
-# 	bspc monitor "$monitor" -n "$name" -d '1' '2' '3' '4' '5' '6' '7' '8'
-# 	name=$((name + 1))
-# done
-
-xrandr --output VGA1 --primary --auto
-xrandr --output LVDS1 --off
-
-bspc monitor VGA1 -d '1' '2' '3' '4' '5' '6' '7' '8'
+name=1
+for monitor in $(bspc query -M); do
+	bspc monitor "$monitor" -n "$name" -d '1' '2' '3' '4' '5' '6' '7' '8'
+	name=$((name + 1))
+done
 
 bspc config border_width 0
 bspc config window_gap 10

@@ -16,13 +16,13 @@ packages="bspwm sxhkd \
     gtk3 gtk4 gtk-engine-murrine gnome-themes-extra \
     pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber alsa-utils pamixer \
     feh brightnessctl bluez-utils i3lock-color \
-    yad xclip stalonetray maim gpick imagemagick \
+    yad xclip stalonetray maim gpick imagemagick ffmpeg \
     nerd-fonts-jetbrains-mono ttf-jetbrains-mono ttf-sarasa-gothic ttf-roboto \
     mpd mpdris2 ncmpcpp playerctl \
     polkit-gnome xfce4-power-manager \
     libnotify notify-send-py \
     xdg-utils xdg-user-dirs xdo xsettingsd \
-    python3 pypy3 python-gobject"
+    python3 python-gobject"
 
 clear
 
