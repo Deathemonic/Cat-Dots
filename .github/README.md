@@ -21,28 +21,160 @@
 </p>
 
 ## Installation
+<details open>
+	<summary><b><samp>AUTO INSTALL</samp></b></summary>
+<br>
+
+<kbd>RECOMMENDED</kbd>
+
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/install.sh)"
 ```
 
-Go to the [wiki](https://github.com/Deathemonic/Cat-Dots/wiki/Installation) for a guide on how to install it and some important stuff
+> **Note:** <br>
+> You need ``curl`` and ``git`` installed in your system.
+> Also if you are not using ``archlinux`` the installer won't install the dependencies automatically you have to manually install them.
+> Check out this [link](https://github.com/Deathemonic/Cat-Dots/wiki/Pre-Installation#dependencies) for the list of dependencies
 
-
-## Note
-Update soon
-
-What's in the update?
-- Added 4 new catppuccin colorpallete
-  - Colorpallete switcher
-- Rewrite configs and scripts
-- [NixOS](https://nixos.org/) support
-
-Will you be switching from Wayland?
-- No, unfortunately this dotfiles will x11 only. But you can switch the window manager other than bspwm.
-
+</details>
 
 <details>
-<summary><b>Thanks To</b></summary>
+	<summary><b><samp>MANUAL INSTALL</samp></b></summary>
+<br>
+
+> **Note:** <br>
+> First up install the dependencies need if not the dotfiles doesn't work.
+> Check out this [link](https://github.com/Deathemonic/SweetDots/wiki/Documentation#dependencies) for the list of dependencies
+
+1. Clone the repo and go to that directory
+	
+```sh
+git clone https://github.com/Deathemonic/Cat-Dots.git && cd Cat-Dots
+```
+
+2. Make a backup folder for the conflicting folders and configs
+	
+```sh
+mkdir ~/.backups
+```
+
+3. Move the conflicting folders to the backup folder depending if you have them
+
+```sh
+mv ~/.config/bspwm ~/.backups
+mv ~/.config/mpDris2 ~/.backups
+mv ~/.config/user-dirs/dirs ~/.backups
+mv ~/.mpd ~/.backups
+mv ~/.ncmpcpp ~/.backups
+```
+
+4. Copy the ``cat-configs`` to your ``~/.config``
+	
+```sh
+cp -rf cat-configs ~/.config
+```
+
+5. Copy the bspwm folder you config in your ``~/.config``
+
+```sh
+cp -rf bspwm ~/.config
+```
+
+6. Change the scripts into exutables
+
+```sh
+chmod +x ~/.config/cat-configs/bin/system/*
+chmod +x ~/.config/cat-configs/bin/utilities/*
+```
+
+7. Copy the home configs to your home directory ``~``
+
+```sh
+cp -rf misc/home ~
+```
+
+8. Install the extra fonts
+
+	* Archlinux:
+		1. Go to ``misc/fonts`` directory
+
+		```sh
+		cd misc/fonts
+		```
+
+		2. Add the ``sha256`` to the ``PKGBUILD``
+
+		```sh
+		makepkg -g >> PKGBUILD
+		```
+
+		3. Install the fonts using makepkg
+
+		```sh
+		makepkg -si
+		```
+
+	* Other Distros
+		1. Download the official phosphor fonts
+		
+    	> https://raw.githubusercontent.com/phosphor-icons/web/master/src/bold/Phosphor-Bold.ttf
+
+    	> https://raw.githubusercontent.com/phosphor-icons/web/master/src/duotone/Phosphor-Duotone.ttf
+		
+    	> https://raw.githubusercontent.com/phosphor-icons/web/master/src/fill/Phosphor-Fill.ttf
+
+    	> https://raw.githubusercontent.com/phosphor-icons/web/master/src/light/Phosphor-Light.ttf
+
+    	> https://raw.githubusercontent.com/phosphor-icons/web/master/src/regular/Phosphor.ttf
+
+    	> https://raw.githubusercontent.com/phosphor-icons/web/master/src/thin/Phosphor-Thin.ttf
+
+		2. Copy them to your ``/usr/share/fonts`` or ``~/.fonts``
+
+		```sh
+		sudo cp Phosphor-Bold.ttf /usr/share/fonts/TTF/Phosphor-Bold.ttf
+		sudo cp Phosphor-Duotone.ttf /usr/share/fonts/TTF/Phosphor-Duotone.ttf
+		sudo cp Phosphor-Fill.ttf /usr/share/fonts/TTF/Phosphor-Fill.ttf
+		sudo cp Phosphor-Light.ttf /usr/share/fonts/TTF/Phosphor-Light.ttf
+		sudo cp Phosphor.ttf /usr/share/fonts/TTF/Phosphor.ttf
+		sudo cp Phosphor-Thin.ttf /usr/share/fonts/TTF/Phosphor-Thin.ttf
+		```
+
+9. Install the gtk themes and icons
+
+	* GTK
+
+		```sh
+		git clone --recurse-submodules https://github.com/catppuccin/gtk.git cat-gtk
+		cd cat-gtk
+		# You can use either venv or virtualenv
+		python3 -m venv venv
+		source ./venv/bin/activate
+		pip install -r requirements.txt
+		# Themes must be insalled at the user themes directory
+		python3 install.py all -a all -s standard -d ~/.themes
+		```
+
+	* Icons
+
+		```sh
+		git clone https://github.com/catppuccin/papirus-folders.git cat-folders
+    	cd cat-folders
+		# Icons must be installed at the user icons directory
+    	wget -qO- https://git.io/papirus-icon-theme-install | DESTDIR="$HOME/.icons" sh
+    	cp -r ./src/* ~/.icons/Papirus
+		# Use the modified papirus-folders script
+    	cp ./papirus-folders ~/.local/bin
+		```
+
+10. You should be done just log out at your session or restart your system to apply the changes
+
+</details>
+
+<br>
+
+<details>
+<summary><b><samp>THANKS TO</samp></b></summary>
 <br>
 
 - <img src="https://avatars.githubusercontent.com/u/93489351?v=4" width="25"/> [**Catppuccin**](https://github.com/Catppuccin) - For the color palette and theming
@@ -57,25 +189,28 @@ Will you be switching from Wayland?
 </details>
 
 <details>
-<summary><b>Donate</b></summary>
+<summary><b><samp>SUPPORT</samp></b></summary>
 <br>
 
-**Like my work please consider donate**
+**Like my work consider supporting me**
 
-<a href='https://ko-fi.com/K3K8C2M9Y' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a> - ___Or just check out my [Ko-Fi](https://ko-fi.com/Deathemonic)___
+<a href='https://ko-fi.com/K3K8C2M9Y' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
-<a href="https://www.paypal.me/@notkillzone"><img width="52px" src="https://github.com/Deathemonic/Cat-Dots/blob/main/Screenshots/paypal.png" alt="Donate via Paypal"></a>
+or
+
+[Donate via Paypal](https://www.paypal.me/@notkillzone)
 </details>
 
 <details>
-<summary><b>Other Projects</b></summary>
+<summary><b><samp>OTHER DOTFILES</samp></b></summary>
 <br>
 
-[**SweetDots**](https://github.com/Deathemonic/SweetDots) - A sweetpastel themed dotfiles
+[**SweetDots**](https://github.com/Deathemonic/SweetDots) - A **sweetpastel** themed dotfiles
 
-[**Kyuketsuki**](https://github.com/Deathemonic/Kyuketsuki) - A minimalist dracula theme dotfiles (**Archived**)
+[**Kyuketsuki**](https://github.com/Deathemonic/Kyuketsuki) - A minimalist **dracula** theme dotfiles (**Archived**)
 
 </details>
+<br>
 
 Made with :heart: by [Deathemonic](https://github.com/Deathemonic)
 

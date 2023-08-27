@@ -120,18 +120,22 @@ menu () {
   case $1 in
     latte)
       sed -i 's/palletes\/rofi\/.*/palletes\/rofi\/latte"/g' "$rofi"
+      # shellcheck disable=SC2016
       sed -i 's/pallete=.*/pallete="$latte"/g' "$accent"
     ;;
     frappe)
       sed -i 's/palletes\/rofi\/.*/palletes\/rofi\/frappe"/g' "$rofi"
+      # shellcheck disable=SC2016
       sed -i 's/pallete=.*/pallete="$frappe"/g' "$accent"
     ;;
     macchiato)
       sed -i 's/palletes\/rofi\/.*/palletes\/rofi\/macchiato"/g' "$rofi"
+      # shellcheck disable=SC2016
       sed -i 's/pallete=.*/pallete="$macchiato"/g' "$accent"
     ;;
     mocha)
       sed -i 's/palletes\/rofi\/.*/palletes\/rofi\/mocha"/g' "$rofi"
+      # shellcheck disable=SC2016
       sed -i 's/pallete=.*/pallete="$mocha"/g' "$accent"
     ;;
     *)

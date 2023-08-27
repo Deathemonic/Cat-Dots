@@ -8,7 +8,7 @@ clock=$(date +%Y-%m-%d-%I-%M-%S)
 geometry=$(xrandr | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current')
 
 dir="$(xdg-user-dir VIDEOS)/Screenrecords"
-file="Capture_$clock_$geometry.mp4"
+file="Capture_${clock}_${geometry}.mp4"
 
 [ ! -d "$dir" ] && mkdir -p "$dir"
 
