@@ -13,6 +13,9 @@ done
 # Load Xresources
 xrdb "$HOME"/.Xresources
 
+# Load xsettingsd &
+xsettingsd &
+
 # Fix cursor
 xsetroot -cursor_name left_ptr &
 

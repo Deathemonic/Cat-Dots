@@ -1,7 +1,7 @@
 #!/bin/sh
 
 icon_path="$(xdg-user-dir CONFIG)/cat-configs/dunst/icons"
-colorscheme=macchiato
+colorscheme=mocha
 
 notify () {
   brightness=$(brightnessctl i | grep -oP '\(\K[^%\)]+')

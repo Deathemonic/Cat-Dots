@@ -1,14 +1,14 @@
 #!/bin/sh
 
 # Colors
-base=#24273a
-mantle=#1e2030
-green=#a6da95
-red=#ed8796
-text=#cad3f5
+base=#1e1e2e
+mantle=#181825
+green=#a6e3a1
+red=#f38ba8
+text=#cdd6f4
 
 font="JetBrains Mono"
-background="$HOME/.lock.png"
+background="$HOME/.lock"
 
 i3lock \
     --fill \

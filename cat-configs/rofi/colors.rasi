@@ -1,5 +1,5 @@
 * {
-  accent: #8839ef;
+  accent: #b4befe;
 }
 
-@import "../palletes/rofi/macchiato"
+@import "../palletes/rofi/mocha"

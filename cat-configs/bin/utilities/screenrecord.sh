@@ -2,7 +2,7 @@
 
 script_dir="$(cd "$(dirname "$0")" >/dev/null 2>&1 && pwd)"
 icon_path="$(xdg-user-dir CONFIG)/cat-configs/dunst/icons"
-colorscheme=macchiato
+colorscheme=mocha
 
 clock=$(date +%Y-%m-%d-%I-%M-%S)
 geometry=$(xrandr | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current')

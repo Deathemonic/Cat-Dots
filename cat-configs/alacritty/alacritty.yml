@@ -1,7 +1,7 @@
 import:
   - ~/.config/cat-configs/alacritty/fonts.yml
   - ~/.config/cat-configs/alacritty/mappings.yml
-  - ~/.config/cat-configs/palletes/alacritty/macchiato.yml
+  - ~/.config/cat-configs/palletes/alacritty/mocha.yml
 
 env:
   TERM: alacritty
