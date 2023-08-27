@@ -30,7 +30,7 @@ case "$chosen" in
     execute "reboot -h now" "reboot"
   ;;
   "$lock")
-    sh "$(xdg-user-dirs CONFIG)/cat-configs/bin/utilities/lockscreen.sh"
+    sh "$(xdg-user-dir CONFIG)/cat-configs/bin/utilities/lockscreen.sh"
   ;;
   "$suspend")
     execute "playerctl -a stop && systemctl suspend" "suspend"
