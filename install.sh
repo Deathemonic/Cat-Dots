@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Installer Version: 3.1.0
+# Installer Version: 3.1.1
 # Based on https://github.com/manas140/dotfiles installer
 
 cr="\033[1;31m"
@@ -16,12 +16,12 @@ packages="bspwm sxhkd \
     gtk3 gtk4 gtk-engine-murrine gnome-themes-extra \
     pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber alsa-utils pamixer \
     feh brightnessctl bluez-utils i3lock-color \
-    yad xclip stalonetray \
+    yad xclip stalonetray maim gpick imagemagick \
     nerd-fonts-jetbrains-mono ttf-jetbrains-mono ttf-sarasa-gothic ttf-roboto \
     mpd mpdris2 ncmpcpp playerctl \
     polkit-gnome xfce4-power-manager \
-    gpick maim libnotify notify-send-py \
-    xdg-utils xdg-user-dirs xdo \
+    libnotify notify-send-py \
+    xdg-utils xdg-user-dirs xdo xsettingsd \
     python3 pypy3 python-gobject" 
 
 clear
