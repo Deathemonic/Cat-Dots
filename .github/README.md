@@ -20,6 +20,8 @@
 		<img alt="Issues" src="https://img.shields.io/github/issues/deathemonic/cat-dots?style=for-the-badge&logo=gitbook&color=B5E8E0&logoColor=D9E0EE&labelColor=302D41"></a>
 </p>
 
+![github_showcase](https://github.com/Deathemonic/Cat-Dots/assets/65948476/1b033f7e-4308-4af0-8d12-36ba63bfebf7)
+
 ## Installation
 <details open>
 	<summary><b><samp>AUTO INSTALL</samp></b></summary>
