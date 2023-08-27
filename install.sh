@@ -18,7 +18,7 @@ packages="bspwm sxhkd \
     feh brightnessctl bluez-utils i3lock-color \
     yad xclip stalonetray maim gpick imagemagick ffmpeg \
     nerd-fonts-jetbrains-mono ttf-jetbrains-mono ttf-sarasa-gothic ttf-roboto \
-    mpd mpdris2 ncmpcpp playerctl \
+    mpd mpdris2 ncmpcpp playerctl zscroll-git \
     polkit-gnome xfce4-power-manager \
     libnotify notify-send-py \
     xdg-utils xdg-user-dirs xdo xsettingsd \
