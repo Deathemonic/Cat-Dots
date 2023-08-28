@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Installer Version: 4.2.9
+# Installer Version: 4.3.2
 # Based on https://github.com/manas140/dotfiles installer
 
 cr="$(tput setaf 1)"
@@ -34,6 +34,7 @@ make_backups () {
 
     tempdir=$(mktemp -d -p "$HOME/.backups")
     [ -d "$home_config/bspwm" ] && mv "$home_config/bspwm" "$tempdir"
+    [ -d "$home_config/cat-configs" ] && mv "$home_config/cat-configs" "$tempdir"
     [ -d "$home_config/mpDris2" ] && mv "$home_config/mpDris2" "$tempdir"
     [ -f "$home_config/user-dirs.dirs" ] && mv "$home_config/user-dirs.dirs" "$tempdir"
     [ -d "$HOME/.mpd" ] && mv "$HOME/.mpd" "$tempdir"
@@ -109,20 +110,20 @@ copying_files () {
     if [ -d "./cat-configs" ]; then
         printf "%s[!] Detected local dotfiles..." "${cr}"
         
-        cp -rf ./bspwm "$home_config"
-        cp -rf ./cat-configs "$home_config"
-        cp -rf ./misc/home/* "$HOME"
+        cp -rf "./bspwm" "$home_config"
+        cp -rf "./cat-configs" "$home_config"
+        cp -rf "./misc/home" "$HOME"
 
         if command -v pacman; then
-            cd ./misc/fonts || exit 1
+            cd "./misc/fonts" || exit 1
             makepkg -g >> PKGBUILD && makepkg -si
         fi
     else
         cd "$cache_dir" && git clone https://github.com/Deathemonic/Cat-Dots.git    
     
-        cp -rf $cache/bspwm "$home_config"
-        cp -rf $cache/cat-configs "$home_config"
-        cp -rf $cache/misc/home/* "$HOME" 
+        cp -rf "$cache/bspwm" "$home_config"
+        cp -rf "$cache/cat-configs" "$home_config"
+        cp -rf "$cache/misc/home" "$HOME" 
 
         if command -v pacman; then
             cd "$cache/misc/fonts" || exit 1
