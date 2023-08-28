@@ -12,17 +12,17 @@ cache="$cache_dir/Cat-Dots"
 home_config="$HOME/.config"
 
 packages="bspwm sxhkd \
-    polybar rofi zsh alacritty picom-ftlabs-git dunst \
-    gtk3 gtk4 gtk-engine-murrine gnome-themes-extra \
-    pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber alsa-utils pamixer \
-    feh brightnessctl bluez-utils i3lock-color \
-    yad xclip stalonetray maim gpick imagemagick ffmpeg \
-    nerd-fonts-jetbrains-mono ttf-jetbrains-mono ttf-sarasa-gothic ttf-roboto \
-    mpd mpdris2 ncmpcpp playerctl zscroll-git \
-    polkit-gnome xfce4-power-manager \
-    libnotify notify-send-py \
-    xdg-utils xdg-user-dirs xdo xsettingsd \
-    python3 python-gobject"
+polybar rofi zsh alacritty picom-ftlabs-git dunst \
+gtk3 gtk4 gtk-engine-murrine gnome-themes-extra \
+pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber alsa-utils pamixer \
+feh brightnessctl bluez-utils i3lock-color \
+yad xclip stalonetray maim gpick imagemagick ffmpeg \
+nerd-fonts-jetbrains-mono ttf-jetbrains-mono ttf-sarasa-gothic ttf-roboto \
+mpd mpdris2 ncmpcpp playerctl zscroll-git \
+polkit-gnome xfce4-power-manager \
+libnotify notify-send-py \
+xdg-utils xdg-user-dirs xdo xsettingsd \
+python3 python-gobject"
 
 clear
 
