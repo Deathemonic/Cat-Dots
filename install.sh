@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Installer Version: 4.2.3
+# Installer Version: 4.2.5
 # Based on https://github.com/manas140/dotfiles installer
 
 cr="$(tput setaf 1)"
@@ -42,11 +42,11 @@ make_backups () {
 
 install_packages () {
     echo
-    printf "%s  ____    _  _____     ____   ___ _____ ____\n" "${cb}"
+    printf "%s  ____    _  _____     ____   ___ _____ ____\n" "${cr}"
     printf "%s / ___|  / \|_   _|   |  _ \ / _ \_   _/ ___|\n" "${cg}"
     printf "%s| |     / _ \ | |_____| | | | | | || | \___ |\n" "${cr}"
     printf "%s| |___ / ___ \| |_____| |_| | |_| || |  __) |\n" "${cg}"
-    printf "%s \____/_/   \_\_|     |____/ \___/ |_| |____/\n" "${cb}"
+    printf "%s \____/_/   \_\_|     |____/ \___/ |_| |____/\n" "${cr}"
     printf "%s The Dotfiles themed with catppuccin colors\n" "${cr}"
     echo
     echo
