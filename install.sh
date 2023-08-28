@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Installer Version: 4.2.5
+# Installer Version: 4.2.6
 # Based on https://github.com/manas140/dotfiles installer
 
 cr="$(tput setaf 1)"
@@ -185,6 +185,8 @@ setup () {
     printf "%s[*] Choose what do you want to do\n" "${cg}"
     echo
     printf "%s[*] backup, nobackup, or install\n" "${cb}"
+    echo
+    printf "%s[*] <Ctrl + C> to exit/cancel\n" "${cb}"
     echo
     printf "%s[-] Operation : " "${cr}"
     read -r choice
