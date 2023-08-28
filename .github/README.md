@@ -45,7 +45,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/Deathemonic/Cat-Dots/main/
 <br>
 
 > **Note:** <br>
-> First up install the dependencies need if not the dotfiles doesn't work.
+> First up install the dependencies, they are needed in order for the dotfiles to work.
 > Check out this [link](https://github.com/Deathemonic/SweetDots/wiki/Documentation#dependencies) for the list of dependencies
 
 1. Clone the repo and go to that directory
