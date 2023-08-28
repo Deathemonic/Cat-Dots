@@ -20,7 +20,7 @@
 		<img alt="Issues" src="https://img.shields.io/github/issues/deathemonic/cat-dots?style=for-the-badge&logo=gitbook&color=B5E8E0&logoColor=D9E0EE&labelColor=302D41"></a>
 </p>
 
-![github_showcase](https://github.com/Deathemonic/Cat-Dots/assets/65948476/1b033f7e-4308-4af0-8d12-36ba63bfebf7)
+![github_showcase](https://github.com/Deathemonic/Cat-Dots/assets/65948476/38dd0818-c3a1-4787-859f-61b037903084)
 
 ## Installation
 <details open>
@@ -116,7 +116,7 @@ cp -rf misc/home ~
 		makepkg -si
 		```
 
-	* Other Distros
+	* Other Distros:
 		1. Download the official phosphor fonts
 		
     	> https://raw.githubusercontent.com/phosphor-icons/web/master/src/bold/Phosphor-Bold.ttf
@@ -174,6 +174,16 @@ cp -rf misc/home ~
 </details>
 
 <br>
+
+<details>
+<summary><b><samp>SCREENSHOTS</samp></b></summary>
+<br>
+
+WIP
+> Desktop
+![desktop_preview](https://github.com/Deathemonic/Cat-Dots/assets/65948476/6635bc1c-118c-42fb-a2cf-289de68b69ae)
+
+</details>
 
 <details>
 <summary><b><samp>THANKS TO</samp></b></summary>
