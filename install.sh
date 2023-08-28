@@ -76,11 +76,13 @@ install_packages () {
 
 install_aur () {
     if command -v "$1"; then
+        # shellcheck disable=SC2086
         $1 -S $packages --needed
     else
         git clone "$2"
         cd "$1" || exit 1
         makepkg -si
+        # shellcheck disable=SC2086
         $1 -S $packages --needed
     fi
     copying_files
