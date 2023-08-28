@@ -35,7 +35,7 @@ make_backups () {
     tempdir=$(mktemp -d -p "$HOME/.backups")
     [ -d "$home_config/bspwm" ] && mv "$home_config/bspwm" "$tempdir"
     [ -d "$home_config/mpDris2" ] && mv "$home_config/mpDris2" "$tempdir"
-    [ -d "$home_config/user-dirs" ] && mv "$home_config/user-dirs" "$tempdir"
+    [ -f "$home_config/user-dirs.dirs" ] && mv "$home_config/user-dirs.dirs" "$tempdir"
     [ -d "$HOME/.mpd" ] && mv "$HOME/.mpd" "$tempdir"
     [ -d "$HOME/.ncmpcpp" ] && mv "$HOME/.ncmpcpp" "$tempdir"
 }
