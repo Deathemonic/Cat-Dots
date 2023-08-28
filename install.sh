@@ -129,9 +129,9 @@ copying_files () {
             makepkg -g >> PKGBUILD && makepkg -si
         fi
     fi
-    
-    chmod +x "$home_config/cat-configs/bin/system/*"
-    chmod +x "$home_config/cat-configs/bin/utilities/*" 
+
+    chmod +x $home_config/cat-configs/bin/system/*
+    chmod +x $home_config/cat-configs/bin/utilities/*
     
     xdg-user-dirs-update
     fc-cache -fv
