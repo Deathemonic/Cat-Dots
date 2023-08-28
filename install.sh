@@ -76,12 +76,12 @@ install_packages () {
 
 install_aur () {
     if command -v "$1"; then
-        $1 -S "$packages" --needed
+        $1 -S $packages --needed
     else
         git clone "$2"
         cd "$1" || exit 1
         makepkg -si
-        $1 -S "$packages" --needed
+        $1 -S $packages --needed
     fi
     copying_files
 }
