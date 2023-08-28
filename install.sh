@@ -109,20 +109,20 @@ copying_files () {
     if [ -d "./cat-configs" ]; then
         printf "%s[!] Detected local dotfiles..." "${cr}"
         
-        cp -rf "./bspwm" "$home_config"
-        cp -rf "./cat-configs" "$home_config"
-        cp -rf "./misc/home/*" "$HOME"
+        cp -rf ./bspwm "$home_config"
+        cp -rf ./cat-configs "$home_config"
+        cp -rf ./misc/home/* "$HOME"
 
         if command -v pacman; then
-            cd "./misc/fonts" || exit 1
+            cd ./misc/fonts || exit 1
             makepkg -g >> PKGBUILD && makepkg -si
         fi
     else
         cd "$cache_dir" && git clone https://github.com/Deathemonic/Cat-Dots.git    
     
-        cp -rf "$cache/bspwm" "$home_config"
-        cp -rf "$cache/cat-configs" "$home_config"
-        cp -rf "$cache/misc/home/*" "$HOME" 
+        cp -rf $cache/bspwm "$home_config"
+        cp -rf $cache/cat-configs "$home_config"
+        cp -rf $cache/misc/home/* "$HOME" 
 
         if command -v pacman; then
             cd "$cache/misc/fonts" || exit 1
