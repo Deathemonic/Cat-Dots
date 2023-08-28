@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Installer Version: 4.3.2
+# Installer Version: 4.3.3
 # Based on https://github.com/manas140/dotfiles installer
 
 cr="$(tput setaf 1)"
@@ -108,7 +108,7 @@ copying_files () {
     printf "%s[*] Getting dotfiles\n" "${cb}" && sleep 2
 
     if [ -d "./cat-configs" ]; then
-        printf "%s[!] Detected local dotfiles..." "${cr}"
+        printf "%s[!] Detected local dotfiles...\n" "${cr}"
         
         cp -rf "./bspwm" "$home_config"
         cp -rf "./cat-configs" "$home_config"
