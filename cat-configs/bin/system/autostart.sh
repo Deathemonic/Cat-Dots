@@ -39,7 +39,7 @@ sh "$(xdg-user-dir CONFIG)/cat-configs/bin/system/panel.sh" &
 # Notification
 sh "$(xdg-user-dir CONFIG)/cat-configs/bin/system/notifications.sh" &
 
-Compositor
+# Compositor
 sh "$(xdg-user-dir CONFIG)/cat-configs/bin/system/compositor.sh" &
 
 # Keybinds
