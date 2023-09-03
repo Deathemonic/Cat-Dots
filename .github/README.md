@@ -173,6 +173,14 @@ cp -rf misc/home ~
 
 </details>
 
+<details>
+	<summary><b><samp>NIX INSTALL</samp></b></summary>
+<br>
+
+# WIP
+
+</details>
+
 <br>
 
 <details>
