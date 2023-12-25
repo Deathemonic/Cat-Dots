@@ -6,6 +6,7 @@
 cr="$(tput setaf 1)"
 cg="$(tput setaf 2)"
 cb="$(tput setaf 4)"
+cw="$(tput sgr0)"
 
 cache_dir="$HOME/.cache"
 cache="$cache_dir/Cat-Dots"
@@ -63,6 +64,7 @@ install_packages () {
         Y|y)
             if command -v pacman; then
                 printf "%s[*] Updating System\n" "${cg}" && sleep 2
+		printf "%s" "$cw"
                 sudo pacman --noconfirm --needed -Syu git wget xorg base-devel
                 aur_helper
             else
@@ -78,10 +80,12 @@ install_packages () {
 install_aur () {
     if command -v "$1"; then
         # shellcheck disable=SC2086
+	printf "%s" "$cw"
         $1 -S $packages --needed
     else
+        printf "%s" "$cw"
         git clone "$2"
-        cd "$1" || exit 1
+        cd "$1-bin" || exit 1
         makepkg -si
         # shellcheck disable=SC2086
         $1 -S $packages --needed
@@ -116,6 +120,7 @@ copying_files () {
 
         if command -v pacman; then
             cd "./misc/fonts" || exit 1
+	    printf "%s" "$cw"
             makepkg -g >> PKGBUILD && makepkg -si
         fi
     else
@@ -127,6 +132,7 @@ copying_files () {
 
         if command -v pacman; then
             cd "$cache/misc/fonts" || exit 1
+	    printf "%s" "$cw"
             makepkg -g >> PKGBUILD && makepkg -si
         fi
     fi
@@ -141,6 +147,7 @@ copying_files () {
 }
 
 installing_themes () {
+    printf "%s" "$cw"
     cd "$cache_dir" && git clone --recurse-submodules https://github.com/catppuccin/gtk.git cat-gtk
     cd cat-gtk || exit 1
     python3 -m venv venv
