@@ -116,7 +116,7 @@ copying_files () {
         
         cp -rf "./bspwm" "$home_config"
         cp -rf "./cat-configs" "$home_config"
-        cp -rf "./misc/home" "$HOME"
+        cp -rf "./misc/home/*" "$HOME"
 
         if command -v pacman; then
             cd "./misc/fonts" || exit 1
