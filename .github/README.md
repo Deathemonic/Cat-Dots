@@ -92,7 +92,7 @@ chmod +x ~/.config/cat-configs/bin/utilities/*
 7. Copy the home configs to your home directory ``~``
 
 ```sh
-cp -rf misc/home ~
+cp -rf misc/home/* ~
 ```
 
 8. Install the extra fonts
