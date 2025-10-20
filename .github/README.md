@@ -216,6 +216,8 @@ WIP
 
 [![LiberaPay](https://img.shields.io/badge/Liberapay-F6C915?style=for-the-badge&logo=liberapay&logoColor=black)](https://liberapay.com/Zinth)
 
+</details>
+
 <details>
 <summary><b><samp>OTHER DOTFILES</samp></b></summary>
 <br>
