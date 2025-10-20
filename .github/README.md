@@ -214,12 +214,7 @@ WIP
 
 **Like my work consider supporting me**
 
-<a href='https://ko-fi.com/K3K8C2M9Y' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-
-or
-
-[Donate via Paypal](https://www.paypal.me/@notkillzone)
-</details>
+[![LiberaPay](https://img.shields.io/badge/Liberapay-F6C915?style=for-the-badge&logo=liberapay&logoColor=black)](https://liberapay.com/Zinth)
 
 <details>
 <summary><b><samp>OTHER DOTFILES</samp></b></summary>
